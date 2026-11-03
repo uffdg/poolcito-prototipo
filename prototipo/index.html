@@ -282,6 +282,7 @@ body.phone-only .sim { display: none; }
 .hero .tx { padding: 16px 16px 6px; }
 .hero h3 { font: 700 21px/1.15 var(--font-display); letter-spacing: -.015em; margin: 4px 0 4px; }
 .hero svg { display: block; width: 100%; height: auto; margin-top: auto; }
+.hero.next { background: var(--sand); }
 .side { flex: 0 0 18%; border-radius: 24px; background: var(--sand); display: grid; place-items: center; border: 0; cursor: pointer; }
 .side span { writing-mode: vertical-rl; transform: rotate(180deg); font: 700 16px var(--font-display); }
 .qcard { flex: 0 0 56%; border-radius: 22px; padding: 14px; display: flex; flex-direction: column; gap: 6px; border: 0; text-align: left; cursor: pointer; min-height: 150px; }
@@ -426,8 +427,8 @@ body { background: #F1F0EC; }
     </div>
     <div class="sec"><h2>Hoy</h2><button data-go="h6">Ver semana</button></div>
     <div class="hscroll">
-      <button class="hero" data-go="h9"><div class="tx"><span class="chip" style="background:rgba(255,255,255,.6)">Todo cubierto</span><h3>17:15 · Diego lleva a Joaquín a fútbol</h3><div class="small" style="color:var(--ink)">Escuela → Club GEBA · vuelve con Familia G. 19:00</div></div><svg viewBox="0 0 300 92" aria-hidden="true"><path d="M0 40 C 60 18, 120 52, 180 34 S 260 14, 300 26 V92 H0Z" fill="#FFD36E"/><path d="M0 64 C 80 46, 160 74, 300 54 V92 H0Z" fill="#8A9E2D" opacity=".85"/><path d="M110 92 C 140 70, 190 62, 270 44 L 284 50 C 206 70, 160 80, 134 92 Z" fill="#1F2B45"/><path d="M124 92 C 154 72, 200 64, 276 47" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="7 6"/><circle cx="40" cy="56" r="10" fill="#E0674C"/><rect x="38.5" y="64" width="3" height="18" fill="#1F2B45"/><circle cx="235" cy="20" r="11" fill="#fff" opacity=".9"/></svg></button>
-      <button class="side" data-go="h6"><span>Tarde</span></button>
+      <button class="hero" data-go="h9"><div class="tx"><span class="chip" style="background:rgba(255,255,255,.6)">Ida · todo cubierto</span><h3>17:15 · Diego lleva a Joaquín a fútbol</h3><div class="small" style="color:var(--ink)">Escuela → Club GEBA</div></div><svg viewBox="0 0 300 92" aria-hidden="true"><path d="M0 40 C 60 18, 120 52, 180 34 S 260 14, 300 26 V92 H0Z" fill="#FFD36E"/><path d="M0 64 C 80 46, 160 74, 300 54 V92 H0Z" fill="#8A9E2D" opacity=".85"/><path d="M110 92 C 140 70, 190 62, 270 44 L 284 50 C 206 70, 160 80, 134 92 Z" fill="#1F2B45"/><path d="M124 92 C 154 72, 200 64, 276 47" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="7 6"/><circle cx="40" cy="56" r="10" fill="#E0674C"/><rect x="38.5" y="64" width="3" height="18" fill="#1F2B45"/><circle cx="235" cy="20" r="11" fill="#fff" opacity=".9"/></svg></button>
+      <button class="hero next" data-go="h9"><div class="tx"><span class="chip" style="background:#fff">Vuelta</span><h3>19:00 · Familia G. trae a Joaquín</h3><div class="small" style="color:var(--ink)">Club GEBA → casa de la abuela · recibe Elsa</div></div></button>
     </div>
     <div class="sec"><h2>Acciones rápidas</h2><button data-go="h12">Mi pool</button></div>
     <div class="hscroll">
