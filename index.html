@@ -111,6 +111,34 @@ h2 { font-size: 32px; }
 .ev div { font-weight: 700; }
 
 footer { padding: 56px 0 64px; color: var(--pc-slate-600); font-size: 14px; }
+
+/* ===== D-011: claro, simple y adulto · azul base, naranja resaltado ===== */
+:root { --blue-900: #1F2B45; --blue-700: #2C4A7A; --blue-100: #E6EDF6; --blue-50: #F2F6FB; --orange-500: #F08A24; --orange-800: #8A4A0E; --orange-100: #FDECD9;
+  --green-700: #25694A; --green-100: #E2F2E9; --gray-50: #F5F6F8; --gray-100: #ECEEF2; --gray-200: #DFE3E9; --gray-600: #5A6172;
+  --pc-slate-600: var(--gray-600); --radius-md: 10px; --radius-lg: 12px; }
+body { background: #FAFBFC; }
+header.hero { background: var(--blue-50); }
+.brand .upd { border-radius: 8px; }
+.insight { border-radius: 12px; } .insight .ic { border-radius: 10px; background: var(--orange-500); }
+.card, .stage, .gate, .item { border-color: var(--gray-200); border-radius: 12px; }
+.chip { border-radius: 6px; }
+.s-done { background: var(--green-100); color: var(--green-700); }
+.s-doing { background: var(--orange-100); color: var(--orange-800); }
+.s-todo { background: var(--gray-100); color: var(--gray-600); }
+.stage .num { border-radius: 8px; background: var(--gray-100); }
+.stage.done .num { background: var(--green-100); color: var(--green-700); }
+.stage.doing { background: #fff; border: 1.5px solid var(--orange-500); }
+.stage.doing .num { background: var(--orange-500); }
+.bar { background: var(--gray-200); } .bar i { background: var(--orange-500); }
+.gate .n { border-radius: 10px; background: var(--blue-100); color: var(--blue-700); }
+.icirc { border-radius: 10px; }
+.deliv.feature { background: var(--blue-900); }
+.deliv.feature .icirc { background: var(--orange-500) !important; }
+.deliv:not(.feature) .icirc { background: var(--blue-100) !important; }
+.ev::before { background: var(--green-700); border-color: #FAFBFC; }
+.ev.next::before { background: #fff; border-color: var(--orange-500); }
+nav.toc { background: rgba(250,251,252,.95); border-color: var(--gray-200); }
+nav.toc a:hover { background: var(--gray-100); }
 </style>
 </head>
 <body>
@@ -189,7 +217,7 @@ footer { padding: 56px 0 64px; color: var(--pc-slate-600); font-size: 14px; }
 
 </main>
 
-<footer><div class="wrap">Poolcito · seguimiento del proyecto · Equipo: Maru (diseño de producto) y Lupe (investigación y relación con la clienta). Fuente: registros del proyecto (estado de puertas, decisiones, preguntas abiertas y documentos). Para actualizar esta página, editá el bloque <code>DATA</code> al final del archivo.</div></footer>
+<footer><div class="wrap">Poolcito · seguimiento del proyecto. Fuente: registros del proyecto (estado de puertas, decisiones, preguntas abiertas y documentos). Para actualizar esta página, editá el bloque <code>DATA</code> al final del archivo.</div></footer>
 
 <script>
 /* ===== DATA: editar acá para actualizar la página ===== */
@@ -206,7 +234,7 @@ const DATA = {
     ["Investigación con usuarios", "done", "5 entrevistas y encuesta, anonimizadas."],
     ["Síntesis", "done", "Patrones, camino del usuario, dolores, necesidades. Borrador."],
     ["Definición de producto", "doing", "Definición del problema (30/10) e insight reformulado (03/11)."],
-    ["Diseño", "doing", "Design system v0 sobre el diseño de la CEO, ajustado a la evidencia."],
+    ["Diseño", "doing", "Design system v0.1: claro, simple y adulto, con color semántico (D-011)."],
     ["Prototipo", "doing", "Concepto v0 navegable, provisional (D-009)."],
     ["Validación", "todo", "Test con familias: seis hipótesis a probar."],
   ],
@@ -224,7 +252,7 @@ const DATA = {
     ["LuPresentation", "Reporte de investigación", "29 diapositivas: hallazgos, camino del usuario, definición del problema y decisiones.", "https://docs.google.com/presentation/d/1LzXIBcKejDLWTCzDVkbsRAKgIhnmaE-KPQdsFRoYWw8/edit", ["Google Slides", "Borrador"]],
     ["LuFileText", "Síntesis de entrevistas y encuesta", "El documento completo con patrones, journey, dolores, necesidades y preguntas.", "https://docs.google.com/document/d/1v9fq4AcDvs_zK9pppspVpwvpeHEqxqcc9B2TqJ6vrjw/edit", ["Google Docs", "Borrador"]],
     ["LuTarget", "Definición del problema", "Conclusiones, tensiones, principios de diseño e hipótesis del prototipo (30/10).", "https://drive.google.com/file/d/1jXz3Q7Nz0CMTjRy8fYcfXKsk116fs8Hh/view", ["PDF", "Equipo"]],
-    ["LuPalette", "Design system v0", "Colores, tipografías, medidas y componentes de la app.", "./design-system/", ["Provisional", "Abrir"]],
+    ["LuPalette", "Design system v0.1", "Colores semánticos (azul base, naranja resaltado), tipografías, medidas y componentes.", "./design-system/", ["Provisional", "Abrir"]],
     ["LuLayoutDashboard", "Tablero en FigJam", "Entrevistas, journey y síntesis transversal para trabajar con la CEO.", "https://www.figma.com/board/Ia6ht6Gv2HfFfFdqlOhEoy/Poolcito", ["FigJam"]],
     ["LuMessagesSquare", "Transcripciones anonimizadas", "Las 5 entrevistas, con participantes codificados P01 a P05.", "https://drive.google.com/drive/folders/1NfwxTbsGiYb2uS7eBXQM8UdKNDAuQo3P", ["Drive", "Solo equipo"]],
     ["LuClipboardList", "Guía de entrevista y encuesta", "Los instrumentos de la investigación con familias.", "https://docs.google.com/document/d/1QgReQLfQPgDSq7tK_d5lODy3Xjx3t2rTLkWIHvVuCs8/edit", ["Google Docs"]],
@@ -252,6 +280,7 @@ const DATA = {
   ],
   openCount: 25, totalCount: 30,
   decisions: [
+    ["D-011", "03/11", "Dirección visual: clara, simple y adulta; azul como base y naranja como resaltado; menos bordes y radios más chicos."],
     ["D-010", "03/11", "Prototipo: seguimiento del viaje estilo PedidosYa, recorrido con link a Google Maps y nombres ficticios sin coincidencias con el equipo ni con participantes."],
     ["D-009", "03/11", "Construir un prototipo de concepto navegable (camino feliz y casos borde) para la CEO y tecnología, provisional."],
     ["D-008", "20/10", "Encuesta v2: la distribuyen varias personas; incluye a niñeras, abuelos y otros familiares."],

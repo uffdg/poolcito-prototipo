@@ -172,6 +172,60 @@ body.phone-only .sim { display: none; }
 .sim .lbl { font: 800 11px var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); text-align: center; }
 .sim button { border: 0; background: rgba(255,255,255,.75); border-radius: 10px; padding: 8px; font: 800 13px var(--font-body); cursor: pointer; }
 .sim button.e { color: #9A3A26; }
+
+/* ===== D-011: claro, simple y adulto · azul base, naranja resaltado ===== */
+:root {
+  --blue-900: #1F2B45; --blue-700: #2C4A7A; --blue-100: #E6EDF6; --blue-50: #F2F6FB;
+  --orange-500: #F08A24; --orange-800: #8A4A0E; --orange-100: #FDECD9;
+  --green-700: #25694A; --green-100: #E2F2E9; --red-600: #C8462F; --red-100: #FBE6E2;
+  --gray-50: #F5F6F8; --gray-100: #ECEEF2; --gray-200: #DFE3E9;
+  --pc-amber-500: var(--orange-500); --pc-amber-100: var(--orange-100); --pc-cream-200: var(--gray-50); --pc-cream-50: var(--gray-100);
+  --pc-sky-200: var(--blue-100); --pc-peach-200: var(--gray-100); --pc-rose-200: var(--blue-100); --pc-mint-100: var(--green-100);
+  --pc-coral-500: var(--red-600); --pc-green-700: var(--green-700);
+  --radius-lg: 12px; --radius-md: 10px; --color-border-soft: var(--gray-200);
+}
+.phone { padding: 6px; border-radius: 40px; } .viewport { border-radius: 34px; }
+.bg-y, .bg-p, .bg-b { background: var(--gray-50); }
+.pad { gap: 10px; padding: 6px 18px 18px; }
+.card { border-radius: 12px; padding: 12px 14px; }
+.btn { border-radius: 10px; height: 50px; }
+.btn-accent { background: var(--orange-500); color: var(--blue-900); }
+.back { border-radius: 10px; width: 40px; height: 40px; border: 1px solid var(--gray-200); }
+.icirc { border-radius: 10px; }
+.action { border-radius: 12px; padding: 12px 14px; }
+.a-peach, .a-sky, .a-white { background: #fff; }
+.a-amber { background: var(--orange-500); }
+.action .icirc { background: var(--blue-100) !important; color: var(--blue-900); }
+.a-amber .icirc { background: rgba(255,255,255,.4) !important; }
+.chip { border-radius: 6px; }
+.c-cream { background: var(--gray-100); }
+.c-amber { background: var(--orange-100); color: var(--orange-800); }
+.c-rose, .c-sky { background: var(--blue-100); color: var(--blue-700); }
+.c-mint { background: var(--green-100); color: var(--green-700); }
+.c-coral { background: var(--red-600); }
+.av-a { background: var(--orange-100); color: var(--orange-800); }
+.av-c { background: var(--blue-900); color: #fff; }
+.av-s { background: var(--blue-100); color: var(--blue-700); }
+.av-p { background: var(--gray-100); }
+.av-m { background: var(--green-100); color: var(--green-700); }
+.note { border-radius: 10px; }
+.note.warn { background: var(--orange-100); }
+.note.alert { border: 1.5px solid var(--red-600); background: var(--red-100); }
+.field, .select { border-radius: 10px; }
+.seg { border-radius: 10px; } .seg button { border-radius: 8px; }
+.big { border-radius: 24px; width: 88px; height: 88px; }
+.big.ok { background: var(--green-100); color: var(--green-700); }
+.tab .pill { border-radius: 8px; } .tab.active .pill { background: var(--orange-100); color: var(--orange-800); }
+.day { border-radius: 12px; }
+.slot-empty { border: 1.5px dashed var(--orange-500); background: var(--orange-100); color: var(--orange-800); border-radius: 10px; }
+.dot.wait { background: var(--orange-100); color: var(--orange-800); } .dot.no { background: var(--red-100); color: var(--red-600); }
+.live { border-radius: 12px; }
+.sheet { border-radius: 16px 16px 0 0; }
+.gmaps { border-radius: 10px; height: 50px; }
+.stop .pin.done { background: var(--green-100); color: var(--green-700); }
+.add { border-radius: 12px; }
+.tabbar { border-radius: 16px 16px 0 0; }
+.wa-card { border-radius: 12px; }
 </style>
 </head>
 <body>
@@ -442,7 +496,7 @@ body.phone-only .sim { display: none; }
   <div class="status"><span>19:14</span><span>●●● 100%</span></div>
   <div class="pad center">
     <div style="height:50px"></div>
-    <div class="big"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="52" width="52" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></div>
+    <div class="big ok"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="52" width="52" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></div>
     <h1 class="h-1">Joaquín llegó</h1>
     <p class="sub">19:12 · lo recibió la abuela Elsa. Diego y vos ya lo saben.</p>
     <div class="card" style="text-align:left;margin-top:8px">
