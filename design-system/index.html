@@ -266,6 +266,30 @@ header.top { background: var(--blue-50); }
 .sem .sws { display: flex; gap: 6px; flex-wrap: wrap; }
 .sem .sw2 { width: 54px; height: 40px; border-radius: 8px; display: grid; place-items: end start; padding: 4px 6px; font: 800 10px var(--font-body); }
 @media (max-width: 640px) { .sem { grid-template-columns: 1fr; } }
+
+/* ===== v0.2 · D-012: referencia visual ===== */
+:root { --amber: #FEBB2F; --amber-100: #FFF1D0; --amber-800: #6E4A00; --ink: #1F2B45;
+  --sand: #D1C5B9; --brown: #754539; --olive: #8A9E2D; --taupe: #787264; --pink: #F4D3CC; --lilac: #E0D8FF;
+  --orange-500: var(--amber); --orange-100: var(--amber-100); --orange-800: var(--amber-800);
+  --gray-50: #F1F0EC; --gray-100: #E8E6E1; --gray-200: #DEDBD5; --gray-600: #6B6A66;
+  --pc-amber-500: var(--amber); --pc-cream-200: var(--gray-50); --pc-cream-50: var(--gray-100);
+  --color-screen-yellow: var(--gray-50); --color-screen-blue: var(--gray-50); --color-screen-peach: var(--gray-50);
+  --radius-sm: 999px; --radius-md: 14px; --radius-lg: 22px; --size-button: 54px; }
+body { background: #F7F6F3; } header.top { background: var(--gray-50); }
+h1, h2, h3, .t-display, .t-h1, .t-h2, .action h4 { font-weight: 700; }
+.panel, .sw { border-radius: 22px; border: 0; }
+.stage { border-radius: 22px; }
+.btn { border-radius: 999px; } .btn-primary { background: var(--amber); color: var(--ink); } .btn-secondary { background: #fff; border-color: transparent; }
+.btn-accent { background: var(--ink); color: #fff; }
+.back { border-radius: 50%; width: 44px; height: 44px; border: 0; }
+.field { border-radius: 14px; border: 0; } .select { border-radius: 14px; }
+.card { border-radius: 22px; } .icirc { border-radius: 50%; } .action { border-radius: 22px; } .a-amber { background: var(--amber); }
+.chip { border-radius: 999px; } .c-review, .c-alarm, .c-rating { background: var(--amber-100); color: var(--amber-800); }
+.seg, .seg button { border-radius: 999px; } .day { border-radius: 999px; }
+.add { border-radius: 22px; } .tab.active .pill { background: var(--amber-100); }
+.state .big { border-radius: 50%; } .modal { border-radius: 26px; } .modal .bell { border-radius: 50%; }
+.note { border-radius: 16px; } .note.warn { background: var(--amber-100); } .status-pill { border-radius: 999px; }
+.sem .sw2 { border-radius: 10px; }
 </style>
 </head>
 <body>
@@ -276,12 +300,12 @@ header.top { background: var(--blue-50); }
       <span class="logo" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 200 200" aria-hidden="true"><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#FFF6E7"/><path d="M82 96 Q 88 78 100 78 Q 112 78 118 96 Z" fill="#D0E6F3"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#FFF6E7"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg></span>
       <b>Poolcito</b>
     </div>
-    <h1>Design system v0.1: la base visual de la app</h1>
-    <p class="lead">Colores, tipografías, medidas y componentes extraídos de las 20 pantallas del diseño de la CEO, listos para el prototipo webview. Incluye notas de la investigación con familias sobre qué componentes revisar.</p>
+    <h1>Design system v0.2: la base visual de la app</h1>
+    <p class="lead">Colores, tipografías, medidas y componentes extraídos de las 20 pantallas del diseño de la founder, listos para el prototipo webview. Incluye notas de la investigación con familias sobre qué componentes revisar.</p>
     <div class="meta">
-      <span class="chip c-dark">Borrador v0.1 · 03/11/2026</span>
+      <span class="chip c-dark">Borrador v0.2 · 03/11/2026</span>
       <span class="chip c-schedule">Fuente: «Poolcito · Diseño de la app» (S-009)</span>
-      <span class="chip c-review">Puerta 5 sin aprobar · D-011</span>
+      <span class="chip c-review">Puerta 5 sin aprobar · D-011 y D-012</span>
     </div>
     <svg class="hero-ill" viewBox="0 0 1600 420" role="img" aria-label="Ilustración: colinas amarillas y un camino">
       <rect width="1600" height="420" fill="#FCE6AD"/>
@@ -314,7 +338,7 @@ header.top { background: var(--blue-50); }
     <div class="panel"><div class="icirc" style="background:var(--pc-peach-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div><h3 style="margin-top:14px">Privacidad a la vista</h3><p class="t-small">Cada pantalla sensible explica quién ve qué, con una nota con escudo. La investigación lo marca como requisito.</p></div>
     <div class="panel"><div class="icirc" style="background:var(--pc-mint-100)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></div><h3 style="margin-top:14px">Primero la red de confianza</h3><p class="t-small">Las familias confían en quienes conocen. «Mi Red» va antes que la comunidad, y no se muestran puntajes.</p></div>
   </div>
-  <div class="note" style="margin-top:24px;background:var(--pc-navy-900);color:#fff"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><div><b>Problema y objetivo (reformulado el 03/11):</b> no es pedir una mano, es <b>gestionar en comunidad y distribuir responsabilidades</b>, entre la red de familias y la familia responsable (otro hogar, abuelos, niñeras), sobre todo en hogares de padres separados. Objetivo: <b>aminorar la carga cognitiva de quienes gestionan</b>. A validar con la CEO.</div></div>
+  <div class="note" style="margin-top:24px;background:var(--pc-navy-900);color:#fff"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><div><b>Problema y objetivo (reformulado el 03/11):</b> no es pedir una mano, es <b>gestionar en comunidad y distribuir responsabilidades</b>, entre la red de familias y la familia responsable (otro hogar, abuelos, niñeras), sobre todo en hogares de padres separados. Objetivo: <b>aminorar la carga cognitiva de quienes gestionan</b>. A validar con la founder.</div></div>
   <h3>Principios de producto</h3>
   <p class="t-small" style="margin:-4px 0 12px">De «Definición problema poolcito v 30_10» (equipo). Todo componente nuevo se revisa contra esta lista.</p>
   <div class="panel"><ol class="t-body" style="margin:0;padding-left:22px;display:grid;gap:6px">
@@ -330,29 +354,32 @@ header.top { background: var(--blue-50); }
 
 <section class="block" id="color">
   <h2>Color</h2>
-  <p class="sub">Dos familias con significado, y una es el resaltado de la otra. El <b>azul</b> es la base: estructura, texto, acciones principales e información. El <b>naranja</b> la resalta: lo que está en vivo, lo pendiente y la acción destacada de cada pantalla. Verde y rojo se usan solo para éxito y alerta. Los fondos son neutros.</p>
+  <p class="sub">Dos familias con significado, y una es el resaltado de la otra. El <b>azul</b> (navy) es la base: texto, estructura, selección e información. El <b>ámbar</b> la resalta: lo de hoy, lo que está en vivo, lo pendiente y la acción principal. Tonos tierra y pasteles distinguen categorías. Verde y rojo, solo para éxito y alerta. Fondo gris tibio, superficies blancas sin bordes.</p>
   <div class="panel">
     <div class="sem"><div><b>Azul · base</b><div class="t-small">Texto, acción principal, selección, información, pertenencia (Mi Red)</div></div>
       <div class="sws"><span class="sw2" style="background:#1F2B45;color:#fff">900</span><span class="sw2" style="background:#2C4A7A;color:#fff">700</span><span class="sw2" style="background:#E6EDF6">100</span><span class="sw2" style="background:#F2F6FB;border:1px solid #DFE3E9">50</span>
       <span class="t-small" style="flex-basis:100%">#1F2B45 · #2C4A7A · #E6EDF6 · #F2F6FB · <span class="tok">--blue-*</span></span></div></div>
-    <div class="sem"><div><b>Naranja · resaltado</b><div class="t-small">En vivo, pendiente, sin asignar, acción destacada, pestaña activa</div></div>
-      <div class="sws"><span class="sw2" style="background:#F08A24">500</span><span class="sw2" style="background:#8A4A0E;color:#fff">800</span><span class="sw2" style="background:#FDECD9">100</span>
-      <span class="t-small" style="flex-basis:100%">#F08A24 · #8A4A0E (texto sobre 100) · #FDECD9 · <span class="tok">--orange-*</span></span></div></div>
+    <div class="sem"><div><b>Ámbar · resaltado</b><div class="t-small">Hoy, en vivo, pendiente, sin asignar, botón principal, «+» central</div></div>
+      <div class="sws"><span class="sw2" style="background:#FEBB2F">500</span><span class="sw2" style="background:#6E4A00;color:#fff">800</span><span class="sw2" style="background:#FFF1D0">100</span>
+      <span class="t-small" style="flex-basis:100%">#FEBB2F · #6E4A00 (texto sobre 100) · #FFF1D0 · <span class="tok">--amber-*</span></span></div></div>
+    <div class="sem"><div><b>Tierra y pasteles · categorías</b><div class="t-small">Barras, acciones rápidas y tipos de actividad. Nunca para estados</div></div>
+      <div class="sws"><span class="sw2" style="background:#754539;color:#fff">marrón</span><span class="sw2" style="background:#8A9E2D">oliva</span><span class="sw2" style="background:#787264;color:#fff">topo</span><span class="sw2" style="background:#D1C5B9">arena</span><span class="sw2" style="background:#F4D3CC">rosa</span><span class="sw2" style="background:#E0D8FF">lila</span>
+      <span class="t-small" style="flex-basis:100%">#754539 · #8A9E2D (texto navy) · #787264 · #D1C5B9 · #F4D3CC · #E0D8FF</span></div></div>
     <div class="sem"><div><b>Estados</b><div class="t-small">Solo para resultado: hecho o problema</div></div>
       <div class="sws"><span class="sw2" style="background:#25694A;color:#fff">éxito</span><span class="sw2" style="background:#E2F2E9">100</span><span class="sw2" style="background:#C8462F;color:#fff">alerta</span><span class="sw2" style="background:#FBE6E2">100</span>
       <span class="t-small" style="flex-basis:100%">#25694A · #E2F2E9 · #C8462F · #FBE6E2</span></div></div>
     <div class="sem"><div><b>Neutros</b><div class="t-small">Fondo de pantalla, superficies, bordes, texto secundario</div></div>
-      <div class="sws"><span class="sw2" style="background:#F5F6F8;border:1px solid #DFE3E9">50</span><span class="sw2" style="background:#ECEEF2">100</span><span class="sw2" style="background:#DFE3E9">200</span><span class="sw2" style="background:#5A6172;color:#fff">600</span><span class="sw2" style="background:#fff;border:1px solid #DFE3E9">blanco</span>
-      <span class="t-small" style="flex-basis:100%">#F5F6F8 · #ECEEF2 · #DFE3E9 · #5A6172 · <span class="tok">--gray-*</span></span></div></div>
+      <div class="sws"><span class="sw2" style="background:#F1F0EC;border:1px solid #DEDBD5">50</span><span class="sw2" style="background:#E8E6E1">100</span><span class="sw2" style="background:#DEDBD5">200</span><span class="sw2" style="background:#6B6A66;color:#fff">600</span><span class="sw2" style="background:#fff;border:1px solid #DEDBD5">blanco</span>
+      <span class="t-small" style="flex-basis:100%">#F1F0EC · #E8E6E1 · #DEDBD5 · #6B6A66 · <span class="tok">--gray-*</span></span></div></div>
   </div>
   <h3>Reglas</h3>
   <div class="grid g3">
-    <div class="panel"><b>Una sola cosa naranja por pantalla</b><p class="t-small">Si todo resalta, nada resalta. El naranja va donde está la acción o el estado más importante.</p></div>
+    <div class="panel"><b>El ámbar marca lo de hoy</b><p class="t-small">Si todo resalta, nada resalta. El ámbar va en el día actual, la acción principal y lo que está en vivo o pendiente.</p></div>
     <div class="panel"><b>El azul ordena</b><p class="t-small">Texto, botón principal, segmento seleccionado, información y pertenencia. Es el color del sistema.</p></div>
     <div class="panel"><b>El color nunca va solo</b><p class="t-small">Siempre acompañado de texto o ícono: «En vivo», «Sin asignar», «Aprobada».</p></div>
   </div>
-  <div class="note" style="margin-top:16px"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><div><b>Contraste.</b> Navy sobre blanco, gris 50 o naranja 500 supera AA. Sobre naranja 100 el texto va en naranja 800 (5,9:1). Sobre azul 100 el texto va en azul 700 (7,5:1); sobre verde 100, en verde 700 (5,7:1). El blanco va sobre navy, verde 700 o rojo 600.</div></div>
-  <p class="t-small" style="margin-top:12px">Cambio respecto de v0 (D-011): se reemplazan los fondos pastel por pantalla (crema, celeste, durazno) por fondos neutros, y el ámbar de marca por un naranja de resaltado. La ilustración de la marca mantiene sus colores.</p>
+  <div class="note" style="margin-top:16px"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><div><b>Contraste.</b> Navy sobre blanco (14:1), gris 50 (12,4:1) o ámbar 500 (8,3:1). Sobre ámbar 100 el texto va en ámbar 800 (7,1:1). Sobre oliva, el texto va en navy: el blanco no alcanza. Sobre azul 100 el texto va en azul 700 (7,5:1); sobre verde 100, en verde 700 (5,7:1). El blanco va sobre navy, verde 700 o rojo 600.</div></div>
+  <p class="t-small" style="margin-top:12px">v0.1 (D-011): fondos neutros y color semántico. v0.2 (D-012): paleta y formas de la referencia visual: gris tibio, ámbar como resaltado, tierra y pasteles para categorías, píldoras y radios grandes.</p>
 </section>
 
 <section class="block" id="tipografia">
@@ -372,7 +399,7 @@ header.top { background: var(--blue-50); }
 
 <section class="block" id="medidas">
   <h2>Medidas</h2>
-  <p class="sub">Escala de espaciado de a 4 px, margen lateral de pantalla de 18 px y radios contenidos: 6 px en etiquetas, 10 px en botones y campos, 12 px en tarjetas.</p>
+  <p class="sub">Escala de espaciado de a 4 px y margen lateral de 18 px. Formas de la referencia: tarjetas de 22 px, campos de 14 px; botones, etiquetas, días y avatares en píldora o círculo.</p>
   <div class="grid g3">
     <div class="panel"><div class="label">Espaciado</div>
       <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
@@ -385,16 +412,16 @@ header.top { background: var(--blue-50); }
       </div></div>
     <div class="panel"><div class="label">Radios</div>
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
-        <div style="height:56px;border-radius:6px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">sm · 6 · etiquetas</div>
-        <div style="height:56px;border-radius:10px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">md · 10 · botones e inputs</div>
-        <div style="height:56px;border-radius:12px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">lg · 12 · tarjetas</div>
-        <div style="height:56px;border-radius:999px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">pill · solo avatares</div>
+        <div style="height:56px;border-radius:14px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">campos · 14</div>
+        <div style="height:56px;border-radius:22px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">tarjetas · 22</div>
+        <div style="height:56px;border-radius:999px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">botones · píldora</div>
+        <div style="height:56px;border-radius:999px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">días y avatares · círculo</div>
       </div></div>
     <div class="panel"><div class="label">Tamaños táctiles</div>
       <ul class="t-small" style="margin:12px 0 0;padding-left:18px">
-        <li>Botón principal: 50 px de alto, ancho completo</li>
+        <li>Botón principal: 54 px de alto, píldora ámbar, ancho completo</li>
         <li>Botón chico, segmento, día: 44 px</li>
-        <li>Volver: cuadrado blanco de 40 px, radio 10</li>
+        <li>Volver: círculo blanco de 44 px</li>
         <li>Avatar y círculo de ícono: 44 px</li>
         <li>Input: 50 px de alto</li>
       </ul>
@@ -404,7 +431,7 @@ header.top { background: var(--blue-50); }
 
 <section class="block" id="iconos">
   <h2>Íconos</h2>
-  <p class="sub">Íconos de línea con trazo de 2 px y puntas redondeadas, del estilo de <b>Lucide</b>. Van solos en navy, o dentro de un cuadrado de 44 px con radio 10 cuando encabezan una tarjeta: azul claro para lo informativo, naranja para lo destacado.</p>
+  <p class="sub">Íconos de línea con trazo de 2 px y puntas redondeadas, del estilo de <b>Lucide</b>. Van solos en navy, o dentro de un círculo de 44 px cuando encabezan una tarjeta: azul claro para lo informativo, ámbar para lo destacado.</p>
   <div class="panel" style="display:flex;flex-wrap:wrap;gap:18px">
     <div class="icirc" style="background:var(--pc-cream-200)" title="Auto"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></div>
     <div class="icirc" style="background:var(--pc-peach-200)" title="Familias"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
@@ -425,7 +452,7 @@ header.top { background: var(--blue-50); }
 
 <section class="block" id="botones">
   <h2>Botones</h2>
-  <p class="sub">Radio de 10 px. El primario navy cierra cada pantalla; el naranja resalta la acción destacada o las que salen de la app (WhatsApp, Google Maps).</p>
+  <p class="sub">Píldoras. El principal es ámbar con texto navy (como en la referencia); el secundario, blanco. Las acciones que salen de la app (WhatsApp, Google Maps) van en navy.</p>
   <div class="grid g2">
     <div class="stage y">
       <button class="btn btn-primary">Crear cuenta</button>
@@ -471,7 +498,7 @@ header.top { background: var(--blue-50); }
 
 <section class="block" id="tarjetas">
   <h2>Tarjetas</h2>
-  <p class="sub">Blancas, planas, radio 12 y 12–14 px de padding, sobre fondo neutro. En el inicio, solo la acción destacada va en naranja; el resto, en blanco con ícono azul.</p>
+  <p class="sub">Blancas, sin borde, radio 22, sobre gris tibio. En el inicio: tarjeta ámbar del próximo traslado y acciones rápidas en pasteles por categoría.</p>
   <div class="grid g2">
     <div class="stage y">
       <a class="action a-amber" href="#tarjetas"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></span><span class="grow"><h4>Necesito un traslado</h4><p>Buscá una familia que pueda llevar a tu hij@.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></a>
@@ -493,7 +520,7 @@ header.top { background: var(--blue-50); }
             <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span class="chip c-network"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Mi Red</span><span class="chip c-grade">6.° B</span></div></div></div>
         <div class="row" style="margin-top:12px"><div class="grow"><div class="t-title" style="font-size:15px">Escuela → Club GEBA</div><div class="t-small">Martes · sale 16:50 · 2 lugares libres</div></div><button class="btn btn-primary btn-sm">Pedir lugar</button></div>
       </div>
-      <div class="note warn flag"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"></path><path d="M8.5 2h7"></path><path d="M7 16h10"></path></svg><div>Investigación: esta tarjeta <b>no muestra calificación ni «Mejor opción»</b>. La evidencia cuestiona los puntajes («la confianza no es un puntaje»). Queda pendiente de decisión de la CEO (Q-023).</div></div>
+      <div class="note warn flag"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"></path><path d="M8.5 2h7"></path><path d="M7 16h10"></path></svg><div>Investigación: esta tarjeta <b>no muestra calificación ni «Mejor opción»</b>. La evidencia cuestiona los puntajes («la confianza no es un puntaje»). Queda pendiente de decisión de la founder (Q-023).</div></div>
     </div>
     <div class="stage y">
       <div class="card">
@@ -511,7 +538,7 @@ header.top { background: var(--blue-50); }
 
 <section class="block" id="etiquetas">
   <h2>Etiquetas y estados</h2>
-  <p class="sub">Etiquetas de 30 px con radio de 6 px, en Nunito 800. Azul para información y pertenencia, naranja para pendiente o en vivo, verde para hecho. El texto siempre acompaña al color.</p>
+  <p class="sub">Etiquetas en píldora, Nunito 800. Azul para información y pertenencia, ámbar para pendiente o en vivo, verde para hecho. El texto siempre acompaña al color.</p>
   <div class="panel" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
     <span class="chip c-approved">Aprobada</span>
     <span class="chip c-review">En revisión</span>
@@ -528,13 +555,13 @@ header.top { background: var(--blue-50); }
   <div class="panel" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;opacity:.9">
     <span class="chip c-rating"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg> 4,7 (3)</span>
     <span class="chip c-best">Mejor opción</span>
-    <span class="t-small">Están en el diseño actual. La síntesis los cuestiona: las familias no quieren ver la reciprocidad medida. No usar en el prototipo hasta que lo decida la CEO.</span>
+    <span class="t-small">Están en el diseño actual. La síntesis los cuestiona: las familias no quieren ver la reciprocidad medida. No usar en el prototipo hasta que lo decida la founder.</span>
   </div>
 </section>
 
 <section class="block" id="navegacion">
   <h2>Navegación</h2>
-  <p class="sub">Barra inferior con 5 pestañas. La activa lleva un fondo naranja claro detrás del ícono y la etiqueta en negrita.</p>
+  <p class="sub">Barra inferior con 4 pestañas y un botón central «+» ámbar para pedir u ofrecer, como en la referencia. La pestaña activa va en negrita.</p>
   <div class="stage y" style="padding-bottom:0">
     <div class="tabbar">
       <div class="tab active"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Inicio</div>
@@ -548,7 +575,7 @@ header.top { background: var(--blue-50); }
 
 <section class="block" id="estados">
   <h2>Pantallas de estado y modales</h2>
-  <p class="sub">Confirmaciones, esperas y éxitos: un ícono grande en un cuadrado redondeado (naranja si está en proceso, verde si terminó), título display y una explicación breve.</p>
+  <p class="sub">Confirmaciones, esperas y éxitos: un círculo grande con el ícono (ámbar si está en proceso, verde si terminó), título display y una explicación breve.</p>
   <div class="grid g3">
     <div class="stage y"><div class="state"><div class="big"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="52" width="52" xmlns="http://www.w3.org/2000/svg"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg></div><div class="t-display" style="font-size:30px">Solicitud enviada</div><p class="t-small" style="margin:0">Te avisamos cuando la acepten. Mientras tanto, podés seguir buscando.</p></div></div>
     <div class="stage y"><div class="state"><div class="big"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="52" width="52" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div><div class="t-display" style="font-size:30px">Esperando aprobación</div><p class="t-small" style="margin:0">Tu pedido para entrar a 6.° B está en revisión.</p></div></div>

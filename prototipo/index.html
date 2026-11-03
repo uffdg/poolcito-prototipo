@@ -226,6 +226,86 @@ body.phone-only .sim { display: none; }
 .add { border-radius: 12px; }
 .tabbar { border-radius: 16px 16px 0 0; }
 .wa-card { border-radius: 12px; }
+
+/* ===== D-012: referencia visual (gris tibio, resaltado amarillo-naranja, formas redondas) ===== */
+:root {
+  --ink: #1F2B45; --amber: #FEBB2F; --amber-100: #FFF1D0; --amber-800: #6E4A00;
+  --sand: #D1C5B9; --brown: #754539; --olive: #8A9E2D; --taupe: #787264; --pink: #F4D3CC; --lilac: #E0D8FF;
+  --orange-500: var(--amber); --orange-100: var(--amber-100); --orange-800: var(--amber-800);
+  --gray-50: #F1F0EC; --gray-100: #E8E6E1; --gray-200: #DEDBD5; --gray-600: #6B6A66;
+  --pc-amber-500: var(--amber); --pc-amber-100: var(--amber-100); --pc-cream-200: var(--gray-50); --pc-cream-50: var(--gray-100);
+  --color-text-muted: var(--gray-600); --radius-lg: 22px; --radius-md: 14px;
+}
+.viewport { background: var(--gray-50); }
+.bg-y, .bg-p, .bg-b { background: var(--gray-50); }
+.h-display, .h-1, .h-2, .action h3 { font-weight: 700; }
+.h-1 { font-size: 30px; letter-spacing: -.02em; }
+.card { border-radius: 22px; padding: 14px 16px; }
+.btn { border-radius: 999px; height: 54px; }
+.btn-primary { background: var(--amber); color: var(--ink); }
+.btn-secondary { background: #fff; border-color: transparent; }
+.btn-accent { background: var(--ink); color: #fff; }
+.back { border-radius: 50%; width: 44px; height: 44px; border: 0; background: #fff; }
+.icirc { border-radius: 50%; }
+.action { border-radius: 22px; }
+.a-amber { background: var(--amber); }
+.chip { border-radius: 999px; }
+.c-amber { background: var(--amber-100); color: var(--amber-800); }
+.field, .select { border-radius: 14px; border: 0; }
+.seg { border-radius: 999px; } .seg button { border-radius: 999px; }
+.big { border-radius: 50%; }
+.note { border-radius: 16px; }
+.note.warn { background: var(--amber-100); }
+.day { border-radius: 22px; }
+.slot-empty { border-radius: 16px; border-color: var(--amber); background: var(--amber-100); color: var(--amber-800); }
+.live { border-radius: 22px; }
+.sheet { border-radius: 26px 26px 0 0; }
+.gmaps { border-radius: 999px; border: 0; }
+.add { border-radius: 22px; }
+.tabbar { border-radius: 26px 26px 0 0; }
+.wa-card { border-radius: 16px; }
+.av-a { background: var(--amber-100); color: var(--amber-800); }
+/* tira de días */
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+.week .lbl { font-size: 13px; color: var(--gray-600); font-weight: 700; }
+.week .lbl.on { color: var(--ink); font-weight: 800; }
+.week .num { width: 40px; height: 40px; margin: 6px auto 0; border-radius: 50%; background: #fff; display: grid; place-items: center; font: 800 15px var(--font-body); position: relative; }
+.week .num.on { background: var(--amber); }
+.week .num i { position: absolute; bottom: -7px; width: 5px; height: 5px; border-radius: 50%; background: var(--ink); }
+.week .num i.gap { background: var(--amber); width: 7px; height: 7px; bottom: -8px; box-shadow: 0 0 0 2px #fff; }
+.sec { display: flex; align-items: baseline; justify-content: space-between; margin-top: 4px; }
+.sec h2 { font: 700 20px var(--font-display); letter-spacing: -.015em; margin: 0; }
+.sec button { background: none; border: 0; font: 700 14px var(--font-body); cursor: pointer; }
+.hscroll { display: flex; gap: 10px; overflow-x: auto; margin: 0 -18px; padding: 0 18px; scrollbar-width: none; }
+.hscroll::-webkit-scrollbar { display: none; }
+.hero { flex: 0 0 76%; border-radius: 24px; background: var(--amber); overflow: hidden; display: flex; flex-direction: column; border: 0; text-align: left; cursor: pointer; padding: 0; }
+.hero .tx { padding: 16px 16px 6px; }
+.hero h3 { font: 700 21px/1.15 var(--font-display); letter-spacing: -.015em; margin: 4px 0 4px; }
+.hero svg { display: block; width: 100%; height: auto; margin-top: auto; }
+.side { flex: 0 0 18%; border-radius: 24px; background: var(--sand); display: grid; place-items: center; border: 0; cursor: pointer; }
+.side span { writing-mode: vertical-rl; transform: rotate(180deg); font: 700 16px var(--font-display); }
+.qcard { flex: 0 0 56%; border-radius: 22px; padding: 14px; display: flex; flex-direction: column; gap: 6px; border: 0; text-align: left; cursor: pointer; min-height: 150px; }
+.qcard .t { font: 800 16px var(--font-body); }
+.qcard .d { font-size: 13.5px; line-height: 1.35; }
+.qcard .f { margin-top: auto; display: flex; align-items: center; justify-content: space-between; font-size: 12.5px; color: var(--gray-600); }
+.qcard .tag { background: #fff; border-radius: 999px; padding: 4px 10px; font: 800 12px var(--font-body); }
+.q-pink { background: var(--pink); } .q-pink .tag { color: #9A3A26; }
+.q-lilac { background: var(--lilac); } .q-lilac .tag { color: #4B3BA0; }
+.q-sand { background: var(--sand); }
+/* barra inferior con botón central */
+.tabbar5 { position: sticky; bottom: 0; background: #fff; border-radius: 26px 26px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; padding: 10px 6px 16px; margin-top: auto; flex: none; }
+.tabbar5 .tab { color: var(--gray-600); }
+.tabbar5 .tab.active { color: var(--ink); font-weight: 800; }
+.tabbar5 .tab .pill { background: none !important; }
+.fab { width: 56px; height: 56px; border-radius: 50%; background: var(--amber); border: 0; display: grid; place-items: center; margin: -22px auto 0; box-shadow: 0 6px 16px rgba(254,187,47,.45); cursor: pointer; color: var(--ink); }
+/* número protagonista y barras */
+.hero-num { text-align: center; padding: 6px 0 2px; }
+.hero-num b { display: block; font: 700 72px/1 var(--font-display); letter-spacing: -.04em; }
+.hero-num span { font-size: 15px; color: var(--gray-600); }
+.bars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; align-items: end; height: 170px; margin-top: 6px; }
+.bars .col { display: flex; flex-direction: column; justify-content: flex-end; height: 100%; background: var(--gray-50); border-radius: 999px; overflow: hidden; }
+.bars .b { border-radius: 999px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 10px; font: 800 14px var(--font-body); color: #fff; }
+.bars-lbl { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; text-align: center; font-size: 13px; font-weight: 700; margin-top: 8px; }
 </style>
 </head>
 <body>
@@ -309,28 +389,49 @@ body.phone-only .sim { display: none; }
 
 <section class="screen bg-y" id="h5" data-title="Inicio: lo que pasa hoy">
   <div class="status"><span>9:41</span><span>●●● 100%</span></div>
-  <div class="pad">
-    <div class="row"><span class="avatar av-n" style="width:36px;height:36px"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></span><b style="font:800 21px var(--font-display);letter-spacing:-.02em">Poolcito</b><span class="grow"></span><button class="back" aria-label="Avisos" data-go="e5"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></button></div>
-    <h1 class="h-1">Hola, Valentina</h1>
-    <div class="card">
-      <div class="row"><span class="over" style="margin:0">Hoy · martes</span><span class="grow"></span><span class="chip c-mint">Todo cubierto</span></div>
-      <div class="trip"><time>17:15</time><div><div class="title">Diego lleva a Joaquín a fútbol</div><div class="small">Escuela → Club GEBA</div></div></div>
-      <div class="trip"><time>19:00</time><div><div class="title">Familia G. trae a Joaquín</div><div class="small">Recibe la abuela Elsa · en su casa</div></div></div>
+  <div class="pad" style="gap:14px">
+    <div class="row"><div class="grow"><div class="small">Martes 3 de noviembre</div><h1 class="h-1" style="margin-top:2px">Hola, Valentina</h1></div><button class="back" data-go="e5" aria-label="Avisos"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></button><span class="avatar av-c" style="width:44px;height:44px">V</span></div>
+    <div class="week" aria-label="Semana">
+      <div><div class="lbl">Lun</div><div class="num">2<i></i></div></div>
+      <div><div class="lbl on">Mar</div><div class="num on">3<i></i></div></div>
+      <div><div class="lbl">Mié</div><div class="num">4<i></i></div></div>
+      <div><div class="lbl">Jue</div><div class="num">5<i class="gap" title="Traslado sin asignar"></i></div></div>
+      <div><div class="lbl">Vie</div><div class="num">6<i></i></div></div>
+      <div><div class="lbl">Sáb</div><div class="num">7</div></div>
+      <div><div class="lbl">Dom</div><div class="num">8</div></div>
     </div>
-    <button class="action a-white" data-go="h6"><span class="icirc" style="background:var(--pc-peach-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg></span><span class="grow"><h3>Esta semana</h3><p>Hay <b>1 traslado sin asignar</b>: el jueves a la vuelta.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
-    <button class="action a-amber" data-go="h7"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><span class="grow"><h3>Pedir a mi red</h3><p>Le llega a tu red y responde quien puede.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
-    <button class="action a-peach" data-go="h13"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg></span><span class="grow"><h3>Puedo llevar</h3><p>Avisá un recorrido que te queda de paso.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
-    <button class="action a-sky" data-go="h12"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></span><span class="grow"><h3>Mi pool</h3><p>Las familias con las que se organizan.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <div class="sec"><h2>Hoy</h2><button data-go="h6">Ver semana</button></div>
+    <div class="hscroll">
+      <button class="hero" data-go="h9"><div class="tx"><span class="chip" style="background:rgba(255,255,255,.6)">Todo cubierto</span><h3>17:15 · Diego lleva a Joaquín a fútbol</h3><div class="small" style="color:var(--ink)">Escuela → Club GEBA · vuelve con Familia G. 19:00</div></div><svg viewBox="0 0 300 92" aria-hidden="true"><path d="M0 40 C 60 18, 120 52, 180 34 S 260 14, 300 26 V92 H0Z" fill="#FFD36E"/><path d="M0 64 C 80 46, 160 74, 300 54 V92 H0Z" fill="#8A9E2D" opacity=".85"/><path d="M110 92 C 140 70, 190 62, 270 44 L 284 50 C 206 70, 160 80, 134 92 Z" fill="#1F2B45"/><path d="M124 92 C 154 72, 200 64, 276 47" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="7 6"/><circle cx="40" cy="56" r="10" fill="#E0674C"/><rect x="38.5" y="64" width="3" height="18" fill="#1F2B45"/><circle cx="235" cy="20" r="11" fill="#fff" opacity=".9"/></svg></button>
+      <button class="side" data-go="h6"><span>Tarde</span></button>
+    </div>
+    <div class="sec"><h2>Acciones rápidas</h2><button data-go="h12">Mi pool</button></div>
+    <div class="hscroll">
+      <button class="qcard q-pink" data-go="h7"><span class="t">Pedir a mi red</span><span class="d">Le llega a tu red y responde quien puede.</span><span class="f"><span>Jue 19:00</span><span class="tag">Sin asignar</span></span></button>
+      <button class="qcard q-lilac" data-go="h13"><span class="t">Puedo llevar</span><span class="d">Avisá un recorrido que te queda de paso.</span><span class="f"><span>Solo esta vez</span><span class="tag">Ofrecer</span></span></button>
+      <button class="qcard q-sand" data-go="h12"><span class="t">Mi pool</span><span class="d">5 familias de fútbol 6.° B.</span><span class="f"><span>Desde marzo</span><span class="tag">Ver</span></span></button>
+    </div>
   </div>
-  <div class="tabbar"><button class="tab active" data-go="h5"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Inicio</button><button class="tab" data-go="h6"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg></span>Semana</button><button class="tab" data-go="h4"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Familia</button><button class="tab" data-go="h12"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></span>Pool</button><button class="tab" data-go="e5"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></span>Avisos</button></div>
+  <div class="tabbar5"><button class="tab active" data-go="h5"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Inicio</button><button class="tab " data-go="h6"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg></span>Semana</button><button class="fab" data-go="h7" aria-label="Pedir u ofrecer un traslado"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button><button class="tab" data-go="h4"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Familia</button><button class="tab" data-go="h12"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></span>Pool</button></div>
 </section>
 
 <section class="screen bg-y" id="h6" data-title="La semana repartida">
   <div class="status"><span>9:41</span><span>●●● 100%</span></div>
   <div class="pad">
-    <div class="row"><button class="back" data-go="h5" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button><span class="grow"></span><span class="chip c-cream">Semana del 3 al 7/11</span></div>
+    <div class="row"><button class="back" data-go="h5" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button><span class="grow"></span><span class="chip c-cream">Semana del 2 al 8/11</span></div>
     <h1 class="h-1">Esta semana</h1>
     <p class="sub">Quién lleva, quién busca y quién recibe. Lo ven Diego, la abuela y Rosa.</p>
+    <div class="card">
+      <div class="hero-num"><b>9</b><span>traslados esta semana · 8 resueltos</span></div>
+      <div class="title" style="margin-top:10px">Así se reparte en casa</div>
+      <div class="bars" aria-label="Traslados por adulto de la familia responsable">
+        <div class="col"><div class="b" style="height:62%;background:var(--amber);color:var(--ink)">3</div></div>
+        <div class="col"><div class="b" style="height:62%;background:var(--brown)">3</div></div>
+        <div class="col"><div class="b" style="height:42%;background:var(--olive);color:var(--ink)">2</div></div>
+        <div class="col"><div class="b" style="height:24%;background:var(--taupe)">1</div></div>
+      </div>
+      <div class="bars-lbl"><span>Vos</span><span>Diego</span><span>Rosa</span><span>Familias</span></div>
+    </div>
     <div class="day"><div class="title">Martes</div><div class="who"><span class="chip c-sky">17:15 Diego lleva</span><span class="chip c-rose"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> 19:00 Familia G. trae</span><span class="chip c-cream">Recibe Elsa</span></div></div>
     <div class="day"><div class="title">Miércoles · Emilia</div><div class="who"><span class="chip c-navy">17:00 Vos llevás</span><span class="chip c-navy">18:00 Vos buscás</span></div></div>
     <div class="day"><div class="title">Jueves</div><div class="who"><span class="chip c-sky">17:15 Diego lleva</span></div>
@@ -347,7 +448,7 @@ body.phone-only .sim { display: none; }
     <h1 class="h-1">Pedir a mi red</h1>
     <p class="sub">No elegís a quién molestar: le llega a tu red y responde quien puede.</p>
     <div class="formrow"><span class="title">Para</span><div class="select"><span class="row" style="gap:8px"><span class="avatar av-a" style="width:28px;height:28px;font-size:13px">J</span>Joaquín</span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
-    <div class="formrow"><span class="title">Cuándo</span><div class="select">Jueves 6/11 · 19:00 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="formrow"><span class="title">Cuándo</span><div class="select">Jueves 5/11 · 19:00 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
     <div class="formrow"><span class="title">Desde</span><div class="select">Club GEBA <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
     <div class="formrow"><span class="title">Hasta</span><div class="select">Casa de la abuela <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
     <div class="formrow"><span class="title">Recibe</span><div class="select">Abuela Elsa <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
@@ -382,7 +483,7 @@ body.phone-only .sim { display: none; }
     <div class="row"><button class="back" data-go="h8" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button><span class="grow"></span><span class="chip c-mint"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg> Acordado</span></div>
     <h1 class="h-1">Familia G. trae a Joaquín</h1>
     <div class="card"><dl class="kv">
-      <dt>Cuándo</dt><dd>Jueves 6/11 · 19:00</dd>
+      <dt>Cuándo</dt><dd>Jueves 5/11 · 19:00</dd>
       <dt>Desde</dt><dd>Club GEBA</dd>
       <dt>Hasta</dt><dd>Casa de la abuela (dirección compartida)</dd>
       <dt>Lleva</dt><dd>Carla (Familia G.)</dd>
@@ -445,7 +546,7 @@ body.phone-only .sim { display: none; }
     </div>
     <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>El banner también aparece en la pantalla bloqueada del teléfono mientras dura el viaje.</span></div>
   </div>
-  <div class="tabbar"><button class="tab active"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Inicio</button><button class="tab" data-go="h6"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg></span>Semana</button><button class="tab" data-go="h4"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Familia</button><button class="tab" data-go="h12"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></span>Pool</button><button class="tab" data-go="e5"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></span>Avisos</button></div>
+  <div class="tabbar5"><button class="tab active" data-go="h5"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Inicio</button><button class="tab " data-go="h6"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg></span>Semana</button><button class="fab" data-go="h7" aria-label="Pedir u ofrecer un traslado"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button><button class="tab" data-go="h4"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Familia</button><button class="tab" data-go="h12"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></span>Pool</button></div>
 </section>
 
 <section class="screen bg-w" id="h9c" data-title="Seguimiento del viaje">
@@ -536,7 +637,7 @@ body.phone-only .sim { display: none; }
     <button class="back" data-go="h5" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
     <h1 class="h-1">Puedo llevar</h1>
     <p class="sub">Contale a tu red un recorrido que te queda de paso.</p>
-    <div class="formrow"><span class="title">Cuándo</span><div class="select">Miércoles 5/11 · 17:00 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="formrow"><span class="title">Cuándo</span><div class="select">Miércoles 4/11 · 17:00 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
     <div class="formrow"><span class="title">Desde</span><div class="select">Escuela del Jacarandá <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
     <div class="formrow"><span class="title">Hasta</span><div class="select">Instituto Sonido <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
     <div class="card row"><div class="grow"><div class="title">Lugares libres</div><div class="small">Sin silla elevadora</div></div><span class="h-2">2</span></div>
@@ -640,12 +741,12 @@ const H = "Camino feliz", E = "Caso borde";
 const NOTES = {
   h1: { k: H, t: "Bienvenida", lead: "Poolcito se presenta como la forma de gestionar los traslados en comunidad, no como una app de viajes.",
     res: "El problema no es de transporte: es gestionar en comunidad y repartir responsabilidades.",
-    ev: ["Insight reformulado (Maru, 03/11): «no es pedir una mano, es gestionar en comunidad y distribuir responsabilidades»", "La red ya existe: las familias ya se organizan en círculos de confianza (patrón 1, 5 de 5 entrevistas)"],
+    ev: ["Insight reformulado (equipo, 03/11): «no es pedir una mano, es gestionar en comunidad y distribuir responsabilidades»", "La red ya existe: las familias ya se organizan en círculos de confianza (patrón 1, 5 de 5 entrevistas)"],
     ch: "El claim pasa de «Traslados para familias» a la gestión en comunidad. La ilustración y la marca se mantienen.",
     tech: ["Web app mobile-first (webview), abrible desde un link de WhatsApp", "Sin login real en el prototipo"], hyp: [] },
   h2: { k: H, t: "Unirse con código", lead: "La comunidad es cerrada: se entra con el código del grado y una administradora aprueba.",
     res: "Confiar en quienes ya son parte de la escuela.", ev: ["«Conocer bien a la familia» es lo que más tranquiliza (12 de 19)", "P01 propuso verificar pertenencia como lo hace la app del club"],
-    ch: "Igual que el diseño de la CEO. Se pide celular en vez de mail: es el canal que ya usan.",
+    ch: "Igual que el diseño de la founder. Se pide celular en vez de mail: es el canal que ya usan.",
     tech: ["Entidad Comunidad/Grado con código y administradora", "Verificación del celular por SMS o WhatsApp (OTP)", "Datos mínimos de menores: nombre y grado"], hyp: [] },
   h3: { k: H, t: "Esperando aprobación", lead: "Hasta que te aprueban no ves a nadie. Mientras tanto, cargás a tu familia responsable.",
     res: "Privacidad visible desde el primer momento.", ev: ["P05: «la aplicación va a manejar información muy sensible… es un aspecto importantísimo»"],
@@ -657,11 +758,11 @@ const NOTES = {
     tech: ["Roles por adulto: organiza / lleva y busca / recibe", "Un adulto puede no tener cuenta: recibe por WhatsApp con link firmado y de un solo uso", "Dos hogares comparten hij@s: permisos por hijo, no por casa"], hyp: ["H6"] },
   h5: { k: H, t: "Inicio: lo que pasa hoy", lead: "Lo primero que se ve es quién se ocupa de cada traslado hoy, y si hay algo sin resolver.",
     res: "Bajar la carga cognitiva: no tener que recordar ni reconfirmar.", ev: ["P04 reconstruye quién llevó a partir de su calendario de trabajo", "13 de 19 dicen que les cuesta seguir los chats"],
-    ch: "Las tarjetas de acción se mantienen, pero arriba va el estado del día. «Necesito un traslado» pasa a «Pedir a mi red».",
+    ch: "Estructura de la referencia visual (D-012): saludo, tira de días con puntos (naranja = hueco), tarjeta del próximo traslado y acciones rápidas. «Necesito un traslado» pasa a «Pedir a mi red»; el «+» central pide u ofrece.",
     tech: ["Vista del día calculada a partir de traslados recurrentes y puntuales", "Avisos por push y, para quien no tiene app, por WhatsApp"], hyp: ["H3"] },
   h6: { k: H, t: "La semana repartida", lead: "Un tablero compartido entre los adultos de la familia responsable. Los huecos aparecen solos.",
     res: "Distribuir responsabilidades en vez de que una persona sostenga todo.", ev: ["Regla doméstica «uno lleva, el otro busca» (P02, P04)", "9 de 19 cortan otras actividades por coordinar"],
-    ch: "Nuevo. En el diseño original no había una vista semanal compartida.",
+    ch: "Nuevo. Número protagonista y barras de la referencia (D-012) para mostrar cómo se reparte la gestión dentro de la familia responsable. Nunca se compara entre familias.",
     tech: ["Traslado: recurrencia, ida/vuelta, responsable, receptor, estado (asignado / sin asignar)", "Detección de huecos al armar la semana (domingo a la noche)"], hyp: ["H3", "H6"] },
   h7: { k: H, t: "Pedir a la red", lead: "El pedido llega a la red, no a una persona. Primero a quienes pasan cerca.",
     res: "Pedir cuesta: a quién, si le queda de paso, si ya se debe un favor.", ev: ["P05: «muchas veces nos da cosa pedir»; «no le queda de paso a nadie»", "P04 pediría solo «al que le queda a una cuadra»", "9 de 18 sienten que tienen que justificarse"],
@@ -677,7 +778,7 @@ const NOTES = {
     tech: ["Acuerdo con participantes y estado de aviso por persona", "Autorización a la escuela: por ahora, mail o mensaje generado (sin integración)", "Compartir: deep link de WhatsApp con la ficha"], hyp: ["H3", "H6"] },
   h9a: { k: H, t: "Armar el recorrido", lead: "Quien lleva ve las paradas del acuerdo, las ordena por el camino más corto y abre el recorrido en Google Maps.",
     res: "Repartir a varios chicos en direcciones distintas: en qué orden conviene dejarlos.", ev: ["P02: «no entiendo bien… a cuál me convendría dejar primero»", "P04: una madre del grado usa una función de rutas con varias paradas para repartir chicos"],
-    ch: "Nuevo (decisión de Maru, 03/11, D-010). Patrón de Google Maps: las paradas arman un link que se abre en la app de mapas.",
+    ch: "Nuevo (decisión del equipo, 03/11, D-010). Patrón de Google Maps: las paradas arman un link que se abre en la app de mapas.",
     tech: ["Link de Google Maps con origen, paradas y destino (formato maps/dir/?api=1, sin clave de API)", "Optimizar el orden requiere Directions API (pago) o dejar que lo resuelva Google Maps", "Las direcciones solo se ven después del acuerdo", "En el prototipo las paradas son lugares públicos de ejemplo"], hyp: ["H3"] },
   h9b: { k: H, t: "Banner de actividad en vivo", lead: "Mientras dura el viaje, un banner muestra en qué paso está y cuánto falta, como el seguimiento de un pedido de delivery.",
     res: "Dar tranquilidad a quien gestiona sin tener que preguntar «¿ya salieron?».", ev: ["9 de 19: «que avise cuando llegan»", "P05 sigue la ubicación de su hijo con Google Maps «en todo momento»", "Contraevidencia: P02 rechaza el hipercontrol; la seguridad que piden es de conducta (patrón 2)"],
@@ -704,7 +805,7 @@ const NOTES = {
     res: "Si la red falla, el chico falta o no va a la actividad.", ev: ["P01: «no podía ella y lo retiré antes o faltó al colegio»", "11 de 19 pidieron ayuda a último momento en 3 meses"],
     ch: "Nuevo.", tech: ["Temporizador del pedido según la anticipación", "Ampliar a Mi grado requiere acción explícita de quien pide"], hyp: ["H1"] },
   e2: { k: E, t: "Cancelación de último momento", lead: "Cuando alguien cancela, Poolcito avisa a todos los involucrados y propone un reemplazo.",
-    res: "Las cancelaciones obligan a renegociar todo en cadena.", ev: ["P04 recibe cancelaciones «media hora antes»", "Entrevista con la CEO: cancelación sobre la hora"],
+    res: "Las cancelaciones obligan a renegociar todo en cadena.", ev: ["P04 recibe cancelaciones «media hora antes»", "Entrevista con la founder: cancelación sobre la hora"],
     ch: "El diseño original pedía hablar antes de cancelar. Ahora la app se ocupa de los avisos.", tech: ["Cancelación con motivo; difusión automática a quien gestiona, receptor y otro hogar", "Pedido urgente solo a quienes están cerca a esa hora"], hyp: ["H3"] },
   e3: { k: E, t: "Nadie confirma la llegada", lead: "Si quien recibe no confirma, se escala: llamada, aviso a quien gestiona y contacto alternativo.",
     res: "Que el tercero se entere es uno de los momentos de verdad.", ev: ["P03: la abuela tenía el teléfono en silencio; «nadie sabía dónde estaba» el chico", "P04 espera en la puerta sin respuesta"],
@@ -713,7 +814,7 @@ const NOTES = {
     res: "En hogares de padres separados, la gestión de las dos casas recae en una persona.", ev: ["P03 lleva la agenda también los días del padre", "Insight del equipo (03/11): la app alcanza a la familia responsable"],
     ch: "Nuevo.", tech: ["Asignaciones con confirmación de ambos hogares", "Resumen semanal el domingo con los huecos"], hyp: ["H6"] },
   e5: { k: E, t: "Cambio de horario", lead: "Un cambio actualiza el acuerdo y le pregunta a cada involucrado si le sigue sirviendo.",
-    res: "Los cambios no le llegan a quien recibe.", ev: ["P03: la abuela no se enteró del cambio de horario", "Entrevista con la CEO: «cancelación de la actividad»"],
+    res: "Los cambios no le llegan a quien recibe.", ev: ["P03: la abuela no se enteró del cambio de horario", "Entrevista con la founder: «cancelación de la actividad»"],
     ch: "Nuevo.", tech: ["Edición del acuerdo con reconfirmación por persona", "Si alguien no puede, el traslado vuelve a «sin asignar»"], hyp: ["H3", "H6"] },
 };
 const ORDER = ["h1","h2","h3","h4","h5","h6","h7","h8","h9","h9a","h9b","h9c","h10","h11","h12","h13","e1","e2","e3","e4","e5"];

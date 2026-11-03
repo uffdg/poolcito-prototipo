@@ -139,6 +139,16 @@ header.hero { background: var(--blue-50); }
 .ev.next::before { background: #fff; border-color: var(--orange-500); }
 nav.toc { background: rgba(250,251,252,.95); border-color: var(--gray-200); }
 nav.toc a:hover { background: var(--gray-100); }
+
+/* ===== D-012: referencia visual ===== */
+:root { --orange-500: #FEBB2F; --orange-100: #FFF1D0; --orange-800: #6E4A00; --gray-50: #F1F0EC; --gray-100: #E8E6E1; --gray-200: #DEDBD5; --gray-600: #6B6A66; --blue-50: #F1F0EC; --radius-lg: 22px; }
+body { background: #F7F6F3; } header.hero { background: #F1F0EC; }
+.card, .stage, .gate, .item { border: 0; border-radius: 22px; }
+.chip, .brand .upd { border-radius: 999px; }
+.stage .num, .gate .n, .icirc, .insight .ic { border-radius: 50%; }
+.insight { border-radius: 22px; }
+.stage.doing { border: 0; background: #FFF1D0; }
+nav.toc { background: rgba(247,246,243,.95); }
 </style>
 </head>
 <body>
@@ -151,8 +161,8 @@ nav.toc a:hover { background: var(--gray-100); }
       <span class="upd" id="upd"></span>
     </div>
     <h1>Seguimiento del proyecto</h1>
-    <p class="lead">Dónde estamos, qué ya está hecho, qué tiene que decidir la CEO y qué viene. El objetivo: llegar a un prototipo webview de punta a punta, testeable con familias.</p>
-    <div class="insight"><span class="ic"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg></span><div><b>No es pedir una mano: es gestionar en comunidad y distribuir responsabilidades.</b><span>Objetivo: aminorar la carga cognitiva de quienes gestionan, en la red de familias y en la familia responsable. Insight del 03/11, a validar con la CEO.</span></div></div>
+    <p class="lead">Dónde estamos, qué ya está hecho, qué tiene que decidir la founder y qué viene. El objetivo: llegar a un prototipo webview de punta a punta, testeable con familias.</p>
+    <div class="insight"><span class="ic"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M10 22h4"></path></svg></span><div><b>No es pedir una mano: es gestionar en comunidad y distribuir responsabilidades.</b><span>Objetivo: aminorar la carga cognitiva de quienes gestionan, en la red de familias y en la familia responsable. Insight del 03/11, a validar con la founder.</span></div></div>
     <svg class="ill" viewBox="0 0 1600 260" aria-hidden="true"><path d="M0 90 C 300 20, 620 140, 920 80 S 1400 10, 1600 60 V260 H0Z" fill="#F6CD71"/><path d="M0 170 C 420 110, 820 200, 1600 130 V260 H0Z" fill="#EAA52E"/><path d="M420 260 C 600 190, 900 165, 1440 105 L 1520 122 C 980 190, 720 220, 620 260 Z" fill="#1F2B45"/><path d="M520 260 C 690 198, 960 172, 1480 113" fill="none" stroke="#fff" stroke-width="7" stroke-dasharray="30 26"/><rect x="250" y="175" width="11" height="85" fill="#1F2B45"/><circle cx="256" cy="165" r="44" fill="#E0674C"/><rect x="378" y="160" width="9" height="70" fill="#1F2B45"/><circle cx="383" cy="152" r="28" fill="#E0674C"/></svg>
   </div>
 </header>
@@ -178,7 +188,7 @@ nav.toc a:hover { background: var(--gray-100); }
 
 <section id="puertas">
   <h2>Puertas de aprobación</h2>
-  <p class="sub">Nada pasa de una etapa a otra sin que lo apruebe una persona. Mostramos el estado formal y lo que pasó en los hechos.</p>
+  <p class="sub">Nada pasa de una etapa a otra sin quedar aprobado.</p>
   <div class="gates" id="gates"></div>
 </section>
 
@@ -189,7 +199,7 @@ nav.toc a:hover { background: var(--gray-100); }
 </section>
 
 <section id="decidir">
-  <h2>Para decidir con la CEO</h2>
+  <h2>Para decidir con la founder</h2>
   <p class="sub">Son propuestas del equipo; ninguna está decidida.</p>
   <div class="list" id="ceo"></div>
 </section>
@@ -230,30 +240,30 @@ const DATA = {
     ["21", "pantallas prototipadas", "16 del camino feliz y 5 casos borde"],
   ],
   stages: [
-    ["Investigación con la CEO", "done", "Dos sesiones (16 y 19/10). Falta la síntesis formal."],
+    ["Investigación con la founder", "done", "Dos sesiones (16 y 19/10). Falta la síntesis formal."],
     ["Investigación con usuarios", "done", "5 entrevistas y encuesta, anonimizadas."],
     ["Síntesis", "done", "Patrones, camino del usuario, dolores, necesidades. Borrador."],
     ["Definición de producto", "doing", "Definición del problema (30/10) e insight reformulado (03/11)."],
-    ["Diseño", "doing", "Design system v0.1: claro, simple y adulto, con color semántico (D-011)."],
+    ["Diseño", "doing", "Design system v0.2: gris tibio, ámbar como resaltado y formas redondas (D-011, D-012)."],
     ["Prototipo", "doing", "Concepto v0 navegable, provisional (D-009)."],
     ["Validación", "todo", "Test con familias: seis hipótesis a probar."],
   ],
   gates: [
-    ["1", "Objetivo y restricciones de negocio", "Aprueba la CEO", "En preparación", "doing", "Falta la síntesis de las sesiones con la CEO"],
-    ["2", "Plan de investigación con usuarios", "Aprueba Maru", "No iniciada", "todo", "En los hechos: entrevistas y encuesta ya hechas (Q-026)"],
-    ["3", "Insights priorizados", "Aprueban Maru y la CEO", "No iniciada", "todo", "Lista para revisar: síntesis, reporte e insight del 03/11"],
-    ["4", "Brief y alcance del prototipo", "Aprueba la CEO", "No iniciada", "todo", "Pendiente: decidir si entra la familia responsable (Q-030)"],
-    ["5", "Flujos, contenido y UI", "Aprueba Maru (+ CEO si cambia el alcance)", "No iniciada", "todo", "Hay un design system v0 y un prototipo de concepto provisionales"],
-    ["6", "Prototipo validado", "Aprueba Maru", "No iniciada", "todo", "Después del test con familias"],
+    ["1", "Objetivo y restricciones de negocio", "", "En preparación", "doing", "Falta la síntesis de las sesiones con la founder"],
+    ["2", "Plan de investigación con usuarios", "", "Aprobada", "done", "Entrevistas y encuesta hechas"],
+    ["3", "Insights priorizados", "", "No iniciada", "todo", "Lista para revisar: síntesis, reporte e insight del 03/11"],
+    ["4", "Brief y alcance del prototipo", "", "No iniciada", "todo", "Pendiente: decidir si entra la familia responsable (Q-030)"],
+    ["5", "Flujos, contenido y UI", "", "No iniciada", "todo", "Hay un design system v0 y un prototipo de concepto provisionales"],
+    ["6", "Prototipo validado", "", "No iniciada", "todo", "Después del test con familias"],
   ],
   deliv: [
     ["LuSmartphone", "Prototipo navegable v0", "Camino feliz y casos borde, con notas de feature, evidencia y tecnología.", "./prototipo/", ["Provisional", "Abrir"], true],
-    ["LuPresentation", "Cómo se construye la app", "19 diapositivas para la CEO y tecnología: de la investigación al prototipo, con antes y después.", "https://docs.google.com/presentation/d/1kHYKk7RZSkBC8IrTMnHDCYxaqCCIg-6Jm8ITQN2Tib4/edit", ["Google Slides", "Borrador"]],
+    ["LuPresentation", "Cómo se construye la app", "19 diapositivas para la founder y tecnología: de la investigación al prototipo, con antes y después.", "https://docs.google.com/presentation/d/1kHYKk7RZSkBC8IrTMnHDCYxaqCCIg-6Jm8ITQN2Tib4/edit", ["Google Slides", "Borrador"]],
     ["LuPresentation", "Reporte de investigación", "29 diapositivas: hallazgos, camino del usuario, definición del problema y decisiones.", "https://docs.google.com/presentation/d/1LzXIBcKejDLWTCzDVkbsRAKgIhnmaE-KPQdsFRoYWw8/edit", ["Google Slides", "Borrador"]],
     ["LuFileText", "Síntesis de entrevistas y encuesta", "El documento completo con patrones, journey, dolores, necesidades y preguntas.", "https://docs.google.com/document/d/1v9fq4AcDvs_zK9pppspVpwvpeHEqxqcc9B2TqJ6vrjw/edit", ["Google Docs", "Borrador"]],
     ["LuTarget", "Definición del problema", "Conclusiones, tensiones, principios de diseño e hipótesis del prototipo (30/10).", "https://drive.google.com/file/d/1jXz3Q7Nz0CMTjRy8fYcfXKsk116fs8Hh/view", ["PDF", "Equipo"]],
-    ["LuPalette", "Design system v0.1", "Colores semánticos (azul base, naranja resaltado), tipografías, medidas y componentes.", "./design-system/", ["Provisional", "Abrir"]],
-    ["LuLayoutDashboard", "Tablero en FigJam", "Entrevistas, journey y síntesis transversal para trabajar con la CEO.", "https://www.figma.com/board/Ia6ht6Gv2HfFfFdqlOhEoy/Poolcito", ["FigJam"]],
+    ["LuPalette", "Design system v0.2", "Navy como base, ámbar como resaltado, tierra y pasteles para categorías; componentes de la app.", "./design-system/", ["Provisional", "Abrir"]],
+    ["LuLayoutDashboard", "Tablero en FigJam", "Entrevistas, journey y síntesis transversal para trabajar con la founder.", "https://www.figma.com/board/Ia6ht6Gv2HfFfFdqlOhEoy/Poolcito", ["FigJam"]],
     ["LuMessagesSquare", "Transcripciones anonimizadas", "Las 5 entrevistas, con participantes codificados P01 a P05.", "https://drive.google.com/drive/folders/1NfwxTbsGiYb2uS7eBXQM8UdKNDAuQo3P", ["Drive", "Solo equipo"]],
     ["LuClipboardList", "Guía de entrevista y encuesta", "Los instrumentos de la investigación con familias.", "https://docs.google.com/document/d/1QgReQLfQPgDSq7tK_d5lODy3Xjx3t2rTLkWIHvVuCs8/edit", ["Google Docs"]],
     ["LuFolder", "Carpeta del proyecto", "Todo el material en Google Drive.", "https://drive.google.com/drive/folders/1iMd9-uDnR5ysdY9Hw780b_Xuk2mm8JD_", ["Drive"]],
@@ -268,34 +278,35 @@ const DATA = {
     ["I", "¿Aprobamos una segunda ronda de entrevistas fuera de la red cercana?", "Q-020"],
   ],
   questions: [
-    ["Q-030", "Problema y alcance reformulados", "Gestionar en comunidad y distribuir responsabilidades; incluye a la familia responsable.", "Decide la CEO"],
-    ["Q-019", "Consentimiento de las entrevistas", "No consta un consentimiento formal en las transcripciones.", "Decide Maru"],
-    ["Q-020", "Sesgo de cercanía", "Varias personas entrevistadas conocen a la CEO o al equipo.", "Deciden Maru y la CEO"],
-    ["Q-018", "Un hogar repetido", "Dos entrevistas serían de la misma pareja.", "Decide Maru"],
-    ["Q-027", "Evidencia de mercado", "La conclusión sobre apps que cobran a familias no tiene fuentes cargadas.", "Decide Maru"],
-    ["Q-028", "Tipografías", "Bricolage Grotesque y Nunito se identificaron a ojo: confirmar con quien diseñó.", "Deciden Maru y la CEO"],
-    ["Q-029", "Design system antes de la puerta 5", "Revisarlo junto con la definición del problema antes del prototipo final.", "Decide Maru"],
-    ["Q-011", "Backend en el presupuesto", "Lo acordado incluye backend y seguridad; el prototipo es sin backend.", "Deciden Maru y la CEO"],
-    ["Q-005", "Plazo y tecnología del webview", "Plazo, tecnología preferida y dispositivo objetivo.", "Deciden Maru y la CEO"],
+    ["Q-030", "Problema y alcance reformulados", "Gestionar en comunidad y distribuir responsabilidades; incluye a la familia responsable.", ""],
+    ["Q-019", "Consentimiento de las entrevistas", "No consta un consentimiento formal en las transcripciones.", ""],
+    ["Q-020", "Sesgo de cercanía", "Varias personas entrevistadas conocen a la founder o al equipo.", ""],
+    ["Q-018", "Un hogar repetido", "Dos entrevistas serían de la misma pareja.", ""],
+    ["Q-027", "Evidencia de mercado", "La conclusión sobre apps que cobran a familias no tiene fuentes cargadas.", ""],
+    ["Q-028", "Tipografías", "Bricolage Grotesque y Nunito se identificaron a ojo: confirmar con quien diseñó.", ""],
+    ["Q-029", "Design system antes de la puerta 5", "Revisarlo junto con la definición del problema antes del prototipo final.", ""],
+    ["Q-011", "Backend en el presupuesto", "Lo acordado incluye backend y seguridad; el prototipo es sin backend.", ""],
+    ["Q-005", "Plazo y tecnología del webview", "Plazo, tecnología preferida y dispositivo objetivo.", ""],
   ],
-  openCount: 25, totalCount: 30,
+  openCount: 24, totalCount: 30,
   decisions: [
+    ["D-012", "03/11", "Referencia visual: gris tibio, resaltado ámbar, tierra y pasteles para categorías, formas redondas, tira de días y botón central «+»."],
     ["D-011", "03/11", "Dirección visual: clara, simple y adulta; azul como base y naranja como resaltado; menos bordes y radios más chicos."],
     ["D-010", "03/11", "Prototipo: seguimiento del viaje estilo PedidosYa, recorrido con link a Google Maps y nombres ficticios sin coincidencias con el equipo ni con participantes."],
-    ["D-009", "03/11", "Construir un prototipo de concepto navegable (camino feliz y casos borde) para la CEO y tecnología, provisional."],
+    ["D-009", "03/11", "Construir un prototipo de concepto navegable (camino feliz y casos borde) para la founder y tecnología, provisional."],
     ["D-008", "20/10", "Encuesta v2: la distribuyen varias personas; incluye a niñeras, abuelos y otros familiares."],
     ["D-007", "19/10", "El nombre de la app es Poolcito."],
     ["D-006", "19/10", "El tablero con la clienta pasa de Mural a FigJam."],
     ["D-001 a D-005", "15–16/10", "Entregables en Google Docs; grabaciones fuera de GitHub; repositorio en GitHub; uso del mural."],
   ],
   past: [
-    ["09/10", "Arranque del proyecto"], ["16/10", "Primera sesión con la CEO"], ["19/10", "Segunda sesión con la CEO; se recibe el diseño de la app"],
+    ["09/10", "Arranque del proyecto"], ["16/10", "Primera sesión con la founder"], ["19/10", "Segunda sesión con la founder; se recibe el diseño de la app"],
     ["21–26/10", "5 entrevistas con madres y padres"], ["26–28/10", "Encuesta: 19 respuestas válidas"], ["30/10", "Síntesis y definición del problema"],
     ["03/11", "Reporte, insight reformulado, design system v0 y prototipo de concepto"],
   ],
   next: [
-    ["Ahora", "Presentar «Cómo se construye la app» a la CEO y a tecnología"], ["Ahora", "Confirmar consentimiento y hogar repetido (Q-018, Q-019)"],
-    ["06–15/11", "Maru no está disponible"], ["Después", "Puerta 3: aprobar insights · Puerta 4: brief y alcance"],
+    ["Ahora", "Presentar «Cómo se construye la app» a la founder y a tecnología"], ["Ahora", "Confirmar consentimiento y hogar repetido (Q-018, Q-019)"],
+    ["06–15/11", "Parte del equipo no está disponible"], ["Después", "Puerta 3: aprobar insights · Puerta 4: brief y alcance"],
     ["Después", "Segunda ronda de entrevistas: hogares separados, horarios rígidos, abuelas y niñeras"], ["Después", "Test de concepto con las seis hipótesis"],
   ],
 };
@@ -311,7 +322,7 @@ $("bar").firstElementChild.style.width = pct + "%";
 $("bar").setAttribute("aria-label", "Avance aproximado: " + pct + " %");
 const stLabel = { done: ["Hecha", "s-done"], doing: ["En curso", "s-doing"], todo: ["Pendiente", "s-todo"] };
 $("stages").innerHTML = DATA.stages.map(([t, s, p], i) => `<div class="stage ${s}"><span class="num">${s === "done" ? "✓" : i + 1}</span><h3>${esc(t)}</h3><span class="chip ${stLabel[s][1]}" style="align-self:flex-start">${stLabel[s][0]}</span><p>${esc(p)}</p></div>`).join("");
-$("gates").innerHTML = DATA.gates.map(([n, t, who, st, cls, note]) => `<div class="gate"><span class="n">${n}</span><div><div class="t">${esc(t)}</div><div class="d">${esc(who)}</div></div><div class="st"><span class="chip s-${cls}">${esc(st)}</span><span class="small">${esc(note)}</span></div></div>`).join("");
+$("gates").innerHTML = DATA.gates.map(([n, t, who, st, cls, note]) => `<div class="gate"><span class="n">${n}</span><div><div class="t">${esc(t)}</div>${who ? `<div class="d">${esc(who)}</div>` : ""}</div><div class="st"><span class="chip s-${cls}">${esc(st)}</span><span class="small">${esc(note)}</span></div></div>`).join("");
 const fills = ["var(--pc-amber-500)", "var(--pc-sky-200)", "var(--pc-peach-200)", "var(--pc-mint-100)", "var(--pc-cream-200)", "var(--pc-rose-200)"];
 $("deliv").innerHTML = DATA.deliv.map(([ic, t, p, href, tags, feat], i) => {
   const ext = !href.startsWith("./");
@@ -320,7 +331,7 @@ $("deliv").innerHTML = DATA.deliv.map(([ic, t, p, href, tags, feat], i) => {
 const kind = { P: "Problema", A: "Alcance", D: "Diseño", N: "Negocio", I: "Investigación" };
 $("ceo").innerHTML = DATA.ceo.map(([k, q, ref]) => `<div class="item"><span class="id">${kind[k]}</span><div class="tx"><b>${esc(q)}</b><div class="who">${esc(ref)}</div></div></div>`).join("");
 $("qsub").textContent = `Hay ${DATA.openCount} preguntas abiertas de ${DATA.totalCount} registradas. Estas son las que más influyen en los próximos pasos.`;
-$("qs").innerHTML = DATA.questions.map(([id, t, d, who]) => `<div class="item"><span class="id">${id}</span><div class="tx"><b>${esc(t)}</b>${esc(d)}<div class="who">${esc(who)}</div></div></div>`).join("");
+$("qs").innerHTML = DATA.questions.map(([id, t, d, who]) => `<div class="item"><span class="id">${id}</span><div class="tx"><b>${esc(t)}</b>${esc(d)}${who ? `<div class="who">${esc(who)}</div>` : ""}</div></div>`).join("");
 $("ds").innerHTML = DATA.decisions.map(([id, f, d]) => `<div class="item"><span class="id">${id}<br><span style="font-weight:700">${f}</span></span><div class="tx">${esc(d)}</div></div>`).join("");
 $("past").innerHTML = DATA.past.map(([f, d]) => `<div class="ev"><time>${f}</time><div>${esc(d)}</div></div>`).join("");
 $("next").innerHTML = DATA.next.map(([f, d]) => `<div class="ev next"><time>${f}</time><div>${esc(d)}</div></div>`).join("");

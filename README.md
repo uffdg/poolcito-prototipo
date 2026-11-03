@@ -3,7 +3,7 @@
 > Estado: Provisional (decisión D-009, 03/11/2026). Las puertas 4 (alcance) y 5 (diseño) no están aprobadas.
 > Datos ficticios · sin backend · sin integraciones.
 
-Prototipo navegable de Poolcito para mostrar a la CEO y al equipo de tecnología cómo se construye la app a partir de la investigación con familias.
+Prototipo navegable de Poolcito para mostrar a la founder y al equipo de tecnología cómo se construye la app a partir de la investigación con familias.
 
 ## Sitio publicado
 https://uffdg.github.io/poolcito-prototipo/
@@ -31,6 +31,6 @@ Abrí `/prototipo/` en el navegador. No necesita instalar nada.
 ## De dónde sale
 - Insight (03/11): no es pedir una mano, es **gestionar en comunidad y distribuir responsabilidades**. Objetivo: **aminorar la carga cognitiva de quienes gestionan**, también con la familia responsable (otro hogar, abuelos, niñeras).
 - Investigación: 5 entrevistas y encuesta con 19 respuestas (octubre de 2026). Los participantes se citan con códigos (P01 a P05).
-- Diseño base: pantallas de la CEO, ajustadas a la evidencia; tokens del design system v0.
+- Diseño base: pantallas de la founder, ajustadas a la evidencia; tokens del design system v0.
 
 Ver `LIMITACIONES.md`.
