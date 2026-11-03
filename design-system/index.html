@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poolcito Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Poolcito · Tokens v0 (extraídos del Doc «Diseño de la app», S-009)
+   ========================================================= */
+:root {
+  /* Primitivos */
+  --pc-navy-900: #1F2B45;   /* tinta, botones primarios, tab bar activo */
+  --pc-slate-600: #4C5164;  /* texto secundario */
+  --pc-amber-500: #F2B443;  /* acento: «Necesito un traslado», íconos de éxito, switch */
+  --pc-amber-600: #EAA52E;  /* ilustración (colina oscura) */
+  --pc-amber-300: #F6CD71;  /* ilustración (colina clara) */
+  --pc-cream-200: #FCE6AD;  /* fondo de pantalla amarillo */
+  --pc-cream-50:  #FFF6E7;  /* chips de horario, inputs destacados */
+  --pc-sky-200:   #D0E6F3;  /* fondo de pantalla celeste, «Mi pool» */
+  --pc-peach-200: #FAD6CA;  /* fondo de pantalla durazno, «Puedo llevar», avisos */
+  --pc-rose-200:  #FCD4CC;  /* chip «Mi Red» */
+  --pc-coral-500: #E0674C;  /* avatar, corazón de «Mi Red», alerta */
+  --pc-mint-100:  #D9F3E6;  /* chip «Aprobada», grado */
+  --pc-green-700: #317C5B;  /* texto «Familia verificada», «Aprobada» */
+  --pc-white:     #FFFFFF;
+
+  /* Semánticos */
+  --color-text: var(--pc-navy-900);
+  --color-text-muted: var(--pc-slate-600);
+  --color-surface: var(--pc-white);
+  --color-screen-yellow: var(--pc-cream-200);
+  --color-screen-blue: var(--pc-sky-200);
+  --color-screen-peach: var(--pc-peach-200);
+  --color-primary: var(--pc-navy-900);
+  --color-on-primary: var(--pc-white);
+  --color-accent: var(--pc-amber-500);
+  --color-on-accent: var(--pc-navy-900);
+  --color-success-bg: var(--pc-mint-100);
+  --color-success-text: var(--pc-green-700);
+  --color-warning-bg: #FDE9B8;
+  --color-danger: var(--pc-coral-500);
+  --color-danger-bg: var(--pc-peach-200);
+  --color-network-bg: var(--pc-rose-200);
+  --color-network-text: #B4472F;
+  --color-border-soft: #EFE3C8;
+
+  /* Tipografía */
+  --font-display: "Bricolage Grotesque", "Nunito", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Espaciado (base 4) */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+
+  /* Radios */
+  --radius-sm: 12px; --radius-md: 16px; --radius-lg: 22px; --radius-pill: 999px;
+
+  /* Medidas de componentes */
+  --size-touch: 48px; --size-button: 56px; --size-avatar: 44px; --size-icon-circle: 44px;
+  --screen-padding: 24px;
+}
+
+/* ---------- página de documentación ---------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: #FFFBF2; color: var(--color-text); font-family: var(--font-body); font-weight: 500; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+header.top { background: var(--color-screen-yellow); padding: 40px 0 48px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo { width: 44px; height: 44px; border-radius: 50%; background: var(--pc-navy-900); display: grid; place-items: center; }
+.brand b { font-family: var(--font-display); font-weight: 800; font-size: 24px; letter-spacing: -0.02em; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing: -0.025em; line-height: 1.08; margin: 0; }
+h1 { font-size: clamp(36px, 6vw, 56px); margin-top: 28px; max-width: 760px; }
+.lead { font-size: 18px; color: var(--color-text-muted); max-width: 720px; margin: 12px 0 0; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+nav.toc { position: sticky; top: 0; z-index: 5; background: rgba(255,251,242,.94); backdrop-filter: blur(6px); border-bottom: 1px solid var(--color-border-soft); }
+nav.toc .wrap { display: flex; gap: 6px; overflow-x: auto; padding-top: 10px; padding-bottom: 10px; scrollbar-width: none; }
+nav.toc a { text-decoration: none; font-weight: 800; font-size: 14px; padding: 6px 12px; border-radius: var(--radius-pill); white-space: nowrap; }
+nav.toc a:hover { background: var(--pc-cream-50); }
+section.block { padding: 56px 0 8px; }
+h2 { font-size: 34px; }
+.sub { color: var(--color-text-muted); margin: 8px 0 24px; max-width: 760px; }
+h3 { font-size: 20px; margin: 32px 0 12px; }
+.grid { display: grid; gap: 16px; }
+.g2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.g4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
+.panel { background: var(--color-surface); border-radius: var(--radius-lg); padding: 20px; border: 1px solid var(--color-border-soft); }
+.stage { border-radius: var(--radius-lg); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+.stage.y { background: var(--color-screen-yellow); } .stage.b { background: var(--color-screen-blue); } .stage.p { background: var(--color-screen-peach); }
+.label { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); }
+code, .code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; }
+.tok { display: inline-block; background: var(--pc-cream-50); border-radius: 8px; padding: 1px 7px; font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; }
+.note { display: flex; gap: 12px; align-items: flex-start; background: var(--pc-cream-50); border-radius: var(--radius-md); padding: 14px 16px; font-size: 15px; }
+.note.warn { background: var(--color-warning-bg); }
+.note svg { flex: none; margin-top: 2px; }
+footer { padding: 56px 0 64px; color: var(--color-text-muted); font-size: 14px; }
+
+/* swatches */
+.sw { border-radius: var(--radius-lg); overflow: hidden; background: var(--color-surface); border: 1px solid var(--color-border-soft); }
+.sw .chipc { height: 96px; display: flex; align-items: flex-end; padding: 10px 12px; font-weight: 800; font-size: 13px; }
+.sw .info { padding: 12px 14px; font-size: 14px; }
+.sw .info b { display: block; font-size: 15px; }
+.sw .info span { color: var(--color-text-muted); }
+
+/* tipografía */
+.type-row { display: grid; grid-template-columns: 180px 1fr; gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--color-border-soft); }
+.type-row:last-child { border-bottom: 0; }
+@media (max-width: 640px) { .type-row { grid-template-columns: 1fr; gap: 4px; } }
+
+/* =========================================================
+   Componentes
+   ========================================================= */
+.t-display { font-family: var(--font-display); font-weight: 800; font-size: 36px; line-height: 1.05; letter-spacing: -0.03em; }
+.t-h1 { font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1.1; letter-spacing: -0.025em; }
+.t-h2 { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; }
+.t-title { font-family: var(--font-body); font-weight: 800; font-size: 17px; line-height: 1.3; }
+.t-body { font-family: var(--font-body); font-weight: 600; font-size: 16px; line-height: 1.45; }
+.t-small { font-family: var(--font-body); font-weight: 600; font-size: 14px; line-height: 1.4; color: var(--color-text-muted); }
+.t-caption { font-family: var(--font-body); font-weight: 700; font-size: 12px; line-height: 1.35; }
+.t-overline { font-family: var(--font-body); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--color-text-muted); }
+
+.btn { font: 800 17px/1 var(--font-body); height: var(--size-button); border-radius: var(--radius-pill); padding: 0 24px; border: 2px solid transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; transition: transform .08s ease, filter .15s ease; }
+.btn:active { transform: scale(.98); }
+.btn:focus-visible, .seg button:focus-visible, .day:focus-visible, .back:focus-visible, .switch:focus-visible { outline: 3px solid var(--pc-amber-500); outline-offset: 3px; }
+.btn-primary { background: var(--color-primary); color: var(--color-on-primary); }
+.btn-primary:hover { filter: brightness(1.15); }
+.btn-secondary { background: transparent; color: var(--color-primary); border-color: var(--color-primary); }
+.btn-secondary:hover { background: rgba(31,43,69,.05); }
+.btn-accent { background: var(--color-accent); color: var(--color-on-accent); }
+.btn-sm { height: 44px; font-size: 15px; width: auto; padding: 0 18px; }
+.btn-link { background: none; border: 0; padding: 0; height: auto; width: auto; font: 800 16px/1.4 var(--font-body); color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.back { width: var(--size-touch); height: var(--size-touch); border-radius: 50%; background: var(--color-surface); border: 0; display: grid; place-items: center; cursor: pointer; color: var(--color-text); }
+
+.field { display: flex; align-items: center; gap: 14px; height: 56px; background: var(--color-surface); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: 0 18px; }
+.field input { border: 0; outline: 0; font: 600 17px var(--font-body); color: var(--color-text); background: transparent; width: 100%; }
+.field input::placeholder { color: var(--color-text-muted); opacity: .85; }
+.field:focus-within { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(242,180,67,.45); }
+.field.code { background: var(--pc-cream-50); }
+
+.card { background: var(--color-surface); border-radius: var(--radius-lg); padding: 16px; }
+.row { display: flex; align-items: center; gap: 14px; }
+.row .grow { flex: 1; min-width: 0; }
+.avatar { width: var(--size-avatar); height: var(--size-avatar); border-radius: 50%; display: grid; place-items: center; font: 800 18px var(--font-body); flex: none; }
+.av-coral { background: var(--pc-coral-500); color: var(--pc-navy-900); } .av-amber { background: var(--pc-amber-500); } .av-sky { background: var(--pc-sky-200); } .av-peach { background: var(--pc-peach-200); }
+.icirc { width: var(--size-icon-circle); height: var(--size-icon-circle); border-radius: 50%; display: grid; place-items: center; flex: none; }
+.chev { color: var(--color-text); opacity: .8; flex: none; }
+.add { display: flex; align-items: center; justify-content: center; gap: 8px; height: 52px; border: 2px dashed var(--color-primary); border-radius: var(--radius-lg); font: 800 17px var(--font-body); background: transparent; color: var(--color-text); width: 100%; cursor: pointer; }
+
+.action { border-radius: var(--radius-lg); padding: 18px; display: flex; align-items: center; gap: 16px; color: var(--color-text); text-decoration: none; }
+.action .icirc { width: 54px; height: 54px; background: rgba(255,255,255,.35); }
+.action h4 { margin: 0; font: 800 21px/1.15 var(--font-display); letter-spacing: -0.02em; }
+.action p { margin: 2px 0 0; font: 600 15px/1.35 var(--font-body); }
+.a-amber { background: var(--pc-amber-500); } .a-peach { background: var(--pc-peach-200); } .a-sky { background: var(--pc-sky-200); } .a-white { background: var(--color-surface); }
+.a-navy { background: var(--pc-navy-900); color: #fff; border-radius: var(--radius-pill); padding: 14px 20px; }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; border-radius: var(--radius-pill); font: 800 14px var(--font-body); white-space: nowrap; }
+.c-schedule { background: var(--pc-cream-50); }
+.c-approved { background: var(--color-success-bg); color: var(--color-success-text); }
+.c-review { background: var(--color-warning-bg); }
+.c-network { background: var(--color-network-bg); color: var(--color-network-text); }
+.c-grade { background: var(--color-success-bg); color: var(--color-success-text); }
+.c-weekly { background: var(--pc-sky-200); }
+.c-alarm { background: var(--color-warning-bg); }
+.c-rating { background: var(--color-warning-bg); }
+.c-best { background: var(--pc-amber-500); }
+.c-dark { background: var(--pc-navy-900); color: #fff; }
+.verified { color: var(--color-success-text); font: 800 14px var(--font-body); display: inline-flex; align-items: center; gap: 4px; }
+
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--color-surface); border-radius: var(--radius-lg); padding: 4px; gap: 4px; }
+.seg button { border: 0; background: transparent; height: 44px; border-radius: var(--radius-md); font: 800 15px var(--font-body); color: var(--color-text); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--color-primary); color: #fff; }
+.days { display: flex; gap: 8px; flex-wrap: wrap; }
+.day { min-width: 58px; height: 44px; border-radius: var(--radius-pill); background: var(--color-surface); border: 0; font: 800 15px var(--font-body); color: var(--color-text); cursor: pointer; }
+.day[aria-pressed="true"] { background: var(--color-primary); color: #fff; }
+.stepper { display: flex; align-items: center; gap: 12px; }
+.stepper button { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--pc-cream-50); font: 800 22px var(--font-body); color: var(--color-text); cursor: pointer; }
+.stepper output { font: 800 24px var(--font-display); min-width: 24px; text-align: center; }
+.switch { width: 58px; height: 34px; border-radius: var(--radius-pill); background: #C9CDD6; border: 0; position: relative; cursor: pointer; transition: background .15s; }
+.switch::after { content: ""; position: absolute; top: 4px; left: 4px; width: 26px; height: 26px; border-radius: 50%; background: #fff; transition: transform .15s, background .15s; }
+.switch[aria-checked="true"] { background: var(--pc-navy-900); }
+.switch[aria-checked="true"]::after { transform: translateX(24px); background: var(--pc-amber-500); }
+.formrow { display: grid; grid-template-columns: 110px 1fr; align-items: center; gap: 12px; }
+.select { display: flex; align-items: center; justify-content: space-between; height: 48px; background: var(--color-surface); border-radius: var(--radius-md); padding: 0 14px; font: 800 16px var(--font-body); }
+
+.tabbar { background: var(--color-surface); border-radius: 24px 24px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); padding: 10px 6px 14px; }
+.tab { display: flex; flex-direction: column; align-items: center; gap: 4px; font: 600 13px var(--font-body); color: var(--color-text-muted); }
+.tab .pill { width: 52px; height: 30px; border-radius: var(--radius-pill); display: grid; place-items: center; color: var(--color-text); }
+.tab.active { color: var(--color-text); font-weight: 800; }
+.tab.active .pill { background: var(--pc-amber-500); }
+
+.state { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 12px 0; }
+.state .big { width: 112px; height: 112px; border-radius: 50%; background: var(--pc-amber-500); display: grid; place-items: center; color: var(--pc-navy-900); }
+.modal { background: var(--color-surface); border-radius: 26px; padding: 24px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: 0 20px 50px rgba(31,43,69,.25); }
+.modal .bell { width: 72px; height: 72px; border-radius: 50%; background: var(--pc-amber-500); display: grid; place-items: center; }
+.stop { display: flex; align-items: center; gap: 12px; padding: 10px 0; }
+.stop .dot { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--pc-navy-900); display: grid; place-items: center; flex: none; background: var(--pc-cream-50); }
+.stop .dot.done { background: var(--pc-amber-500); }
+.stop time { margin-left: auto; font: 800 16px var(--font-body); }
+.status-pill { display: inline-flex; align-items: center; height: 40px; padding: 0 18px; background: var(--pc-navy-900); color: #fff; border-radius: var(--radius-pill); font: 800 15px var(--font-body); }
+.flag { margin-top: 8px; font-size: 13.5px; }
+
+/* ilustración de portada */
+.hero-ill { display: block; width: 100%; height: auto; margin-top: 32px; border-radius: var(--radius-lg); }
+@media (max-width: 520px) { .formrow { grid-template-columns: 1fr; gap: 6px; } h2 { font-size: 28px; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 200 200" aria-hidden="true"><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#FFF6E7"/><path d="M82 96 Q 88 78 100 78 Q 112 78 118 96 Z" fill="#D0E6F3"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#FFF6E7"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg></span>
+      <b>Poolcito</b>
+    </div>
+    <h1>Design system v0: la base visual de la app</h1>
+    <p class="lead">Colores, tipografías, medidas y componentes extraídos de las 20 pantallas del diseño de la CEO, listos para el prototipo webview. Incluye notas de la investigación con familias sobre qué componentes revisar.</p>
+    <div class="meta">
+      <span class="chip c-dark">Borrador · 03/11/2026</span>
+      <span class="chip c-schedule">Fuente: «Poolcito · Diseño de la app» (S-009)</span>
+      <span class="chip c-review">Puerta 5 sin aprobar</span>
+    </div>
+    <svg class="hero-ill" viewBox="0 0 1600 420" role="img" aria-label="Ilustración: colinas amarillas y un camino">
+      <rect width="1600" height="420" fill="#FCE6AD"/>
+      <path d="M0 150 C 300 60, 620 200, 920 130 S 1400 30, 1600 100 V420 H0Z" fill="#F6CD71"/>
+      <path d="M0 260 C 420 180, 820 300, 1600 200 V420 H0Z" fill="#EAA52E"/>
+      <path d="M420 420 C 600 300, 900 260, 1440 170 L 1520 195 C 980 300, 720 340, 620 420 Z" fill="#1F2B45"/>
+      <path d="M520 420 C 690 315, 960 268, 1480 182" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-dasharray="32 28"/>
+      <rect x="250" y="300" width="12" height="120" fill="#1F2B45"/><circle cx="256" cy="290" r="54" fill="#E0674C"/>
+      <rect x="378" y="275" width="10" height="90" fill="#1F2B45"/><circle cx="383" cy="268" r="34" fill="#E0674C"/>
+    </svg>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Secciones">
+  <div class="wrap">
+    <a href="#principios">Principios</a><a href="#color">Color</a><a href="#tipografia">Tipografía</a><a href="#medidas">Medidas</a>
+    <a href="#iconos">Íconos</a><a href="#botones">Botones</a><a href="#formularios">Formularios</a><a href="#tarjetas">Tarjetas</a>
+    <a href="#etiquetas">Etiquetas</a><a href="#navegacion">Navegación</a><a href="#estados">Estados</a><a href="#tokens">Tokens</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<section class="block" id="principios">
+  <h2>Principios</h2>
+  <p class="sub">Lo que el diseño ya hace bien y lo que la investigación con familias pide cuidar.</p>
+  <div class="grid g4">
+    <div class="panel"><div class="icirc" style="background:var(--pc-cream-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg></div><h3 style="margin-top:14px">Cálido y cercano</h3><p class="t-small">Fondos pastel por pantalla, ilustración simple, tuteo. Es una app entre vecinos, no una empresa de transporte.</p></div>
+    <div class="panel"><div class="icirc" style="background:var(--pc-sky-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div><h3 style="margin-top:14px">Una acción por pantalla</h3><p class="t-small">Un botón primario navy abajo, a lo ancho. El resto, secundario o enlace.</p></div>
+    <div class="panel"><div class="icirc" style="background:var(--pc-peach-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div><h3 style="margin-top:14px">Privacidad a la vista</h3><p class="t-small">Cada pantalla sensible explica quién ve qué, con una nota con escudo. La investigación lo marca como requisito.</p></div>
+    <div class="panel"><div class="icirc" style="background:var(--pc-mint-100)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></div><h3 style="margin-top:14px">Primero la red de confianza</h3><p class="t-small">Las familias confían en quienes conocen. «Mi Red» va antes que la comunidad, y no se muestran puntajes.</p></div>
+  </div>
+  <div class="note" style="margin-top:24px;background:var(--pc-navy-900);color:#fff"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><div><b>Problema y objetivo (reformulado el 03/11):</b> no es pedir una mano, es <b>gestionar en comunidad y distribuir responsabilidades</b>, entre la red de familias y la familia responsable (otro hogar, abuelos, niñeras), sobre todo en hogares de padres separados. Objetivo: <b>aminorar la carga cognitiva de quienes gestionan</b>. A validar con la CEO.</div></div>
+  <h3>Principios de producto</h3>
+  <p class="t-small" style="margin:-4px 0 12px">De «Definición problema poolcito v 30_10» (equipo). Todo componente nuevo se revisa contra esta lista.</p>
+  <div class="panel"><ol class="t-body" style="margin:0;padding-left:22px;display:grid;gap:6px">
+    <li><b>Pedir a la red, no a una persona:</b> el pedido llega al pool y responde quien puede.</li>
+    <li><b>Ofrecer es puntual y opcional:</b> decir que no, o no responder, no tiene costo.</li>
+    <li><b>El agradecimiento es un gesto privado,</b> nunca un registro.</li>
+    <li><b>La pertenencia se ve; la contabilidad no.</b> Sin rankings, puntajes ni estadísticas de quién hizo más.</li>
+    <li><b>Acuerdo claro y traspaso confirmado,</b> no el mapa.</li>
+    <li><b>Convive con WhatsApp:</b> se entra desde ahí y se avisa por ahí.</li>
+    <li><b>Las familias nunca pagan</b> por pedir, ofrecer ni pertenecer.</li>
+  </ol></div>
+</section>
+
+<section class="block" id="color">
+  <h2>Color</h2>
+  <p class="sub">Paleta medida en píxeles sobre las pantallas del diseño. El navy es la tinta, el ámbar es el acento y tres fondos pastel identifican el tipo de pantalla.</p>
+  <h3>Base</h3>
+  <div class="grid g4">
+    <div class="sw"><div class="chipc" style="background:#1F2B45;color:#fff">Aa</div><div class="info"><b>Navy 900</b><span>#1F2B45 · <span class="tok">--pc-navy-900</span></span><br><span>Texto, botón primario, segmento activo</span></div></div>
+    <div class="sw"><div class="chipc" style="background:#F2B443">Aa</div><div class="info"><b>Ámbar 500</b><span>#F2B443 · <span class="tok">--pc-amber-500</span></span><br><span>Acento, éxito, tab activa, switch</span></div></div>
+    <div class="sw"><div class="chipc" style="background:#E0674C">Aa</div><div class="info"><b>Coral 500</b><span>#E0674C · <span class="tok">--pc-coral-500</span></span><br><span>Avatares, corazón de Mi Red, alertas</span></div></div>
+    <div class="sw"><div class="chipc" style="background:#4C5164;color:#fff">Aa</div><div class="info"><b>Slate 600</b><span>#4C5164 · <span class="tok">--pc-slate-600</span></span><br><span>Texto secundario</span></div></div>
+  </div>
+  <h3>Fondos de pantalla</h3>
+  <div class="grid g3">
+    <div class="sw"><div class="chipc" style="background:#FCE6AD">Inicio, eventos, éxito</div><div class="info"><b>Crema 200</b><span>#FCE6AD · <span class="tok">--color-screen-yellow</span></span></div></div>
+    <div class="sw"><div class="chipc" style="background:#D0E6F3">Registro, resultados, viaje</div><div class="info"><b>Celeste 200</b><span>#D0E6F3 · <span class="tok">--color-screen-blue</span></span></div></div>
+    <div class="sw"><div class="chipc" style="background:#FAD6CA">Familia, formularios, cancelar</div><div class="info"><b>Durazno 200</b><span>#FAD6CA · <span class="tok">--color-screen-peach</span></span></div></div>
+  </div>
+  <h3>Apoyo y estados</h3>
+  <div class="grid g4">
+    <div class="sw"><div class="chipc" style="background:#FFF6E7">Aa</div><div class="info"><b>Crema 50</b><span>#FFF6E7</span><br><span>Chips de horario, input de código</span></div></div>
+    <div class="sw"><div class="chipc" style="background:#D9F3E6;color:#317C5B">Aprobada</div><div class="info"><b>Menta 100 + Verde 700</b><span>#D9F3E6 · #317C5B</span><br><span>Éxito, verificada, grado</span></div></div>
+    <div class="sw"><div class="chipc" style="background:#FCD4CC;color:#B4472F">Mi Red</div><div class="info"><b>Rosa 200</b><span>#FCD4CC · texto #B4472F</span><br><span>Pertenencia a Mi Red</span></div></div>
+    <div class="sw"><div class="chipc" style="background:#FDE9B8">En revisión</div><div class="info"><b>Ámbar 100</b><span>#FDE9B8</span><br><span>Pendiente, alarma</span></div></div>
+  </div>
+  <div class="note" style="margin-top:16px"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><div><b>Contraste.</b> Navy sobre cualquier fondo pastel, ámbar o blanco supera AA (sobre crema, 11:1). El texto blanco va solo sobre navy. El verde #317C5B sobre menta da 4,6:1: alcanza para texto en negrita de 14 px o más. Para el texto de «Mi Red» se oscureció el coral (#B4472F), porque el coral original no alcanza AA sobre rosa.</div></div>
+</section>
+
+<section class="block" id="tipografia">
+  <h2>Tipografía</h2>
+  <p class="sub"><b>Bricolage Grotesque</b> para títulos (extra bold, interletrado ajustado) y <b>Nunito</b> para todo lo demás. Las dos son Google Fonts. El PDF de diseño no trae las fuentes embebidas: se identificaron mirando las pantallas, así que conviene confirmarlas con quien las diseñó.</p>
+  <div class="panel">
+    <div class="type-row"><div class="label">Display · 36/38<br>Bricolage 800</div><div class="t-display">¡Viaje confirmado!</div></div>
+    <div class="type-row"><div class="label">H1 · 30/33<br>Bricolage 800</div><div class="t-h1">Necesito un traslado</div></div>
+    <div class="type-row"><div class="label">H2 · 22/25<br>Bricolage 800</div><div class="t-h2">Familia G. lleva a Vicente</div></div>
+    <div class="type-row"><div class="label">Título · 17/22<br>Nunito 800</div><div class="t-title">Escuela del Jacarandá</div></div>
+    <div class="type-row"><div class="label">Cuerpo · 16/23<br>Nunito 600</div><div class="t-body">Completá los datos del viaje que necesitás.</div></div>
+    <div class="type-row"><div class="label">Secundario · 14/20<br>Nunito 600</div><div class="t-small">Martes · sale 16:50 · 2 lugares libres</div></div>
+    <div class="type-row"><div class="label">Overline · 13<br>Nunito 800, +14 %</div><div class="t-overline">Adulto responsable</div></div>
+    <div class="type-row"><div class="label">Botón · 17<br>Nunito 800</div><div style="font:800 17px var(--font-body)">Buscar coincidencias</div></div>
+  </div>
+</section>
+
+<section class="block" id="medidas">
+  <h2>Medidas</h2>
+  <p class="sub">Escala de espaciado de a 4 px, margen lateral de pantalla de 24 px y radios generosos: todo redondeado, como en el diseño.</p>
+  <div class="grid g3">
+    <div class="panel"><div class="label">Espaciado</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+        <div class="row"><span style="width:4px;height:16px;background:var(--pc-amber-500);border-radius:2px"></span><span class="t-small"><span class="tok">--space-1</span> 4</span></div>
+        <div class="row"><span style="width:8px;height:16px;background:var(--pc-amber-500);border-radius:2px"></span><span class="t-small"><span class="tok">--space-2</span> 8</span></div>
+        <div class="row"><span style="width:12px;height:16px;background:var(--pc-amber-500);border-radius:2px"></span><span class="t-small"><span class="tok">--space-3</span> 12 · entre tarjetas</span></div>
+        <div class="row"><span style="width:16px;height:16px;background:var(--pc-amber-500);border-radius:2px"></span><span class="t-small"><span class="tok">--space-4</span> 16 · padding de tarjeta</span></div>
+        <div class="row"><span style="width:24px;height:16px;background:var(--pc-amber-500);border-radius:2px"></span><span class="t-small"><span class="tok">--space-6</span> 24 · margen de pantalla</span></div>
+        <div class="row"><span style="width:40px;height:16px;background:var(--pc-amber-500);border-radius:2px"></span><span class="t-small"><span class="tok">--space-10</span> 40</span></div>
+      </div></div>
+    <div class="panel"><div class="label">Radios</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px">
+        <div style="height:56px;border-radius:12px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">sm · 12</div>
+        <div style="height:56px;border-radius:16px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">md · 16 · inputs</div>
+        <div style="height:56px;border-radius:22px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">lg · 22 · tarjetas</div>
+        <div style="height:56px;border-radius:999px;background:var(--pc-sky-200);display:grid;place-items:center" class="t-caption">pill · botones</div>
+      </div></div>
+    <div class="panel"><div class="label">Tamaños táctiles</div>
+      <ul class="t-small" style="margin:12px 0 0;padding-left:18px">
+        <li>Botón principal: 56 px de alto, ancho completo</li>
+        <li>Botón chico, segmento, día: 44 px</li>
+        <li>Volver: círculo blanco de 48 px</li>
+        <li>Avatar y círculo de ícono: 44 px</li>
+        <li>Input: 56 px de alto</li>
+      </ul>
+      <p class="t-small">Sin sombras: las tarjetas son blancas y planas sobre el fondo pastel. La sombra queda reservada para los modales.</p></div>
+  </div>
+</section>
+
+<section class="block" id="iconos">
+  <h2>Íconos</h2>
+  <p class="sub">Íconos de línea con trazo de 2 px y puntas redondeadas, del estilo de <b>Lucide</b>. Van solos en navy, o dentro de un círculo pastel de 44 px cuando encabezan una tarjeta.</p>
+  <div class="panel" style="display:flex;flex-wrap:wrap;gap:18px">
+    <div class="icirc" style="background:var(--pc-cream-200)" title="Auto"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></div>
+    <div class="icirc" style="background:var(--pc-peach-200)" title="Familias"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+    <div class="icirc" style="background:var(--pc-sky-200)" title="Recorrido"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg></div>
+    <div class="icirc" style="background:var(--pc-cream-50)" title="Coincidencias"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
+    <div class="icirc" style="background:var(--pc-sky-200)" title="Escuela"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M14 22v-4a2 2 0 1 0-4 0v4"></path><path d="m18 10 3.447 1.724a1 1 0 0 1 .553.894V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7.382a1 1 0 0 1 .553-.894L6 10"></path><path d="M18 5v17"></path><path d="m4 6 7.106-3.553a2 2 0 0 1 1.788 0L20 6"></path><path d="M6 5v17"></path><circle cx="12" cy="9" r="2"></circle></svg></div>
+    <div class="icirc" style="background:var(--pc-amber-500)" title="Club"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="1"></circle></svg></div>
+    <div class="icirc" style="background:var(--pc-peach-200)" title="Música"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></div>
+    <div class="icirc" style="background:var(--pc-rose-200)" title="Mi Red"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></div>
+    <div class="icirc" style="background:var(--pc-cream-200)" title="Avisos"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></div>
+    <div class="icirc" style="background:var(--pc-mint-100)" title="Privacidad"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+    <div class="icirc" style="background:var(--pc-cream-50)" title="Código"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></svg></div>
+    <div class="icirc" style="background:var(--pc-amber-500)" title="Cumpleaños"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="9" cy="7" r="2"></circle><path d="M7.2 7.9 3 11v9c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-9c0-2-3-6-7-8l-3.6 2.6"></path><path d="M16 13H3"></path><path d="M16 17H3"></path></svg></div>
+    <div class="icirc" style="background:var(--pc-sky-200)" title="Mensaje"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg></div>
+    <div class="icirc" style="background:var(--pc-cream-200)" title="Ubicación"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+  </div>
+</section>
+
+<section class="block" id="botones">
+  <h2>Botones</h2>
+  <p class="sub">Siempre píldora. El primario navy cierra cada pantalla; el ámbar queda para acciones que salen de la app (WhatsApp, compartir link).</p>
+  <div class="grid g2">
+    <div class="stage y">
+      <button class="btn btn-primary">Crear cuenta</button>
+      <button class="btn btn-secondary">Iniciar sesión</button>
+      <button class="btn btn-accent"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg> Avisarle por WhatsApp</button>
+      <div style="text-align:center"><button class="btn-link">Seguir buscando</button></div>
+    </div>
+    <div class="stage b">
+      <div class="row"><button class="back" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button><span class="grow"></span><button class="btn-link">Omitir</button></div>
+      <div class="row" style="gap:10px"><button class="btn btn-primary btn-sm">Pedir lugar</button><button class="btn btn-secondary btn-sm">Ofrecer</button><button class="btn btn-primary btn-sm">Aprobar</button></div>
+      <button class="add"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg> Agregar actividad</button>
+      <p class="t-small" style="margin:0">El botón punteado sirve para sumar elementos a una lista (hijos, actividades, grados).</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="formularios">
+  <h2>Formularios</h2>
+  <p class="sub">Inputs blancos de 56 px con ícono a la izquierda. En pantallas de configuración del viaje, el formato es «etiqueta a la izquierda, selector a la derecha».</p>
+  <div class="grid g2">
+    <div class="stage b">
+      <label class="field"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg><input placeholder="Nombre y apellido" aria-label="Nombre y apellido"></label>
+      <label class="field"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg><input placeholder="Email" aria-label="Email" type="email"></label>
+      <label class="field code"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></svg><input placeholder="Código del grado (ej: JACA-6B)" aria-label="Código del grado"></label>
+      <div class="note" style="background:#fff"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><div class="t-caption" style="font-size:14px">El código te lo pasa la administradora del grado. Hasta que te apruebe, no ves a otras familias.</div></div>
+    </div>
+    <div class="stage p">
+      <div class="label" style="color:var(--pc-navy-900)">¿Con quién querés compartir?</div>
+      <div class="seg" role="group" aria-label="Visibilidad">
+        <button aria-pressed="true">Mi Red</button><button aria-pressed="false">Mi grado</button><button aria-pressed="false">Mi Comunidad</button>
+      </div>
+      <div class="formrow"><span class="t-title">Destino</span><div class="select">Club GEBA <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+      <div class="formrow"><span class="t-title">Días</span><div class="days" role="group" aria-label="Días">
+        <button class="day" aria-pressed="false">Lun</button><button class="day" aria-pressed="true">Mar</button><button class="day" aria-pressed="false">Mié</button><button class="day" aria-pressed="true">Jue</button><button class="day" aria-pressed="false">Vie</button></div></div>
+      <div class="card row"><div class="grow"><div class="t-title">Lugares libres</div><div class="t-small">De 1 a 4</div></div>
+        <div class="stepper"><button aria-label="Restar" data-step="-1">−</button><output>2</output><button aria-label="Sumar" data-step="1">+</button></div></div>
+      <div class="card row"><div class="grow"><div class="t-title">¿Se repite?</div><div class="t-small">Todos los martes</div></div>
+        <button class="switch" role="switch" aria-checked="true" aria-label="Se repite"></button></div>
+      <div class="note warn flag"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"></path><path d="M8.5 2h7"></path><path d="M7 16h10"></path></svg><div>Investigación: el segmento empieza en <b>Mi Red</b> (en el diseño actual empieza en «Mi grado»). Las familias comparten con quienes ya conocen (síntesis, patrón 1).</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="tarjetas">
+  <h2>Tarjetas</h2>
+  <p class="sub">Blancas, planas, radio 22 y 16 px de padding, sobre el fondo pastel. En el inicio, las tarjetas de acción toman el color de la pantalla a la que llevan.</p>
+  <div class="grid g2">
+    <div class="stage y">
+      <a class="action a-amber" href="#tarjetas"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></span><span class="grow"><h4>Necesito un traslado</h4><p>Buscá una familia que pueda llevar a tu hij@.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></a>
+      <a class="action a-peach" href="#tarjetas"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><span class="grow"><h4>Puedo llevar</h4><p>Publicá los recorridos que tenés disponibles.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></a>
+      <a class="action a-sky" href="#tarjetas"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg></span><span class="grow"><h4>Mi pool</h4><p>Tus viajes, familias y rutas de todas las semanas.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></a>
+      <a class="action a-navy" href="#tarjetas"><span class="grow" style="font:800 16px var(--font-body)">Sumar un evento (cumpleaños, salida…)</span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></a>
+    </div>
+    <div class="stage p">
+      <div class="t-overline">Hij@s</div>
+      <div class="card row"><span class="avatar av-amber">V</span><div class="grow"><div class="t-title">Vicente</div><div class="t-small">6.° B</div></div><span class="chev"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></span></div>
+      <div class="card row"><span class="avatar av-sky">E</span><div class="grow"><div class="t-title">Emilia</div><div class="t-small">4.° A</div></div><span class="chev"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></span></div>
+      <div class="t-overline" style="margin-top:6px">Actividades</div>
+      <div class="card row" style="align-items:flex-start"><span class="icirc" style="background:var(--pc-amber-500)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="1"></circle></svg></span><div class="grow"><div class="t-title">Fútbol</div><div class="t-small">Club Belgrano</div><span class="chip c-schedule" style="margin-top:8px">Martes y jueves · 17:30</span></div><span class="chev"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></span></div>
+    </div>
+    <div class="stage b">
+      <div class="card">
+        <div class="row" style="align-items:flex-start"><span class="icirc" style="background:var(--pc-sky-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+          <div class="grow"><div class="t-h2" style="font-size:20px">Familia G.</div><div class="verified"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg> Familia verificada</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"><span class="chip c-network"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Mi Red</span><span class="chip c-grade">6.° B</span></div></div></div>
+        <div class="row" style="margin-top:12px"><div class="grow"><div class="t-title" style="font-size:15px">Escuela → Club GEBA</div><div class="t-small">Martes · sale 16:50 · 2 lugares libres</div></div><button class="btn btn-primary btn-sm">Pedir lugar</button></div>
+      </div>
+      <div class="note warn flag"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"></path><path d="M8.5 2h7"></path><path d="M7 16h10"></path></svg><div>Investigación: esta tarjeta <b>no muestra calificación ni «Mejor opción»</b>. La evidencia cuestiona los puntajes («la confianza no es un puntaje»). Queda pendiente de decisión de la CEO (Q-023).</div></div>
+    </div>
+    <div class="stage y">
+      <div class="card">
+        <div class="row"><span class="avatar av-amber">V</span><div class="grow"><div class="t-title">Vicente</div><div class="t-body" style="font-weight:800">Escuela → Club GEBA</div><div class="t-small">Martes · 16:50</div></div></div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"><span class="chip c-weekly">Todas las semanas</span><span class="chip c-alarm"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path><path d="M5 3 2 6"></path><path d="m22 6-3-3"></path><path d="M6.38 18.7 4 21"></path><path d="M17.64 18.67 20 21"></path></svg> Alarma 16:20</span></div>
+      </div>
+      <div class="card">
+        <div class="stop"><span class="dot done"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span><div><div class="t-title">Escuela del Jacarandá</div><div class="t-small">Salida</div></div><time>16:50</time></div>
+        <div class="stop"><span class="dot"></span><div><div class="t-title">Club GEBA</div><div class="t-small">Llegada estimada</div></div><time>17:12</time></div>
+      </div>
+      <div class="note" style="background:#fff"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><div class="t-caption" style="font-size:14px">Las direcciones se comparten solo cuando se confirma el viaje.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="etiquetas">
+  <h2>Etiquetas y estados</h2>
+  <p class="sub">Píldoras de 30 px en Nunito 800. El color comunica el estado; el texto siempre lo dice también.</p>
+  <div class="panel" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+    <span class="chip c-approved">Aprobada</span>
+    <span class="chip c-review">En revisión</span>
+    <span class="verified"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg> Familia verificada</span>
+    <span class="chip c-network"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Mi Red</span>
+    <span class="chip c-grade">6.° B</span>
+    <span class="chip c-schedule">Viernes · 18:00</span>
+    <span class="chip c-weekly">Todas las semanas</span>
+    <span class="chip c-alarm"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path><path d="M5 3 2 6"></path><path d="m22 6-3-3"></path><path d="M6.38 18.7 4 21"></path><path d="M17.64 18.67 20 21"></path></svg> Alarma 16:20</span>
+    <span class="chip c-dark">3 invitadas</span>
+    <span class="status-pill">En camino · llega en 8 min</span>
+  </div>
+  <h3>En revisión por la investigación</h3>
+  <div class="panel" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;opacity:.9">
+    <span class="chip c-rating"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg> 4,7 (3)</span>
+    <span class="chip c-best">Mejor opción</span>
+    <span class="t-small">Están en el diseño actual. La síntesis los cuestiona: las familias no quieren ver la reciprocidad medida. No usar en el prototipo hasta que lo decida la CEO.</span>
+  </div>
+</section>
+
+<section class="block" id="navegacion">
+  <h2>Navegación</h2>
+  <p class="sub">Barra inferior con 5 pestañas. La activa lleva una píldora ámbar detrás del ícono y la etiqueta en negrita.</p>
+  <div class="stage y" style="padding-bottom:0">
+    <div class="tabbar">
+      <div class="tab active"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Inicio</div>
+      <div class="tab"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Familia</div>
+      <div class="tab"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></span>Traslados</div>
+      <div class="tab"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></span>Avisos</div>
+      <div class="tab"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span>Más</div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="estados">
+  <h2>Pantallas de estado y modales</h2>
+  <p class="sub">Confirmaciones, esperas y éxitos: un círculo ámbar grande con el ícono, título display y una explicación breve.</p>
+  <div class="grid g3">
+    <div class="stage y"><div class="state"><div class="big"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="52" width="52" xmlns="http://www.w3.org/2000/svg"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg></div><div class="t-display" style="font-size:30px">Solicitud enviada</div><p class="t-small" style="margin:0">Te avisamos cuando la acepten. Mientras tanto, podés seguir buscando.</p></div></div>
+    <div class="stage y"><div class="state"><div class="big"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="52" width="52" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div><div class="t-display" style="font-size:30px">Esperando aprobación</div><p class="t-small" style="margin:0">Tu pedido para entrar a 6.° B está en revisión.</p></div></div>
+    <div class="stage b" style="background:#6B7790"><div class="modal"><div class="bell"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></div><div class="t-h2">¡Match confirmado!</div><p class="t-small" style="margin:0;color:var(--pc-navy-900);font-weight:700">Recordá avisarle a tu hij@ quién l@ lleva y enviar la autorización al colegio.</p><button class="btn btn-primary" style="margin-top:6px">Entendido</button></div></div>
+  </div>
+  <div class="note warn flag" style="margin-top:16px"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"></path><path d="M8.5 2h7"></path><path d="M7 16h10"></path></svg><div>Investigación: el momento crítico es el <b>traspaso</b>. Antes que el seguimiento en vivo, conviene un aviso «Estoy llegando» con confirmación «Bajo» (oportunidad O4) y poder sumar a la abuela o la niñera como receptoras (O5).</div></div>
+</section>
+
+<section class="block" id="tokens">
+  <h2>Tokens para copiar</h2>
+  <p class="sub">Variables CSS listas para el prototipo webview (<span class="tok">04-prototipo/</span>). Son las mismas que usa esta página.</p>
+  <pre class="panel code" style="overflow:auto;white-space:pre;margin:0">:root {
+  /* Primitivos */
+  --pc-navy-900: #1F2B45;   /* tinta, botones primarios, tab bar activo */
+  --pc-slate-600: #4C5164;  /* texto secundario */
+  --pc-amber-500: #F2B443;  /* acento: «Necesito un traslado», íconos de éxito, switch */
+  --pc-amber-600: #EAA52E;  /* ilustración (colina oscura) */
+  --pc-amber-300: #F6CD71;  /* ilustración (colina clara) */
+  --pc-cream-200: #FCE6AD;  /* fondo de pantalla amarillo */
+  --pc-cream-50:  #FFF6E7;  /* chips de horario, inputs destacados */
+  --pc-sky-200:   #D0E6F3;  /* fondo de pantalla celeste, «Mi pool» */
+  --pc-peach-200: #FAD6CA;  /* fondo de pantalla durazno, «Puedo llevar», avisos */
+  --pc-rose-200:  #FCD4CC;  /* chip «Mi Red» */
+  --pc-coral-500: #E0674C;  /* avatar, corazón de «Mi Red», alerta */
+  --pc-mint-100:  #D9F3E6;  /* chip «Aprobada», grado */
+  --pc-green-700: #317C5B;  /* texto «Familia verificada», «Aprobada» */
+  --pc-white:     #FFFFFF;
+
+  /* Semánticos */
+  --color-text: var(--pc-navy-900);
+  --color-text-muted: var(--pc-slate-600);
+  --color-surface: var(--pc-white);
+  --color-screen-yellow: var(--pc-cream-200);
+  --color-screen-blue: var(--pc-sky-200);
+  --color-screen-peach: var(--pc-peach-200);
+  --color-primary: var(--pc-navy-900);
+  --color-on-primary: var(--pc-white);
+  --color-accent: var(--pc-amber-500);
+  --color-on-accent: var(--pc-navy-900);
+  --color-success-bg: var(--pc-mint-100);
+  --color-success-text: var(--pc-green-700);
+  --color-warning-bg: #FDE9B8;
+  --color-danger: var(--pc-coral-500);
+  --color-danger-bg: var(--pc-peach-200);
+  --color-network-bg: var(--pc-rose-200);
+  --color-network-text: #B4472F;
+  --color-border-soft: #EFE3C8;
+
+  /* Tipografía */
+  --font-display: "Bricolage Grotesque", "Nunito", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Espaciado (base 4) */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+
+  /* Radios */
+  --radius-sm: 12px; --radius-md: 16px; --radius-lg: 22px; --radius-pill: 999px;
+
+  /* Medidas de componentes */
+  --size-touch: 48px; --size-button: 56px; --size-avatar: 44px; --size-icon-circle: 44px;
+  --screen-padding: 24px;
+}</pre>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">Poolcito · Design system v0 · Borrador 03/11/2026, sin aprobar (puerta 5). Colores medidos sobre las pantallas del Doc «Poolcito · Diseño de la app» (S-009); tipografías identificadas a ojo, a confirmar con quien diseñó. Las notas marcadas «Investigación» salen de «Poolcito · Síntesis · Entrevistas y encuesta con familias» (30/10/2026).</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.seg').forEach(g => g.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    g.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+  }));
+  document.querySelectorAll('.day').forEach(b => b.addEventListener('click', () => b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true')));
+  document.querySelectorAll('.switch').forEach(b => b.addEventListener('click', () => b.setAttribute('aria-checked', b.getAttribute('aria-checked') === 'true' ? 'false' : 'true')));
+  document.querySelectorAll('.stepper').forEach(s => s.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    const o = s.querySelector('output'); o.value = Math.min(4, Math.max(1, Number(o.value) + Number(b.dataset.step)));
+  }));
+</script>
+</body>
+</html>

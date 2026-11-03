@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poolcito Prototipo v0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Tokens: design system v0 (03-diseno/ui/) */
+:root {
+  --pc-navy-900: #1F2B45; --pc-slate-600: #4C5164; --pc-amber-500: #F2B443; --pc-cream-200: #FCE6AD; --pc-cream-50: #FFF6E7;
+  --pc-sky-200: #D0E6F3; --pc-peach-200: #FAD6CA; --pc-rose-200: #FCD4CC; --pc-coral-500: #E0674C; --pc-mint-100: #D9F3E6;
+  --pc-green-700: #317C5B; --pc-amber-100: #FDE9B8; --pc-white: #FFFFFF;
+  --color-text: var(--pc-navy-900); --color-text-muted: var(--pc-slate-600); --color-border-soft: #EFE3C8;
+  --font-display: "Bricolage Grotesque", "Nunito", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius-md: 16px; --radius-lg: 22px; --radius-pill: 999px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: #F4EEDF; color: var(--color-text); font-family: var(--font-body); font-weight: 600; -webkit-font-smoothing: antialiased; }
+button { font-family: inherit; color: inherit; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--pc-amber-500); outline-offset: 2px; }
+
+/* ---------- marco de presentación ---------- */
+.topbar { display: flex; align-items: center; gap: 14px; padding: 12px 20px; background: var(--pc-navy-900); color: #fff; }
+.topbar b { font: 800 19px var(--font-display); letter-spacing: -.02em; }
+.topbar .tag { font-size: 12px; font-weight: 800; background: var(--pc-amber-500); color: var(--pc-navy-900); padding: 4px 10px; border-radius: 999px; }
+.topbar .muted { font-size: 13px; opacity: .8; margin-left: auto; }
+.layout { display: grid; grid-template-columns: 250px 430px minmax(320px, 1fr); gap: 24px; padding: 20px; align-items: start; max-width: 1400px; margin: 0 auto; }
+.nav { position: sticky; top: 20px; background: #fff; border-radius: var(--radius-lg); padding: 16px; max-height: calc(100vh - 100px); overflow: auto; }
+.nav h3 { font: 800 12px var(--font-body); letter-spacing: .12em; text-transform: uppercase; color: var(--color-text-muted); margin: 14px 4px 6px; }
+.nav h3:first-child { margin-top: 0; }
+.nav button { display: flex; gap: 8px; align-items: baseline; width: 100%; text-align: left; border: 0; background: transparent; padding: 7px 8px; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; }
+.nav button .n { font-size: 12px; color: var(--color-text-muted); min-width: 22px; }
+.nav button:hover { background: var(--pc-cream-50); }
+.nav button[aria-current="true"] { background: var(--pc-navy-900); color: #fff; }
+.nav button[aria-current="true"] .n { color: var(--pc-amber-500); }
+.nav button.edge .n { color: var(--pc-coral-500); }
+.hint { font-size: 12px; color: var(--color-text-muted); margin: 14px 4px 0; line-height: 1.4; }
+
+.phone-wrap { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.phone { width: 390px; height: 812px; border-radius: 46px; background: #111; padding: 10px; box-shadow: 0 30px 60px rgba(31,43,69,.25); }
+.viewport { width: 100%; height: 100%; border-radius: 38px; overflow: hidden; position: relative; background: var(--pc-cream-200); }
+.stepper-bar { display: flex; gap: 10px; align-items: center; }
+.stepper-bar button { border: 0; background: #fff; border-radius: 999px; padding: 10px 16px; font-weight: 800; cursor: pointer; }
+.stepper-bar span { font-size: 13px; color: var(--color-text-muted); min-width: 90px; text-align: center; }
+
+.notes { background: #fff; border-radius: var(--radius-lg); padding: 22px 24px; position: sticky; top: 20px; max-height: calc(100vh - 100px); overflow: auto; }
+.notes .kind { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--pc-sky-200); }
+.notes .kind.edge { background: var(--pc-peach-200); color: #9A3A26; }
+.notes h2 { font: 800 28px/1.1 var(--font-display); letter-spacing: -.025em; margin: 12px 0 6px; }
+.notes .lead { font-size: 16px; color: var(--color-text-muted); margin: 0 0 14px; line-height: 1.45; }
+.notes h4 { font: 800 13px var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); margin: 18px 0 6px; }
+.notes ul { margin: 0; padding-left: 18px; font-size: 15px; line-height: 1.45; }
+.notes li { margin-bottom: 4px; }
+.notes .box { background: var(--pc-cream-50); border-radius: var(--radius-md); padding: 12px 14px; font-size: 15px; line-height: 1.45; }
+.notes .box.change { background: var(--pc-mint-100); }
+.notes .box.tech { background: #EEF2F8; }
+.notes .hyp { display: flex; flex-wrap: wrap; gap: 6px; }
+.notes .hyp span { background: var(--pc-amber-100); border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 800; }
+
+@media (max-width: 1180px) { .layout { grid-template-columns: 1fr; justify-items: center; } .nav, .notes { position: static; width: 100%; max-width: 640px; max-height: none; } }
+@media (max-width: 440px) { .layout { padding: 12px; } .phone { width: 100%; height: 760px; padding: 6px; border-radius: 36px; } }
+body.phone-only { background: transparent; }
+body.phone-only .topbar, body.phone-only .nav, body.phone-only .notes, body.phone-only .stepper-bar { display: none; }
+body.phone-only .layout { display: block; padding: 0; }
+body.phone-only .phone { box-shadow: none; }
+
+/* ---------- app ---------- */
+.screen { position: absolute; inset: 0; display: none; flex-direction: column; overflow-y: auto; scrollbar-width: none; }
+.screen.on { display: flex; }
+.screen::-webkit-scrollbar { display: none; }
+.bg-y { background: var(--pc-cream-200); } .bg-b { background: var(--pc-sky-200); } .bg-p { background: var(--pc-peach-200); } .bg-w { background: #fff; } .bg-wa { background: #ECE5DD; }
+.status { display: flex; justify-content: space-between; padding: 14px 28px 4px; font: 800 14px var(--font-body); flex: none; }
+.pad { padding: 8px 22px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.row { display: flex; align-items: center; gap: 12px; }
+.grow { flex: 1; min-width: 0; }
+.h-display { font: 800 32px/1.05 var(--font-display); letter-spacing: -.03em; margin: 4px 0 0; }
+.h-1 { font: 800 28px/1.08 var(--font-display); letter-spacing: -.025em; margin: 6px 0 0; }
+.h-2 { font: 800 19px/1.15 var(--font-display); letter-spacing: -.02em; margin: 0; }
+.sub { font-size: 15px; color: var(--color-text-muted); margin: 0; line-height: 1.4; }
+.title { font: 800 16px/1.25 var(--font-body); }
+.small { font-size: 13.5px; color: var(--color-text-muted); line-height: 1.35; }
+.over { font: 800 12px var(--font-body); letter-spacing: .13em; text-transform: uppercase; color: var(--color-text-muted); margin-top: 4px; }
+.card { background: #fff; border-radius: var(--radius-lg); padding: 14px 16px; }
+.back { width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 0; display: grid; place-items: center; cursor: pointer; flex: none; }
+.btn { height: 54px; border-radius: 999px; border: 2px solid transparent; font: 800 16px var(--font-body); display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; cursor: pointer; }
+.btn-primary { background: var(--pc-navy-900); color: #fff; }
+.btn-secondary { background: transparent; border-color: var(--pc-navy-900); }
+.btn-accent { background: var(--pc-amber-500); }
+.btn-sm { height: 40px; font-size: 14px; width: auto; padding: 0 16px; }
+.link { background: none; border: 0; font: 800 15px var(--font-body); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px; }
+.spacer { flex: 1; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font: 800 16px var(--font-body); flex: none; }
+.av-a { background: var(--pc-amber-500); } .av-c { background: var(--pc-coral-500); } .av-s { background: var(--pc-sky-200); } .av-p { background: var(--pc-peach-200); } .av-m { background: var(--pc-mint-100); } .av-n { background: var(--pc-navy-900); color: #fff; }
+.icirc { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.chip { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px; border-radius: 999px; font: 800 12.5px var(--font-body); white-space: nowrap; }
+.c-cream { background: var(--pc-cream-50); } .c-mint { background: var(--pc-mint-100); color: var(--pc-green-700); } .c-amber { background: var(--pc-amber-100); } .c-rose { background: var(--pc-rose-200); color: #B4472F; } .c-sky { background: var(--pc-sky-200); } .c-navy { background: var(--pc-navy-900); color: #fff; } .c-coral { background: var(--pc-coral-500); color: #fff; }
+.note { display: flex; gap: 10px; align-items: flex-start; background: #fff; border-radius: var(--radius-md); padding: 12px 14px; font-size: 13.5px; font-weight: 700; line-height: 1.35; }
+.note svg { flex: none; margin-top: 1px; }
+.note.warn { background: var(--pc-amber-100); }
+.note.alert { background: #fff; border: 2px solid var(--pc-coral-500); }
+.field { display: flex; align-items: center; gap: 12px; height: 52px; background: #fff; border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); padding: 0 16px; font-size: 16px; color: var(--color-text-muted); }
+.field.filled { color: var(--color-text); font-weight: 800; }
+.formrow { display: grid; grid-template-columns: 96px 1fr; align-items: center; gap: 10px; }
+.select { display: flex; align-items: center; justify-content: space-between; height: 46px; background: #fff; border-radius: var(--radius-md); padding: 0 12px; font: 800 15px var(--font-body); }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: #fff; border-radius: 18px; padding: 4px; gap: 4px; }
+.seg button { border: 0; background: transparent; height: 40px; border-radius: 14px; font: 800 14px var(--font-body); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--pc-navy-900); color: #fff; }
+.switch { width: 52px; height: 30px; border-radius: 999px; background: #C9CDD6; border: 0; position: relative; cursor: pointer; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: #fff; transition: transform .15s; }
+.switch[aria-checked="true"] { background: var(--pc-navy-900); }
+.switch[aria-checked="true"]::after { transform: translateX(22px); background: var(--pc-amber-500); }
+.action { border-radius: var(--radius-lg); padding: 14px 16px; display: flex; align-items: center; gap: 14px; border: 0; text-align: left; cursor: pointer; width: 100%; }
+.action .icirc { background: rgba(255,255,255,.4); }
+.action h3 { margin: 0; font: 800 19px/1.1 var(--font-display); letter-spacing: -.02em; }
+.action p { margin: 2px 0 0; font-size: 13.5px; line-height: 1.3; }
+.a-amber { background: var(--pc-amber-500); } .a-peach { background: var(--pc-peach-200); } .a-sky { background: var(--pc-sky-200); } .a-white { background: #fff; }
+.tabbar { position: sticky; bottom: 0; background: #fff; border-radius: 22px 22px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); padding: 8px 4px 16px; margin-top: auto; flex: none; }
+.tab { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11.5px; color: var(--color-text-muted); border: 0; background: none; cursor: pointer; }
+.tab .pill { width: 48px; height: 28px; border-radius: 999px; display: grid; place-items: center; color: var(--color-text); }
+.tab.active { color: var(--color-text); font-weight: 800; }
+.tab.active .pill { background: var(--pc-amber-500); }
+.big { width: 104px; height: 104px; border-radius: 50%; background: var(--pc-amber-500); display: grid; place-items: center; margin: 0 auto; }
+.big.coral { background: var(--pc-coral-500); color: #fff; }
+.center { text-align: center; }
+.trip { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 10px 0; border-top: 1px solid #F1EBDD; }
+.trip:first-child { border-top: 0; }
+.trip time { font: 800 15px var(--font-body); }
+.day { background: #fff; border-radius: var(--radius-lg); padding: 12px 14px; }
+.day .who { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.slot-empty { border: 2px dashed var(--pc-coral-500); border-radius: 14px; padding: 8px 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 13.5px; font-weight: 800; color: #9A3A26; background: #FFF7F4; }
+.check { display: flex; align-items: center; gap: 10px; padding: 9px 0; font-size: 14.5px; font-weight: 700; border-top: 1px solid #F1EBDD; }
+.check:first-child { border-top: 0; }
+.check .dot { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.dot.ok { background: var(--pc-mint-100); color: var(--pc-green-700); } .dot.wait { background: var(--pc-amber-100); } .dot.no { background: var(--pc-rose-200); color: #B4472F; }
+.kv { display: grid; grid-template-columns: 92px 1fr; gap: 6px 10px; font-size: 14.5px; }
+.kv dt { color: var(--color-text-muted); font-weight: 700; } .kv dd { margin: 0; font-weight: 800; }
+.wa-head { background: #075E54; color: #fff; padding: 12px 16px; display: flex; align-items: center; gap: 10px; font-weight: 800; flex: none; }
+.wa-msg { background: #fff; border-radius: 10px; padding: 10px 12px; font-size: 14.5px; line-height: 1.4; max-width: 86%; box-shadow: 0 1px 1px rgba(0,0,0,.12); }
+.wa-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,.15); }
+.wa-card .top { background: var(--pc-cream-200); padding: 12px 14px; }
+.stack { display: flex; }
+.stack .avatar { border: 3px solid var(--pc-cream-200); margin-left: -10px; }
+.stack .avatar:first-child { margin-left: 0; }
+.sim { margin-top: 4px; border: 2px dashed #9AA3B5; border-radius: 14px; padding: 8px; display: flex; flex-direction: column; gap: 6px; }
+.sim .lbl { font: 800 11px var(--font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--color-text-muted); text-align: center; }
+.sim button { border: 0; background: rgba(255,255,255,.75); border-radius: 10px; padding: 8px; font: 800 13px var(--font-body); cursor: pointer; }
+.sim button.e { color: #9A3A26; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <svg width="30" height="30" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg>
+  <b>Poolcito · prototipo de concepto v0</b>
+  <span class="tag">Provisional</span>
+  <span class="muted">Datos ficticios · sin backend · puertas 4 y 5 sin aprobar (D-009)</span>
+  <a href="../" style="color:#fff;font-size:13px;font-weight:800">← Seguimiento del proyecto</a>
+</div>
+
+<div class="layout">
+  <nav class="nav" aria-label="Pantallas del prototipo" id="nav"></nav>
+
+  <div class="phone-wrap">
+    <div class="phone"><div class="viewport" id="vp">
+
+<!-- ================= CAMINO FELIZ ================= -->
+<section class="screen bg-y" id="h1" data-title="Bienvenida">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad" style="text-align:center">
+    <div style="height:40px"></div>
+    <div class="big" style="background:var(--pc-navy-900)"><svg width="62" height="62" viewBox="0 0 200 200" aria-hidden="true"><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#FFF6E7"/><path d="M82 96 Q 88 78 100 78 Q 112 78 118 96 Z" fill="#D0E6F3"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#FFF6E7"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg></div>
+    <div style="font:800 46px/1 var(--font-display);letter-spacing:-.035em;margin-top:14px">Poolcito</div>
+    <p class="title" style="margin:6px 0 0">Gestionamos los traslados en comunidad</p>
+    <svg viewBox="0 0 400 170" style="width:calc(100% + 44px);margin:22px -22px 0" aria-hidden="true"><path d="M0 70 C 90 30, 170 90, 250 60 S 360 30, 400 50 V170 H0Z" fill="#F6CD71"/><path d="M0 105 C 110 80, 210 120, 400 92 V170 H0Z" fill="#EAA52E"/><path d="M150 170 C 190 130, 260 118, 360 80 L 380 88 C 280 126, 220 140, 190 170 Z" fill="#1F2B45"/><path d="M172 170 C 210 136, 270 122, 370 84" fill="none" stroke="#fff" stroke-width="3" stroke-dasharray="10 9"/><circle cx="62" cy="112" r="15" fill="#E0674C"/><rect x="60" y="124" width="4" height="30" fill="#1F2B45"/></svg>
+    <p class="over" style="margin-top:14px">Tu red · tu familia · tu semana</p>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" data-go="h2">Unirme con un código</button>
+    <button class="btn btn-secondary" data-go="h5">Ya tengo cuenta</button>
+  </div>
+</section>
+
+<section class="screen bg-b" id="h2" data-title="Unirse con código">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <button class="back" data-go="h1" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
+    <h1 class="h-1">Sumate a tu comunidad</h1>
+    <p class="sub">Completá tus datos y el código que te pasaron.</p>
+    <div class="field filled"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Valentina Paz</div>
+    <div class="field filled"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg> 11 5555-0000</div>
+    <div class="field filled" style="background:var(--pc-cream-50)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"></path><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></svg> JACA-6B</div>
+    <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><span>El código te lo pasa la administradora del grado. Hasta que te apruebe, no ves a ninguna otra familia ni ellas a vos.</span></div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" data-go="h3">Enviar pedido</button>
+  </div>
+</section>
+
+<section class="screen bg-y" id="h3" data-title="Esperando aprobación">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad center">
+    <div style="height:80px"></div>
+    <div class="big"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="52" width="52" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+    <h1 class="h-1">Esperando aprobación</h1>
+    <p class="sub">Tu pedido para entrar a <b>6.° B · Escuela del Jacarandá</b> está en revisión.</p>
+    <div class="spacer"></div>
+    <div class="note" style="text-align:left"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Mientras tanto podés cargar a tu familia: quiénes organizan, quiénes llevan y quiénes reciben.</span></div>
+    <button class="btn btn-primary" data-go="h4">Cargar mi familia</button>
+    <div class="sim"><div class="lbl">Simular</div><button data-go="h4">La administradora me aprobó</button></div>
+  </div>
+</section>
+
+<section class="screen bg-p" id="h4" data-title="Mi familia responsable">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <div class="row"><button class="back" data-go="h3" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button><span class="grow"></span><span class="chip c-mint"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg> 6.° B aprobado</span></div>
+    <h1 class="h-1">Mi familia responsable</h1>
+    <p class="sub">Todos los adultos que se ocupan de Vicente y Emilia, aunque vivan en otra casa.</p>
+    <div class="over">Adultos</div>
+    <div class="card row"><span class="avatar av-c">V</span><div class="grow"><div class="title">Valentina (vos)</div><div class="small">Organiza · casa de mamá</div></div><span class="chip c-navy">Organiza</span></div>
+    <div class="card row"><span class="avatar av-s">M</span><div class="grow"><div class="title">Martín</div><div class="small">Casa de papá · martes y jueves</div></div><span class="chip c-sky">Lleva y busca</span></div>
+    <div class="card row"><span class="avatar av-m">N</span><div class="grow"><div class="title">Abuela Norma</div><div class="small">Sin app · recibe por WhatsApp</div></div><span class="chip c-cream">Recibe</span></div>
+    <div class="card row"><span class="avatar av-p">R</span><div class="grow"><div class="title">Rosa</div><div class="small">Niñera · viernes</div></div><span class="chip c-cream">Recibe</span></div>
+    <div class="over">Hij@s</div>
+    <div class="card row"><span class="avatar av-a">V</span><div class="grow"><div class="title">Vicente · 6.° B</div><div class="small">Fútbol mar y jue 17:30 · Club GEBA</div></div></div>
+    <div class="card row"><span class="avatar av-s">E</span><div class="grow"><div class="title">Emilia · 4.° A</div><div class="small">Música mié 17:00</div></div></div>
+    <button class="btn btn-primary" data-go="h5">Listo</button>
+  </div>
+</section>
+
+<section class="screen bg-y" id="h5" data-title="Inicio: lo que pasa hoy">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <div class="row"><span class="avatar av-n" style="width:36px;height:36px"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></span><b style="font:800 21px var(--font-display);letter-spacing:-.02em">Poolcito</b><span class="grow"></span><button class="back" aria-label="Avisos" data-go="e5"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></button></div>
+    <h1 class="h-1">Hola, Valentina</h1>
+    <div class="card">
+      <div class="row"><span class="over" style="margin:0">Hoy · martes</span><span class="grow"></span><span class="chip c-mint">Todo cubierto</span></div>
+      <div class="trip"><time>17:15</time><div><div class="title">Martín lleva a Vicente a fútbol</div><div class="small">Escuela → Club GEBA</div></div></div>
+      <div class="trip"><time>19:00</time><div><div class="title">Familia G. trae a Vicente</div><div class="small">Recibe la abuela Norma · en su casa</div></div></div>
+    </div>
+    <button class="action a-white" data-go="h6"><span class="icirc" style="background:var(--pc-peach-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg></span><span class="grow"><h3>Esta semana</h3><p>Hay <b>1 traslado sin asignar</b>: el jueves a la vuelta.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <button class="action a-amber" data-go="h7"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><span class="grow"><h3>Pedir a mi red</h3><p>Le llega a tu red y responde quien puede.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <button class="action a-peach" data-go="h13"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="6" cy="19" r="3"></circle><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"></path><circle cx="18" cy="5" r="3"></circle></svg></span><span class="grow"><h3>Puedo llevar</h3><p>Avisá un recorrido que te queda de paso.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <button class="action a-sky" data-go="h12"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></span><span class="grow"><h3>Mi pool</h3><p>Las familias con las que se organizan.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+  </div>
+  <div class="tabbar"><button class="tab active" data-go="h5"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span>Inicio</button><button class="tab" data-go="h6"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><path d="M8 14h.01"></path><path d="M12 14h.01"></path><path d="M16 14h.01"></path><path d="M8 18h.01"></path><path d="M12 18h.01"></path><path d="M16 18h.01"></path></svg></span>Semana</button><button class="tab" data-go="h4"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Familia</button><button class="tab" data-go="h12"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"></path><path d="m18 15-2-2"></path><path d="m15 18-2-2"></path></svg></span>Pool</button><button class="tab" data-go="e5"><span class="pill"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg></span>Avisos</button></div>
+</section>
+
+<section class="screen bg-y" id="h6" data-title="La semana repartida">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <div class="row"><button class="back" data-go="h5" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button><span class="grow"></span><span class="chip c-cream">Semana del 3 al 7/11</span></div>
+    <h1 class="h-1">Esta semana</h1>
+    <p class="sub">Quién lleva, quién busca y quién recibe. Lo ven Martín, la abuela y Rosa.</p>
+    <div class="day"><div class="title">Martes</div><div class="who"><span class="chip c-sky">17:15 Martín lleva</span><span class="chip c-rose"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> 19:00 Familia G. trae</span><span class="chip c-cream">Recibe Norma</span></div></div>
+    <div class="day"><div class="title">Miércoles · Emilia</div><div class="who"><span class="chip c-navy">17:00 Vos llevás</span><span class="chip c-navy">18:00 Vos buscás</span></div></div>
+    <div class="day"><div class="title">Jueves</div><div class="who"><span class="chip c-sky">17:15 Martín lleva</span></div>
+      <div class="slot-empty"><span>19:00 vuelta de fútbol · sin asignar</span><button class="btn btn-primary btn-sm" data-go="h7">Resolver</button></div></div>
+    <div class="day"><div class="title">Viernes</div><div class="who"><span class="chip c-cream">16:15 Rosa busca a los dos</span></div></div>
+    <div class="sim"><div class="lbl">Caso borde</div><button class="e" data-go="e4">Martín y vos creían que lo hacía el otro</button></div>
+  </div>
+</section>
+
+<section class="screen bg-p" id="h7" data-title="Pedir a la red">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <button class="back" data-go="h6" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
+    <h1 class="h-1">Pedir a mi red</h1>
+    <p class="sub">No elegís a quién molestar: le llega a tu red y responde quien puede.</p>
+    <div class="formrow"><span class="title">Para</span><div class="select"><span class="row" style="gap:8px"><span class="avatar av-a" style="width:28px;height:28px;font-size:13px">V</span>Vicente</span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="formrow"><span class="title">Cuándo</span><div class="select">Jueves 6/11 · 19:00 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="formrow"><span class="title">Desde</span><div class="select">Club GEBA <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="formrow"><span class="title">Hasta</span><div class="select">Casa de la abuela <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="formrow"><span class="title">Recibe</span><div class="select">Abuela Norma <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="title" style="margin-top:4px">¿A quién le llega?</div>
+    <div class="seg" role="group" aria-label="Alcance"><button aria-pressed="true">Mi Red</button><button aria-pressed="false">Mi grado</button></div>
+    <p class="small" style="margin:0">Mi Red: las 4 familias con las que ya se organizan. Primero les llega a las que pasan cerca.</p>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" data-go="h8">Pedir a mi red</button>
+  </div>
+</section>
+
+<section class="screen bg-y" id="h8" data-title="Pedido enviado a la red">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <button class="back" data-go="h7" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
+    <h1 class="h-1">Le avisamos a tu red</h1>
+    <p class="sub">Jueves 19:00 · Club GEBA → casa de la abuela</p>
+    <div class="card">
+      <div class="row"><div class="stack"><span class="avatar av-a">G</span><span class="avatar av-s">L</span><span class="avatar av-p">R</span><span class="avatar av-m">M</span></div><span class="grow"></span><span class="chip c-amber"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Esperando</span></div>
+      <p class="title" style="margin:10px 0 0">Les llegó a 4 familias de Mi Red</p>
+      <p class="small" style="margin:4px 0 0">2 pasan cerca del club a esa hora. Nadie ve quién dijo que no.</p>
+    </div>
+    <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>También salió un mensaje al grupo de WhatsApp «Fútbol 6.° B» con el link para responder.</span></div>
+    <div class="spacer"></div>
+    <div class="sim"><div class="lbl">Simular</div><button data-go="h9">Familia G. responde «Puedo»</button><button class="e" data-go="e1">Nadie responde en 2 horas</button></div>
+  </div>
+</section>
+
+<section class="screen bg-b" id="h9" data-title="Acuerdo claro">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <div class="row"><button class="back" data-go="h8" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button><span class="grow"></span><span class="chip c-mint"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg> Acordado</span></div>
+    <h1 class="h-1">Familia G. trae a Vicente</h1>
+    <div class="card"><dl class="kv">
+      <dt>Cuándo</dt><dd>Jueves 6/11 · 19:00</dd>
+      <dt>Desde</dt><dd>Club GEBA</dd>
+      <dt>Hasta</dt><dd>Casa de la abuela (dirección compartida)</dd>
+      <dt>Lleva</dt><dd>Mariana (Familia G.)</dd>
+      <dt>Recibe</dt><dd>Abuela Norma</dd>
+      <dt>Lugares</dt><dd>3 chicos · sin silla elevadora</dd>
+    </dl></div>
+    <div class="card">
+      <div class="over" style="margin:0 0 4px">Quién tiene que saberlo</div>
+      <div class="check"><span class="dot ok"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span><span class="grow">Abuela Norma: avisada por WhatsApp</span></div>
+      <div class="check"><span class="dot ok"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span><span class="grow">Martín: lo ve en la semana</span></div>
+      <div class="check"><span class="dot ok"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span><span class="grow">Vicente: «Hoy te trae Mariana»</span></div>
+      <div class="check"><span class="dot wait"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span><span class="grow">Escuela/club: falta la autorización</span><button class="link" style="font-size:13px">Enviar</button></div>
+    </div>
+    <button class="btn btn-accent" data-go="h10"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg> Compartir por WhatsApp</button>
+    <div class="sim"><div class="lbl">Simular</div><button data-go="h10">Llega el jueves: Mariana sale del club</button><button class="e" data-go="e2">Familia G. cancela 40 min antes</button><button class="e" data-go="e5">El club cambia el horario</button></div>
+  </div>
+</section>
+
+<section class="screen bg-wa" id="h10" data-title="Traspaso: estoy llegando">
+  <div class="status" style="background:#075E54;color:#fff"><span>19:08</span><span>●●● 82%</span></div>
+  <div class="wa-head"><span class="avatar av-c" style="width:32px;height:32px;font-size:13px">P</span>Poolcito · Vicente</div>
+  <div class="pad" style="gap:10px">
+    <div class="wa-msg">Hola Norma. Mariana (Familia G.) está llegando con Vicente. Llegan en 5 minutos.</div>
+    <div class="wa-card">
+      <div class="top"><div class="row"><span class="avatar av-a">V</span><div class="grow"><div class="title">Vicente llega en 5 min</div><div class="small">Lo trae Mariana · auto gris</div></div></div></div>
+      <div style="padding:12px 14px;display:flex;flex-direction:column;gap:8px">
+        <button class="btn btn-primary" data-go="h11">Ya bajo</button>
+        <button class="btn btn-secondary" style="height:44px;font-size:14px">Llamar a Mariana</button>
+      </div>
+    </div>
+    <p class="small center" style="margin:0">La abuela no tiene la app: responde desde el link.</p>
+    <div class="spacer"></div>
+    <div class="sim"><div class="lbl">Caso borde</div><button class="e" data-go="e3">La abuela no confirma (teléfono en silencio)</button></div>
+  </div>
+</section>
+
+<section class="screen bg-y" id="h11" data-title="Entregado y agradecido">
+  <div class="status"><span>19:14</span><span>●●● 100%</span></div>
+  <div class="pad center">
+    <div style="height:50px"></div>
+    <div class="big"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="52" width="52" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></div>
+    <h1 class="h-1">Vicente llegó</h1>
+    <p class="sub">19:12 · lo recibió la abuela Norma. Martín y vos ya lo saben.</p>
+    <div class="card" style="text-align:left;margin-top:8px">
+      <div class="title">¿Le querés agradecer a Mariana?</div>
+      <p class="small" style="margin:4px 0 10px">Es un mensaje privado. No queda registrado en ningún lado.</p>
+      <div class="row" style="flex-wrap:wrap;gap:8px"><span class="chip c-cream" style="height:34px">¡Gracias, genia!</span><span class="chip c-cream" style="height:34px">Te debo una 🙌</span><span class="chip c-cream" style="height:34px">El jueves que viene llevo yo</span></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" data-go="h12">Mandar por WhatsApp</button>
+    <button class="link" data-go="h5">Volver al inicio</button>
+  </div>
+</section>
+
+<section class="screen bg-b" id="h12" data-title="Mi pool: pertenecer">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <button class="back" data-go="h5" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
+    <h1 class="h-1">Pool de fútbol 6.° B</h1>
+    <p class="sub">Se organizan juntas desde marzo.</p>
+    <div class="card center" style="padding:18px">
+      <div class="stack" style="justify-content:center"><span class="avatar av-c">V</span><span class="avatar av-a">G</span><span class="avatar av-s">L</span><span class="avatar av-p">R</span><span class="avatar av-m">M</span></div>
+      <p class="h-2" style="margin-top:12px">Somos 5 familias</p>
+      <p class="small" style="margin:4px 0 0">Esta semana resolvieron juntas 7 traslados.</p>
+    </div>
+    <div class="over">Familias</div>
+    <div class="card row"><span class="avatar av-a">G</span><div class="grow"><div class="title">Familia G. · Mariana</div><div class="small">6.° B · vive cerca del club</div></div><span class="chip c-rose"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Mi Red</span></div>
+    <div class="card row"><span class="avatar av-s">L</span><div class="grow"><div class="title">Familia L. · Pablo</div><div class="small">6.° B</div></div><span class="chip c-rose"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Mi Red</span></div>
+    <div class="card row"><span class="avatar av-p">R</span><div class="grow"><div class="title">Familia R. · Lucía</div><div class="small">6.° A</div></div><span class="chip c-rose"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg> Mi Red</span></div>
+    <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><span>Acá no hay puntajes ni conteo de quién llevó más. La pertenencia se ve; la contabilidad no.</span></div>
+    <button class="btn btn-secondary"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><line x1="19" x2="19" y1="8" y2="14"></line><line x1="22" x2="16" y1="11" y2="11"></line></svg> Invitar a una familia</button>
+  </div>
+</section>
+
+<section class="screen bg-p" id="h13" data-title="Puedo llevar">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <button class="back" data-go="h5" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
+    <h1 class="h-1">Puedo llevar</h1>
+    <p class="sub">Contale a tu red un recorrido que te queda de paso.</p>
+    <div class="formrow"><span class="title">Cuándo</span><div class="select">Miércoles 5/11 · 17:00 <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="formrow"><span class="title">Desde</span><div class="select">Escuela del Jacarandá <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="formrow"><span class="title">Hasta</span><div class="select">Instituto Sonido <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></div></div>
+    <div class="card row"><div class="grow"><div class="title">Lugares libres</div><div class="small">Sin silla elevadora</div></div><span class="h-2">2</span></div>
+    <div class="card row"><div class="grow"><div class="title">Solo esta vez</div><div class="small">No es un compromiso fijo. Si no podés, no pasa nada.</div></div><button class="switch" role="switch" aria-checked="true" aria-label="Solo esta vez"></button></div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" data-go="h5">Avisar a mi red</button>
+  </div>
+</section>
+
+<!-- ================= CASOS BORDE ================= -->
+<section class="screen bg-y" id="e1" data-title="Nadie responde">
+  <div class="status"><span>11:02</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <button class="back" data-go="h8" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
+    <div class="note warn"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Pasaron 2 horas y nadie de Mi Red pudo. Faltan 8 horas para el traslado.</span></div>
+    <h1 class="h-1">¿Cómo seguimos?</h1>
+    <button class="action a-white" data-go="h9"><span class="icirc" style="background:var(--pc-sky-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg></span><span class="grow"><h3>Preguntarle a Martín</h3><p>Es de la familia responsable y el jueves está libre a las 19.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <button class="action a-white" data-go="h8"><span class="icirc" style="background:var(--pc-amber-100)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><span class="grow"><h3>Ampliar a Mi grado</h3><p>Le llega a 18 familias de 6.° A y B. Vas a ver quién responde antes de aceptar.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <button class="action a-white"><span class="icirc" style="background:var(--pc-peach-200)"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span><span class="grow"><h3>Plan B</h3><p>Remís de confianza o pedirle a Rosa que se quede más.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <p class="small" style="margin:0">Nunca ampliamos el pedido sin que vos lo decidas.</p>
+  </div>
+</section>
+
+<section class="screen bg-p" id="e2" data-title="Cancelación de último momento">
+  <div class="status"><span>18:20</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <div class="note alert"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg><span>Mariana (Familia G.) no puede ir hoy: «Se me enfermó Tomi, perdón». Faltan 40 minutos.</span></div>
+    <h1 class="h-1">Ya avisamos a la abuela y a Martín</h1>
+    <p class="sub">No tenés que reenviar nada. Esto es lo que te proponemos:</p>
+    <div class="card">
+      <div class="title">Pedido urgente a Mi Red</div>
+      <p class="small" style="margin:4px 0 10px">2 familias están en el club a esa hora.</p>
+      <div class="row"><span class="avatar av-s">L</span><div class="grow"><div class="title" style="font-size:15px">Familia L. · Pablo</div><div class="small">En el club hasta 19:15</div></div><span class="chip c-mint">Disponible</span></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" data-go="h9">Pedir a Pablo y a Lucía</button>
+    <button class="btn btn-secondary" data-go="h9">Lo busco yo</button>
+  </div>
+</section>
+
+<section class="screen bg-y" id="e3" data-title="Nadie confirma la llegada">
+  <div class="status"><span>19:13</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <div class="note alert"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg><span>Mariana ya llegó con Vicente y la abuela no respondió hace 4 minutos.</span></div>
+    <h1 class="h-1">Ayudemos a que alguien baje</h1>
+    <div class="card">
+      <div class="check"><span class="dot ok"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span><span class="grow">Llamamos al teléfono de Norma (2 intentos)</span></div>
+      <div class="check"><span class="dot wait"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span><span class="grow">Te avisamos a vos y a Martín</span></div>
+      <div class="check"><span class="dot no"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></span><span class="grow">Vicente sigue en el auto con Mariana</span></div>
+    </div>
+    <div class="over">Contacto alternativo</div>
+    <div class="card row"><span class="avatar av-p">R</span><div class="grow"><div class="title">Rosa (niñera)</div><div class="small">Vive a 3 cuadras</div></div><button class="btn btn-primary btn-sm">Llamar</button></div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" data-go="h11">Norma confirmó: ya bajó</button>
+    <p class="small center" style="margin:0">Mariana no tiene que esperar sola en doble fila: ve en su pantalla que estamos resolviendo.</p>
+  </div>
+</section>
+
+<section class="screen bg-y" id="e4" data-title="Hueco entre los dos hogares">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <button class="back" data-go="h6" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
+    <div class="note alert"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg><span>El jueves 19:00 nadie tomó la vuelta de fútbol. Martín lo marcó como «lo ve mamá» y vos como «lo ve papá».</span></div>
+    <h1 class="h-1">¿Quién se ocupa?</h1>
+    <p class="sub">Lo vemos los dos. Así no queda en la cabeza de nadie.</p>
+    <button class="action a-white" data-go="h6"><span class="avatar av-c">V</span><span class="grow"><h3>Me ocupo yo</h3><p>Martín recibe el aviso.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <button class="action a-white" data-go="h6"><span class="avatar av-s">M</span><span class="grow"><h3>Pedírselo a Martín</h3><p>Le llega a su app con un toque para aceptar.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <button class="action a-amber" data-go="h7"><span class="icirc"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><span class="grow"><h3>Pedir a nuestra red</h3><p>Lo resuelve el pool.</p></span><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m9 18 6-6-6-6"></path></svg></button>
+    <p class="small" style="margin:0">Avisamos de los huecos el domingo a la noche, cuando se arma la semana.</p>
+  </div>
+</section>
+
+<section class="screen bg-y" id="e5" data-title="Cambio de horario">
+  <div class="status"><span>14:30</span><span>●●● 100%</span></div>
+  <div class="pad">
+    <button class="back" data-go="h5" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
+    <div class="note warn"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span>El club pasó el entrenamiento del jueves a las 18:30. La vuelta ahora es 19:30.</span></div>
+    <h1 class="h-1">Actualizamos el acuerdo</h1>
+    <p class="sub">Le preguntamos a cada persona involucrada si le sigue sirviendo.</p>
+    <div class="card">
+      <div class="check"><span class="dot ok"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span><span class="grow">Mariana (lleva): «Me sirve»</span></div>
+      <div class="check"><span class="dot wait"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span><span class="grow">Abuela Norma (recibe): esperando por WhatsApp</span></div>
+      <div class="check"><span class="dot ok"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span><span class="grow">Martín: lo vio en la semana</span></div>
+      <div class="check"><span class="dot ok"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span><span class="grow">Vicente: avisado</span></div>
+    </div>
+    <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg><span>Si alguien dice que no, el traslado vuelve a quedar sin asignar y te lo mostramos primero.</span></div>
+    <div class="spacer"></div>
+    <button class="btn btn-primary" data-go="h9">Ver el acuerdo</button>
+  </div>
+</section>
+
+    </div></div>
+    <div class="stepper-bar"><button id="prev">← Anterior</button><span id="pos"></span><button id="next">Siguiente →</button></div>
+  </div>
+
+  <aside class="notes" id="notes" aria-live="polite"></aside>
+</div>
+
+<script>
+const H = "Camino feliz", E = "Caso borde";
+const NOTES = {
+  h1: { k: H, t: "Bienvenida", lead: "Poolcito se presenta como la forma de gestionar los traslados en comunidad, no como una app de viajes.",
+    res: "El problema no es de transporte: es gestionar en comunidad y repartir responsabilidades.",
+    ev: ["Insight reformulado (Maru, 03/11): «no es pedir una mano, es gestionar en comunidad y distribuir responsabilidades»", "La red ya existe: las familias ya se organizan en círculos de confianza (patrón 1, 5 de 5 entrevistas)"],
+    ch: "El claim pasa de «Traslados para familias» a la gestión en comunidad. La ilustración y la marca se mantienen.",
+    tech: ["Web app mobile-first (webview), abrible desde un link de WhatsApp", "Sin login real en el prototipo"], hyp: [] },
+  h2: { k: H, t: "Unirse con código", lead: "La comunidad es cerrada: se entra con el código del grado y una administradora aprueba.",
+    res: "Confiar en quienes ya son parte de la escuela.", ev: ["«Conocer bien a la familia» es lo que más tranquiliza (12 de 19)", "P01 propuso verificar pertenencia como lo hace la app del club"],
+    ch: "Igual que el diseño de la CEO. Se pide celular en vez de mail: es el canal que ya usan.",
+    tech: ["Entidad Comunidad/Grado con código y administradora", "Verificación del celular por SMS o WhatsApp (OTP)", "Datos mínimos de menores: nombre y grado"], hyp: [] },
+  h3: { k: H, t: "Esperando aprobación", lead: "Hasta que te aprueban no ves a nadie. Mientras tanto, cargás a tu familia responsable.",
+    res: "Privacidad visible desde el primer momento.", ev: ["P05: «la aplicación va a manejar información muy sensible… es un aspecto importantísimo»"],
+    ch: "Se aprovecha la espera para cargar la familia responsable (nuevo).", tech: ["Estado de membresía: pendiente / aprobada / rechazada", "Notificación al aprobar"], hyp: [] },
+  h4: { k: H, t: "Mi familia responsable", lead: "Todos los adultos que se ocupan de los chicos, aunque vivan en otra casa: quién organiza, quién lleva y busca, quién recibe.",
+    res: "La gestión vive en una sola cabeza; el otro hogar, la abuela y la niñera no se enteran.",
+    ev: ["P03 (separada) lleva la agenda «de punta a punta»; el padre no lee el grupo del grado: «yo no soy tu secretaria»", "P04: «cumplo, pero no lo organizo»", "Encuesta: 9 de 19 tienen abuelos que buscan a los chicos"],
+    ch: "Nuevo. El diseño original tenía un solo «adulto responsable».",
+    tech: ["Roles por adulto: organiza / lleva y busca / recibe", "Un adulto puede no tener cuenta: recibe por WhatsApp con link firmado y de un solo uso", "Dos hogares comparten hij@s: permisos por hijo, no por casa"], hyp: ["H6"] },
+  h5: { k: H, t: "Inicio: lo que pasa hoy", lead: "Lo primero que se ve es quién se ocupa de cada traslado hoy, y si hay algo sin resolver.",
+    res: "Bajar la carga cognitiva: no tener que recordar ni reconfirmar.", ev: ["P04 reconstruye quién llevó a partir de su calendario de trabajo", "13 de 19 dicen que les cuesta seguir los chats"],
+    ch: "Las tarjetas de acción se mantienen, pero arriba va el estado del día. «Necesito un traslado» pasa a «Pedir a mi red».",
+    tech: ["Vista del día calculada a partir de traslados recurrentes y puntuales", "Avisos por push y, para quien no tiene app, por WhatsApp"], hyp: ["H3"] },
+  h6: { k: H, t: "La semana repartida", lead: "Un tablero compartido entre los adultos de la familia responsable. Los huecos aparecen solos.",
+    res: "Distribuir responsabilidades en vez de que una persona sostenga todo.", ev: ["Regla doméstica «uno lleva, el otro busca» (P02, P04)", "9 de 19 cortan otras actividades por coordinar"],
+    ch: "Nuevo. En el diseño original no había una vista semanal compartida.",
+    tech: ["Traslado: recurrencia, ida/vuelta, responsable, receptor, estado (asignado / sin asignar)", "Detección de huecos al armar la semana (domingo a la noche)"], hyp: ["H3", "H6"] },
+  h7: { k: H, t: "Pedir a la red", lead: "El pedido llega a la red, no a una persona. Primero a quienes pasan cerca.",
+    res: "Pedir cuesta: a quién, si le queda de paso, si ya se debe un favor.", ev: ["P05: «muchas veces nos da cosa pedir»; «no le queda de paso a nadie»", "P04 pediría solo «al que le queda a una cuadra»", "9 de 18 sienten que tienen que justificarse"],
+    ch: "Arranca en «Mi Red» (antes, «Mi grado»). Se quitó «Mi Comunidad» del primer paso.",
+    tech: ["Pedido con alcance (Mi Red / Mi grado) y vencimiento", "Orden por proximidad: geocodificar puntos frecuentes, sin seguir a nadie", "Difusión: push a la red + mensaje al grupo de WhatsApp con link"], hyp: ["H1"] },
+  h8: { k: H, t: "Pedido enviado a la red", lead: "Se ve a cuántas familias les llegó, pero no quién dijo que no.",
+    res: "Decir que no tiene que ser gratis.", ev: ["Principio de diseño: «ofrecer es puntual y opcional; decir que no, o no responder, no tiene costo»"],
+    ch: "Reemplaza la lista de «coincidencias» con calificación y «Mejor opción».",
+    tech: ["Respuestas: puedo / no puedo (este último no se muestra a nadie)", "El primero que acepta cierra el pedido; los demás reciben «ya está resuelto»"], hyp: ["H1", "H2"] },
+  h9: { k: H, t: "Acuerdo claro", lead: "Una ficha con todo: quién lleva, quién recibe, lugares, sillas, y quién tiene que enterarse.",
+    res: "Los acuerdos se pierden en el chat y los terceros (abuela, escuela) no se enteran.", ev: ["P02 quiere «algo que quede asentado»", "P05: la escuela no confirma la autorización («ya le habíamos avisado»)", "P03: la abuela no se enteró del cambio"],
+    ch: "El diseño original confirmaba el viaje con un recordatorio. Ahora hay checklist de terceros y ficha para compartir.",
+    tech: ["Acuerdo con participantes y estado de aviso por persona", "Autorización a la escuela: por ahora, mail o mensaje generado (sin integración)", "Compartir: deep link de WhatsApp con la ficha"], hyp: ["H3", "H6"] },
+  h10: { k: H, t: "Traspaso: estoy llegando", lead: "Quien recibe, aunque no tenga la app, recibe un aviso con un botón: «Ya bajo».",
+    res: "El momento crítico es el traspaso, no el viaje.", ev: ["P04: «estoy saliendo… llego a la puerta y no hay nadie… ni doble tilde»", "P02 quiere que «cada una sepa cuándo tiene que ir bajando», no por seguridad", "9 de 19: «que avise cuando llegan»"],
+    ch: "Reemplaza el seguimiento en vivo en mapa por un aviso puntual con confirmación.",
+    tech: ["Evento «saliendo» lo dispara quien lleva; el tiempo estimado se calcula en su teléfono, sin seguir el recorrido", "Página web liviana para receptores sin app (link firmado, vence a las 24 h)", "Mensajes de WhatsApp vía API de negocio: requiere plantillas aprobadas"], hyp: ["H4"] },
+  h11: { k: H, t: "Entregado y agradecido", lead: "Se confirma la entrega a toda la familia responsable. Agradecer es un gesto privado.",
+    res: "La deuda se siente aunque nadie la cuente; no hay que convertirla en registro.", ev: ["P02 rechaza «porcentajes y estrellitas»; agradece con alfajores", "Reconocimiento: 9 de 19 lo ven como colaboración"],
+    ch: "Se quitan las calificaciones después del viaje.", tech: ["El agradecimiento se manda por WhatsApp y no se guarda"], hyp: ["H5"] },
+  h12: { k: H, t: "Mi pool: pertenecer", lead: "Se ve quiénes forman el pool y que se organizan juntas, sin conteos individuales.",
+    res: "Lo que se valora es pertenecer, no recibir algo a cambio.", ev: ["Conclusión 5 de la definición del problema: «ser incluido es un reconocimiento de confianza»"],
+    ch: "Mi Red se mantiene; se quitan puntajes y «familia verificada ★».", tech: ["Métrica agregada del pool (traslados resueltos juntas), nunca por familia"], hyp: ["H5"] },
+  h13: { k: H, t: "Puedo llevar", lead: "Ofrecer un recorrido «si me queda de paso», por defecto solo esta vez.",
+    res: "Ofrecer no tiene que volverse un compromiso fijo.", ev: ["Pregunta derivada 5: ofrecer «si me queda de paso» sin compromiso fijo", "Siempre ofrecen las mismas familias (11 de 19)"],
+    ch: "El diseño original pedía días fijos; ahora la opción por defecto es puntual.", tech: ["Oferta con vencimiento; se cruza con pedidos abiertos de la red"], hyp: ["H2"] },
+  e1: { k: E, t: "Nadie responde", lead: "Si la red no puede, se proponen salidas sin ampliar nada a escondidas.",
+    res: "Si la red falla, el chico falta o no va a la actividad.", ev: ["P01: «no podía ella y lo retiré antes o faltó al colegio»", "11 de 19 pidieron ayuda a último momento en 3 meses"],
+    ch: "Nuevo.", tech: ["Temporizador del pedido según la anticipación", "Ampliar a Mi grado requiere acción explícita de quien pide"], hyp: ["H1"] },
+  e2: { k: E, t: "Cancelación de último momento", lead: "Cuando alguien cancela, Poolcito avisa a todos los involucrados y propone un reemplazo.",
+    res: "Las cancelaciones obligan a renegociar todo en cadena.", ev: ["P04 recibe cancelaciones «media hora antes»", "Entrevista con la CEO: cancelación sobre la hora"],
+    ch: "El diseño original pedía hablar antes de cancelar. Ahora la app se ocupa de los avisos.", tech: ["Cancelación con motivo; difusión automática a quien gestiona, receptor y otro hogar", "Pedido urgente solo a quienes están cerca a esa hora"], hyp: ["H3"] },
+  e3: { k: E, t: "Nadie confirma la llegada", lead: "Si quien recibe no confirma, se escala: llamada, aviso a quien gestiona y contacto alternativo.",
+    res: "Que el tercero se entere es uno de los momentos de verdad.", ev: ["P03: la abuela tenía el teléfono en silencio; «nadie sabía dónde estaba» el chico", "P04 espera en la puerta sin respuesta"],
+    ch: "Nuevo.", tech: ["Reglas de escalamiento con tiempos configurables", "Llamada automática (proveedor de voz): a evaluar costo"], hyp: ["H4"] },
+  e4: { k: E, t: "Hueco entre los dos hogares", lead: "Cuando cada hogar cree que el otro se ocupa, el hueco se ve a tiempo y se resuelve con un toque.",
+    res: "En hogares de padres separados, la gestión de las dos casas recae en una persona.", ev: ["P03 lleva la agenda también los días del padre", "Insight del equipo (03/11): la app alcanza a la familia responsable"],
+    ch: "Nuevo.", tech: ["Asignaciones con confirmación de ambos hogares", "Resumen semanal el domingo con los huecos"], hyp: ["H6"] },
+  e5: { k: E, t: "Cambio de horario", lead: "Un cambio actualiza el acuerdo y le pregunta a cada involucrado si le sigue sirviendo.",
+    res: "Los cambios no le llegan a quien recibe.", ev: ["P03: la abuela no se enteró del cambio de horario", "Entrevista con la CEO: «cancelación de la actividad»"],
+    ch: "Nuevo.", tech: ["Edición del acuerdo con reconfirmación por persona", "Si alguien no puede, el traslado vuelve a «sin asignar»"], hyp: ["H3", "H6"] },
+};
+const ORDER = ["h1","h2","h3","h4","h5","h6","h7","h8","h9","h10","h11","h12","h13","e1","e2","e3","e4","e5"];
+const HYP = { H1: "H1 · Pedir a la red cuesta menos", H2: "H2 · Ofrecer sin compromiso", H3: "H3 · Acuerdo visible baja la carga", H4: "H4 · Aviso de llegada sin seguimiento", H5: "H5 · Pertenencia sin comparación", H6: "H6 · Familia responsable" };
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+const nav = document.getElementById("nav");
+nav.innerHTML = `<h3>Camino feliz</h3>` + ORDER.filter(i => i[0] === "h").map((id, n) => `<button data-nav="${id}"><span class="n">${n + 1}</span>${esc(NOTES[id].t)}</button>`).join("")
+  + `<h3>Casos borde</h3>` + ORDER.filter(i => i[0] === "e").map((id, n) => `<button class="edge" data-nav="${id}"><span class="n">B${n + 1}</span>${esc(NOTES[id].t)}</button>`).join("")
+  + `<p class="hint">Tocá los botones del teléfono para navegar, o usá ← → del teclado. Los recuadros punteados «Simular» y «Caso borde» no son parte de la app: abren ramas del prototipo.</p>`;
+function show(id) {
+  if (!NOTES[id]) id = "h1";
+  document.querySelectorAll(".screen").forEach(s => s.classList.toggle("on", s.id === id));
+  document.getElementById(id).scrollTop = 0;
+  nav.querySelectorAll("button[data-nav]").forEach(b => b.setAttribute("aria-current", b.dataset.nav === id ? "true" : "false"));
+  const n = NOTES[id], i = ORDER.indexOf(id);
+  document.getElementById("pos").textContent = (id[0] === "h" ? "Paso " + (i + 1) : "Borde " + (i - 12)) + " de " + (id[0] === "h" ? 13 : 5);
+  document.getElementById("notes").innerHTML =
+    `<span class="kind ${n.k === E ? "edge" : ""}">${n.k}</span><h2>${esc(n.t)}</h2><p class="lead">${esc(n.lead)}</p>`
+    + `<h4>Qué resuelve</h4><div class="box">${esc(n.res)}</div>`
+    + `<h4>De dónde sale</h4><ul>${n.ev.map(e => `<li>${esc(e)}</li>`).join("")}</ul>`
+    + `<h4>Cambio respecto del diseño original</h4><div class="box change">${esc(n.ch)}</div>`
+    + `<h4>Notas para tecnología</h4><div class="box tech"><ul>${n.tech.map(e => `<li>${esc(e)}</li>`).join("")}</ul></div>`
+    + (n.hyp.length ? `<h4>Hipótesis que testea</h4><div class="hyp">${n.hyp.map(h => `<span>${HYP[h]}</span>`).join("")}</div>` : "");
+  history.replaceState(null, "", "#" + id + (document.body.classList.contains("phone-only") ? "&phone" : ""));
+}
+document.addEventListener("click", e => {
+  const g = e.target.closest("[data-go]"); if (g) { show(g.dataset.go); return; }
+  const n = e.target.closest("[data-nav]"); if (n) { show(n.dataset.nav); return; }
+  const sw = e.target.closest(".switch"); if (sw) sw.setAttribute("aria-checked", sw.getAttribute("aria-checked") === "true" ? "false" : "true");
+  const sg = e.target.closest(".seg button"); if (sg) sg.parentElement.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b === sg ? "true" : "false"));
+});
+function step(d) { const cur = document.querySelector(".screen.on").id; const i = ORDER.indexOf(cur); show(ORDER[Math.min(ORDER.length - 1, Math.max(0, i + d))]); }
+document.getElementById("prev").onclick = () => step(-1);
+document.getElementById("next").onclick = () => step(1);
+document.addEventListener("keydown", e => { if (e.key === "ArrowRight") step(1); if (e.key === "ArrowLeft") step(-1); });
+const hash = location.hash.slice(1).split("&");
+if (hash.includes("phone")) document.body.classList.add("phone-only");
+show(hash[0] || "h1");
+</script>
+</body>
+</html>
