@@ -24,7 +24,7 @@ Abrí `/prototipo/` en el navegador. No necesita instalar nada.
 - Para ver solo el teléfono (por ejemplo, para capturas), agregá `&phone` al final del enlace: `prototipo/#h5&phone`.
 
 ## Recorrido
-**Camino feliz:** bienvenida → unirse con código → esperar aprobación → cargar la familia responsable → inicio → semana repartida → pedir a la red → pedido enviado → acuerdo → armar el recorrido (link a Google Maps) → banner de actividad en vivo → seguimiento del viaje → traspaso («estoy llegando» / «ya bajo») → entregado y agradecido → mi pool. Aparte: puedo llevar.
+**Camino feliz:** bienvenida → crear la cuenta → armar la red de los chicos e invitar (otra casa, abuela, niñera) → invitación recibida → inicio → mis chicos → ficha del chico (su red, su agenda y cómo se reparte) → grupo de la actividad → crear grupo → personas → mi perfil → actividad → semana repartida → pedir a la red → pedido enviado → acuerdo → armar el recorrido → banner en vivo → seguimiento → traspaso → entregado → puedo llevar. Navegación inspirada en Splitwise (D-013, D-014): la unidad es el chico y su red; sin saldos entre familias.
 
 **Casos borde:** nadie responde · cancelación de último momento · nadie confirma la llegada · hueco entre los dos hogares · cambio de horario.
 
