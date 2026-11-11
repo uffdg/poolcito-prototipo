@@ -365,6 +365,17 @@ body { background: #F1F0EC; }
 .fchain i { color: var(--color-text-muted); font-style: normal; }
 @media (max-width: 1180px) { .pside { position: static; width: 100%; max-width: 640px; max-height: none; } }
 body.phone-only .pside { display: none; }
+
+/* ===== Campos con affordance de input ===== */
+.inp-l { display: block; font: 700 14px var(--font-body); color: var(--ink); margin: 6px 2px -4px; }
+.inp { width: 100%; height: 52px; background: #fff; border: 1.5px solid #8C8984; border-radius: 10px; padding: 0 14px; font: 500 17px var(--font-body); color: var(--ink); box-shadow: inset 0 1px 2px rgba(31,43,69,.06); }
+.inp:focus, .inp:focus-within { outline: none; border-color: var(--blue-900); box-shadow: 0 0 0 3px rgba(31,43,69,.18); }
+.inp-pre { display: flex; align-items: center; gap: 10px; }
+.inp-pre span { font-weight: 700; color: var(--gray-600); padding-right: 10px; border-right: 1px solid var(--gray-200); }
+.inp-pre input { border: 0; outline: none; background: transparent; font: inherit; color: inherit; flex: 1; min-width: 0; height: 100%; }
+.inp-h { font-size: 13px; color: var(--gray-600); margin: -4px 2px 0; }
+.formrow .inp { height: 46px; font-size: 15px; }
+.select { border: 1.5px solid #8C8984; border-radius: 10px; font-weight: 600; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -403,8 +414,11 @@ body.phone-only .pside { display: none; }
     <button class="back" data-go="h1" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
     <h1 class="h-1">Creá tu cuenta</h1>
     <p class="sub">Solo tu nombre y tu celular.</p>
-    <div class="field filled"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Valentina Paz</div>
-    <div class="field filled"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg> 11 5555-0000</div>
+    <label class="inp-l" for="f-name">Tu nombre</label>
+    <input class="inp" id="f-name" type="text" autocomplete="name" value="Valentina Paz">
+    <label class="inp-l" for="f-tel">Tu celular</label>
+    <div class="inp inp-pre"><span>+54</span><input id="f-tel" type="tel" autocomplete="tel" value="11 5555-0000" aria-describedby="f-tel-h"></div>
+    <div class="inp-h" id="f-tel-h">Te mandamos un código por WhatsApp para confirmarlo.</div>
     <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><span>Si alguien te invitó a un grupo, entrás directo desde el link que te mandó. Si no, creás un grupo e invitás a quien quieras.</span></div>
     <div class="spacer"></div>
     <button class="btn btn-primary" data-go="h4">Continuar</button>
@@ -682,7 +696,7 @@ body.phone-only .pside { display: none; }
     <button class="back" data-go="k1" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
     <h1 class="h-1">Nuevo grupo</h1>
     <p class="sub">Armalo con las familias con las que ya se organizan.</p>
-    <div class="formrow"><span class="title">Nombre</span><div class="select">Natación de los sábados</div></div>
+    <div class="formrow"><label class="title" for="f-grp">Nombre</label><input class="inp" id="f-grp" type="text" value="Natación de los sábados"></div>
     <div class="title" style="margin-top:4px">Tipo</div>
     <div class="seg" role="group" aria-label="Tipo de grupo"><button aria-pressed="true">Actividad</button><button aria-pressed="false">Grado</button><button aria-pressed="false">Familia</button></div>
     <div class="card row"><span class="avatar av-m"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span><div class="grow"><div class="title">Link de invitación</div><div class="small">poolcito.app/g/natacion · vence en 7 días</div></div></div>
