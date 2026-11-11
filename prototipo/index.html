@@ -454,6 +454,9 @@ body.phone-only .pside { display: none; }
 .arow .kstack { display: flex; flex: none; } .arow .kstack .avatar + .avatar { margin-left: -12px; box-shadow: 0 0 0 2px #fff; }
 .arow b { display: block; font-size: 14.5px; } .arow small { display: block; font-size: 12.5px; color: var(--gray-600); }
 .arow.hole { border: 1.5px dashed var(--orange-500); background: var(--orange-100); cursor: default; }
+
+.via { align-self: stretch; font-size: 12px; line-height: 1.35; color: #54656F; background: rgba(255,255,255,.75); border: 1px dashed #9AA3B5; border-radius: 8px; padding: 6px 9px; margin-top: 6px; }
+.wa-draft { border-radius: 14px; color: var(--ink); font-size: 14px; padding: 8px 12px; }
 </style>
 
 
@@ -664,7 +667,7 @@ body.phone-only .pside { display: none; }
     <h1 class="h-1">Ahora lo llevás vos</h1>
     <p class="sub">Jueves 5 · 17:15 · Joaquín a fútbol. Solo este jueves: el resto sigue con Diego.</p>
     <div class="card row" style="justify-content:center;gap:14px"><span class="row" style="gap:6px"><span class="avatar av-s">D</span><s>Diego</s></span><b>→</b><span class="row" style="gap:6px"><span class="avatar av-c">V</span><b>Vos</b></span></div>
-    <div class="card"><div class="title">Avisamos por WhatsApp</div><div class="small">Diego: «Este jueves no tenés que llevar a Joaquín» · Joaquín lo ve en su agenda</div></div>
+    <div class="card"><div class="title">Le avisamos a Diego</div><div class="small">Notificación de la app y mensaje de Poolcito a su WhatsApp: «Este jueves no tenés que llevar a Joaquín».</div></div>
     <div class="spacer"></div>
     <button class="btn btn-secondary" data-go="t1">Deshacer</button>
     <button class="btn btn-primary" data-go="h6">Volver a la agenda</button>
@@ -730,7 +733,7 @@ body.phone-only .pside { display: none; }
   <div class="pad">
     <button class="back" data-go="x2" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
     <h1 class="h-1">Mañana está cubierto</h1>
-    <p class="sub">Les avisamos a todos por WhatsApp. Si alguien no confirma antes de las 12, te avisamos.</p>
+    <p class="sub">Poolcito les escribió a cada uno por WhatsApp desde su número. Si alguien no confirma antes de las 12, te avisamos.</p>
     <button class="arow" data-go="t1" data-kid="j"><span class="at">17:15</span><span class="avatar av-a">J</span><span class="grow"><b>Fútbol · ida</b><small>Rosa confirmó a las 20:06</small></span><span class="chip c-cream">Rosa</span></button>
     <button class="arow" data-go="h9" data-kid="j"><span class="at">19:00</span><span class="avatar av-a">J</span><span class="grow"><b>Fútbol · vuelta</b><small>Familia G. confirmó a las 20:12 · recibe Elsa</small></span><span class="chip c-cream">Familia G.</span></button>
     <div class="card"><div class="title">Avisados</div><div class="small">Diego: «No te preocupes, lo lleva Rosa» · Abuela Elsa: Joaquín llega 19:20 con Familia G.</div></div>
@@ -770,7 +773,8 @@ body.phone-only .pside { display: none; }
       <p class="title" style="margin:10px 0 0">Les llegó a 4 familias de Mi Red</p>
       <p class="small" style="margin:4px 0 0">2 pasan cerca del club a esa hora. Nadie ve quién dijo que no.</p>
     </div>
-    <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>También salió un mensaje al grupo de WhatsApp «Fútbol 6.° B» con el link para responder.</span></div>
+    <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg><span>Poolcito no puede publicar solo en un grupo de WhatsApp. Si querés que lo vea el grupo, compartilo vos: se abre WhatsApp con el mensaje y el link listos.</span></div>
+    <button class="btn btn-secondary" data-go="h9">Compartir en el grupo «Fútbol 6.° B»</button>
     <div class="spacer"></div>
     <div class="sim"><div class="lbl">Simular</div><button data-go="h9">Familia G. responde «Puedo»</button><button class="e" data-go="e1">Nadie responde en 2 horas</button></div>
   </div>
@@ -905,7 +909,7 @@ body.phone-only .pside { display: none; }
       <div class="row" style="flex-wrap:wrap;gap:8px"><span class="chip c-cream" style="height:34px">¡Gracias, genia!</span><span class="chip c-cream" style="height:34px">Te debo una 🙌</span><span class="chip c-cream" style="height:34px">El jueves que viene llevo yo</span></div>
     </div>
     <div class="spacer"></div>
-    <button class="btn btn-primary" data-go="h12">Mandar por WhatsApp</button>
+    <button class="btn btn-primary" data-go="h12">Abrir WhatsApp para mandarlo</button>
     <button class="link" data-go="h5">Volver al inicio</button>
   </div>
 </section>
@@ -939,7 +943,7 @@ body.phone-only .pside { display: none; }
     <div class="card row"><span class="avatar av-m"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></span><div class="grow"><div class="title">Link de invitación</div><div class="small">poolcito.app/g/natacion · vence en 7 días</div></div></div>
     <div class="note"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><span>Se entra solo por invitación de alguien del grupo. Nadie que no esté invitado ve a los chicos ni las direcciones.</span></div>
     <div class="spacer"></div>
-    <button class="btn btn-primary" data-go="h12">Invitar por WhatsApp</button>
+    <button class="btn btn-primary" data-go="h12">Compartir el link en WhatsApp</button>
   </div>
 </section>
 
@@ -970,7 +974,7 @@ body.phone-only .pside { display: none; }
   <div class="pad">
     <button class="back" data-go="h4" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
     <h1 class="h-1">Invitar a Rosa</h1>
-    <p class="sub">Completá tres cosas. Le llega un mensaje por WhatsApp y entra con un toque.</p>
+    <p class="sub">Completá tres cosas. Después se abre tu WhatsApp con el mensaje listo para Rosa: solo tocás enviar.</p>
     <div class="over">1 · Sus datos</div>
     <label class="inp-l" for="k2-name">Nombre</label>
     <input class="inp" id="k2-name" type="text" value="Rosa">
@@ -981,7 +985,7 @@ body.phone-only .pside { display: none; }
     <div class="over">3 · Con qué chicos</div>
     <div class="opts"><label class="opt"><input type="checkbox" value="j" checked><span><b>Joaquín</b><small>6.° B</small></span></label><label class="opt"><input type="checkbox" value="e" checked><span><b>Emilia</b><small>4.° A</small></span></label></div>
     <div class="note"><span>Rosa solo va a ver los traslados en los que participa. No ve direcciones de otras familias.</span></div>
-    <button class="btn btn-primary" data-go="k5">Enviar invitación por WhatsApp</button>
+    <button class="btn btn-primary" data-go="w0">Abrir WhatsApp con el mensaje</button>
   </div>
 </section>
 
@@ -989,21 +993,29 @@ body.phone-only .pside { display: none; }
   <div class="status"><span>9:41</span><span>●●● 100%</span></div>
   <div class="pad">
     <button class="back" data-go="k2" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
-    <h1 class="h-1">Le mandamos la invitación a Rosa</h1>
-    <p class="sub">Cuando acepte, te avisamos y empieza a ver los viernes de Joaquín y Emilia.</p>
-    <div class="title">Así le llega por WhatsApp</div>
-    <div class="card" style="background:var(--green-100)"><div class="small" style="color:var(--ink)">«Hola Rosa, Valentina te sumó a Poolcito para coordinar los traslados de Joaquín y Emilia. Entrá acá: poolcito.app/i/…»</div></div>
-    <div class="card row"><span class="avatar av-p">R</span><div class="grow"><div class="title">Rosa</div><div class="small">Lleva y busca · Joaquín y Emilia</div></div><span class="chip c-amber">Pendiente</span></div>
+    <h1 class="h-1">Invitación enviada a Rosa</h1>
+    <p class="sub">La mandaste desde tu WhatsApp. Cuando Rosa abra el link y acepte, te avisamos acá.</p>
+    <div class="title">Lo que le mandaste</div>
+    <div class="card" style="background:var(--green-100)"><div class="small" style="color:var(--ink)">«Hola Rosa, te sumé a Poolcito para los viernes de Joaquín y Emilia: poolcito.app/i/…»</div></div>
+    <div class="card row"><span class="avatar av-p">R</span><div class="grow"><div class="title">Rosa</div><div class="small">Lleva y busca · Joaquín y Emilia</div></div><span class="chip c-amber">No abrió el link</span></div>
+    <button class="link" data-go="w0">¿No se envió? Abrir WhatsApp de nuevo</button>
     <div class="spacer"></div>
     <button class="btn btn-secondary" data-go="h4">Volver a mi núcleo familiar</button>
     <div class="sim"><div class="lbl">Simular</div><button data-go="w1">Ver cómo le llega a Rosa en su WhatsApp</button></div>
   </div>
 </section>
 
+<section class="screen wa" id="w0" data-title="Tu WhatsApp, mensaje listo">
+  <div class="status"><span>9:41</span><span>●●● 100%</span></div>
+  <div class="wa-top"><button class="wa-back" data-go="k2" aria-label="Volver"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><span class="avatar av-p" style="width:38px;height:38px;font-size:15px">R</span><div class="grow"><div class="wa-t">Rosa</div><div class="wa-s">+54 11 5555-0102</div></div></div>
+  <div class="wa-body"><div class="via">Poolcito abrió tu WhatsApp con el texto escrito. El mensaje sale de tu cuenta: Poolcito no puede mandarlo por vos.</div><div class="spacer"></div></div>
+  <div class="wa-bar"><div class="wa-in wa-draft"><span class="wa-cb" style="background:#F5F6F6;border-radius:8px;border-left:4px solid var(--orange-500);margin-bottom:6px"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Valentina te sumó a su núcleo familiar</span><span class="wa-cf">poolcito.app</span></span>Hola Rosa, te sumé a Poolcito para los viernes de Joaquín y Emilia: poolcito.app/i/…</div><button class="wa-mic" data-go="k5" aria-label="Enviar" style="border:0;cursor:pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 20.5 21 12 3 3.5l.01 6.6L15 12 3.01 13.9z"/></svg></button></div>
+</section>
+
 <section class="screen wa" id="w1" data-title="La invitación en WhatsApp">
   <div class="status"><span>9:41</span><span>●●● 100%</span></div>
   <div class="wa-top"><button class="wa-back" data-go="k5" aria-label="Volver"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><span class="avatar av-c" style="width:38px;height:38px;font-size:15px">V</span><div class="grow"><div class="wa-t">Valentina</div><div class="wa-s">en línea</div></div></div>
-  <div class="wa-body"><div class="wa-day">Hoy</div><div class="wa-m"><div>Hola Rosa, te sumé a Poolcito para los viernes de Joaquín y Emilia. Ahí vas a ver a qué hora los buscás y si hay cambios.</div><span class="wa-time">18:40</span></div><div class="wa-m"><button class="wa-card" data-go="k3"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Valentina te sumó a su núcleo familiar</span><span class=wa-cl>Joaquín y Emilia · buscás los viernes 16:15</span><span class=wa-cl>Entrás con un toque, sin descargar nada</span><span class="wa-cf">poolcito.app</span></span></button><span class="wa-time">18:40</span></div><div class="wa-hint">Así lo ve Rosa · tocá la tarjeta</div></div>
+  <div class="wa-body"><div class="wa-day">Hoy</div><div class="wa-m"><div>Hola Rosa, te sumé a Poolcito para los viernes de Joaquín y Emilia. Ahí vas a ver a qué hora los buscás y si hay cambios.</div><span class="wa-time">18:40</span></div><div class="wa-m"><button class="wa-card" data-go="k3"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Valentina te sumó a su núcleo familiar</span><span class=wa-cl>Joaquín y Emilia · buscás los viernes 16:15</span><span class=wa-cl>Entrás con un toque, sin descargar nada</span><span class="wa-cf">poolcito.app</span></span></button><span class="wa-time">18:40</span></div><div class="wa-hint">Así lo ve Rosa · tocá la tarjeta</div><div class="via">La tarjeta es la vista previa del link: WhatsApp no permite botones en mensajes entre personas.</div></div>
   <div class="wa-bar"><div class="wa-in">Mensaje</div><span class="wa-mic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span></div>
 </section>
 
@@ -1115,7 +1127,7 @@ body.phone-only .pside { display: none; }
   <div class="pad">
     <button class="back" data-go="d1" aria-label="Volver"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" height="22" width="22" xmlns="http://www.w3.org/2000/svg"><path d="m15 18-6-6 6-6"></path></svg></button>
     <h1 class="h-1">Pasar una tarea</h1>
-    <p class="sub">Elegí la tarea y a quién se la pasás. Le llega por WhatsApp y confirma con un toque.</p>
+    <p class="sub">Elegí la tarea y a quién se la pasás. Se abre tu WhatsApp con el mensaje listo; Diego confirma desde el link.</p>
     <div class="title">Qué</div>
     <div class="card row"><span class="avatar av-s">E</span><div class="grow"><div class="title">Regalo para el cumple de Tomi</div><div class="small">Emilia · sábado 14 · la familia de Tomi pide aporte para un regalo común</div></div></div>
     <div class="title" style="margin-top:4px">A quién</div>
@@ -1124,7 +1136,7 @@ body.phone-only .pside { display: none; }
     <div class="card" style="background:var(--green-100)"><div class="small" style="color:var(--ink)">«Diego, ¿te ocupás del regalo para el cumple de Tomi (sábado)? Los datos para el aporte están acá. Confirmá con un toque: poolcito.app/t/…»</div></div>
     <div class="note"><span>Si Diego no confirma antes del jueves, te avisamos para que la tarea no quede en el aire.</span></div>
     <div class="spacer"></div>
-    <button class="btn btn-primary" data-go="d3">Enviar por WhatsApp</button>
+    <button class="btn btn-primary" data-go="d3">Abrir WhatsApp con el mensaje</button>
   </div>
 </section>
 
@@ -1135,8 +1147,8 @@ body.phone-only .pside { display: none; }
     <h1 class="h-1">Diego se ocupa del regalo</h1>
     <p class="sub">Ya figura en la agenda de Emilia del sábado y en el reparto de la casa.</p>
     <div class="card">
-      <div class="row" style="padding:6px 0"><span class="chip c-cream">18:40</span><span class="grow">Enviado por WhatsApp</span></div>
-      <div class="row" style="padding:6px 0"><span class="chip c-mint">18:42</span><span class="grow"><b>Diego confirmó</b></span></div>
+      <div class="row" style="padding:6px 0"><span class="chip c-cream">18:40</span><span class="grow">Se lo mandaste por WhatsApp</span></div>
+      <div class="row" style="padding:6px 0"><span class="chip c-mint">18:42</span><span class="grow"><b>Diego confirmó desde el link</b></span></div>
       <div class="row" style="padding:6px 0"><span class="chip c-cream">Sáb 14</span><span class="grow">Cumple de Tomi · regalo: Diego</span></div>
     </div>
     <div class="spacer"></div>
@@ -1148,7 +1160,7 @@ body.phone-only .pside { display: none; }
 <section class="screen wa" id="w2" data-title="Ofrecer lugares en el grupo">
   <div class="status"><span>9:41</span><span>●●● 100%</span></div>
   <div class="wa-top"><button class="wa-back" data-go="k4" aria-label="Volver"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><span class="avatar av-a" style="width:38px;height:38px;font-size:15px">4A</span><div class="grow"><div class="wa-t">4.° A · familias</div><div class="wa-s">Inés, Laura, Pablo, vos y 18 más</div></div></div>
-  <div class="wa-body"><div class="wa-day">Jueves</div><div class="wa-m"><div class="wa-n" style="color:#6B4FBB">Laura · mamá de Sofi</div><div>¿Alguien va al cumple de Tomi el sábado? No llego a llevar a Sofi 🙈</div><span class="wa-time">20:31</span></div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><button class="wa-card" data-go="w3"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Inés puede llevar al cumple de Tomi</span><span class=wa-cl>Sáb 14 · sale 15:45</span><span class=wa-cl>Quedan 2 lugares</span><span class="wa-seats"><span class="on">Nico</span><span class="">libre</span><span class="">libre</span></span><span class="wa-cf">poolcito.app</span></span></button><div>Tengo lugar, súmenlos acá así no se pierde en el chat 👇</div><span class="wa-time">20:44</span></div><div class="wa-hint">Tocá la tarjeta para sumar a Emilia</div></div>
+  <div class="wa-body"><div class="wa-day">Jueves</div><div class="wa-m"><div class="wa-n" style="color:#6B4FBB">Laura · mamá de Sofi</div><div>¿Alguien va al cumple de Tomi el sábado? No llego a llevar a Sofi 🙈</div><span class="wa-time">20:31</span></div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><button class="wa-card" data-go="w3"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Inés puede llevar al cumple de Tomi</span><span class=wa-cl>Sáb 14 · sale 15:45</span><span class=wa-cl>Quedan 2 lugares</span><span class="wa-seats"><span class="on">Nico</span><span class="">libre</span><span class="">libre</span></span><span class="wa-cf">poolcito.app</span></span></button><div>Tengo lugar, súmenlos acá así no se pierde en el chat 👇</div><span class="wa-time">20:44</span></div><div class="wa-hint">Tocá la tarjeta para sumar a Emilia</div><div class="via">Inés lo compartió desde Poolcito con su propio WhatsApp. La vista previa es una foto del momento: no se actualiza sola.</div></div>
   <div class="wa-bar"><div class="wa-in">Mensaje</div><span class="wa-mic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span></div>
 </section>
 
@@ -1165,21 +1177,22 @@ body.phone-only .pside { display: none; }
     <div class="opts" role="radiogroup"><label class="opt"><input type="radio" name="pk" checked><span><b>En casa de mamá</b><small>Le queda de paso</small></span></label><label class="opt"><input type="radio" name="pk"><span><b>La llevo a lo de Inés</b><small>Punto de encuentro</small></span></label></div>
     <div class="over">La vuelta</div>
     <div class="opts" role="radiogroup"><label class="opt"><input type="radio" name="vt"><span><b>También la trae Inés</b></span></label><label class="opt"><input type="radio" name="vt" checked><span><b>La busco yo</b></span></label></div>
-    <button class="btn btn-primary" data-go="w4">Sumar a Emilia y avisar en el grupo</button>
+    <button class="btn btn-primary" data-go="w4">Sumar a Emilia</button>
+    <p class="small" style="text-align:center;margin:0">Después podés compartirlo en el grupo: se abre WhatsApp con el mensaje listo.</p>
   </div>
 </section>
 
-<section class="screen wa" id="w4" data-title="El grupo se entera solo">
+<section class="screen wa" id="w4" data-title="Compartir en el grupo">
   <div class="status"><span>9:41</span><span>●●● 100%</span></div>
   <div class="wa-top"><button class="wa-back" data-go="w2" aria-label="Volver"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><span class="avatar av-a" style="width:38px;height:38px;font-size:15px">4A</span><div class="grow"><div class="wa-t">4.° A · familias</div><div class="wa-s">Inés, Laura, Pablo, vos y 18 más</div></div></div>
-  <div class="wa-body"><div class="wa-day">Jueves</div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><button class="wa-card" data-go="w3"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Inés puede llevar al cumple de Tomi</span><span class=wa-cl>Sáb 14 · sale 15:45</span><span class=wa-cl>Queda 1 lugar</span><span class="wa-seats"><span class="on">Nico</span><span class="on">Emilia</span><span class="">libre</span></span><span class="wa-cf">poolcito.app</span></span></button><span class="wa-time">20:44</span></div><div class="wa-m out"><div>Sumé a Emilia 🙌 La busco yo a la vuelta.</div><span class="wa-time">20:52</span></div><div class="wa-m"><div class="wa-n" style="color:#6B4FBB">Laura · mamá de Sofi</div><div>¡Genia! Sumo a Sofi también</div><span class="wa-time">20:55</span></div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><button class="wa-card" data-go="w5"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Lugares completos para el cumple de Tomi</span><span class=wa-cl>Nico, Emilia y Sofi · sale 15:45</span><span class="wa-seats"><span class="on">Nico</span><span class="on">Emilia</span><span class="on">Sofi</span></span><span class="wa-cf">poolcito.app</span></span></button><span class="wa-time">20:57</span><span class="wa-r">🙏 2</span></div><div class="sim"><div class="lbl">Simular</div><button data-go="w5">Llega el sábado: avisan que salen</button></div></div>
+  <div class="wa-body"><div class="wa-day">Jueves</div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><button class="wa-card" data-go="w3"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Inés puede llevar al cumple de Tomi</span><span class=wa-cl>Sáb 14 · sale 15:45</span><span class=wa-cl>Quedan 2 lugares</span><span class="wa-seats"><span class="on">Nico</span><span class="">libre</span><span class="">libre</span></span><span class="wa-cf">poolcito.app</span></span></button><span class="wa-time">20:44</span></div><div class="wa-m out"><button class="wa-card" data-go="w3"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Inés puede llevar al cumple de Tomi</span><span class=wa-cl>Queda 1 lugar</span><span class="wa-seats"><span class="on">Nico</span><span class="on">Emilia</span><span class="">libre</span></span><span class="wa-cf">poolcito.app</span></span></button><div>Sumé a Emilia 🙌 La busco yo a la vuelta.</div><span class="wa-time">20:52</span></div><div class="wa-m"><div class="wa-n" style="color:#6B4FBB">Laura · mamá de Sofi</div><button class="wa-card" data-go="w5"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Inés puede llevar al cumple de Tomi</span><span class=wa-cl>Lugares completos · sale 15:45</span><span class="wa-seats"><span class="on">Nico</span><span class="on">Emilia</span><span class="on">Sofi</span></span><span class="wa-cf">poolcito.app</span></span></button><div>¡Genia! Sumé a Sofi 🙏</div><span class="wa-time">20:57</span><span class="wa-r">🙏 2</span></div><div class="via">Cada vez que alguien se suma y lo comparte, el link nuevo trae su propia vista previa con los lugares de ese momento. La tarjeta original no cambia.</div><div class="sim"><div class="lbl">Simular</div><button data-go="w5">Llega el sábado: avisan que salen</button></div></div>
   <div class="wa-bar"><div class="wa-in">Mensaje</div><span class="wa-mic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span></div>
 </section>
 
 <section class="screen wa" id="w5" data-title="Aviso de salida en el grupo">
   <div class="status"><span>9:41</span><span>●●● 100%</span></div>
   <div class="wa-top"><button class="wa-back" data-go="w4" aria-label="Volver"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></button><span class="avatar av-a" style="width:38px;height:38px;font-size:15px">4A</span><div class="grow"><div class="wa-t">4.° A · familias</div><div class="wa-s">Inés, Laura, Pablo, vos y 18 más</div></div></div>
-  <div class="wa-body"><div class="wa-day">Sábado</div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><button class="wa-card" data-go="h9c"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Salen al cumple de Tomi</span><span class=wa-cl>15:45 · maneja Pablo (papá de Nico)</span><span class=wa-cl>Recorrido: Nico → Emilia → Sofi</span><span class=wa-cl>Cualquier cosa, escribile a Pablo</span><span class="wa-cf">Seguir el viaje · poolcito.app</span></span></button><span class="wa-time">15:41</span><span class="wa-r">👍 3</span></div><div class="wa-m out"><div>¡Gracias! Emilia ya está en la puerta</div><span class="wa-time">15:43</span></div><div class="wa-m"><div class="wa-n" style="color:#6B4FBB">Laura · mamá de Sofi</div><div>Mil gracias 🙏</div><span class="wa-time">15:44</span></div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><button class="wa-card" data-go="h11"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Llegaron al cumple</span><span class=wa-cl>16:12 · los tres entregados</span><span class="wa-cf">poolcito.app</span></span></button><span class="wa-time">16:12</span><span class="wa-r">❤️ 4</span></div></div>
+  <div class="wa-body"><div class="wa-day">Sábado</div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><button class="wa-card" data-go="h9c"><span class="wa-cb"><span class="row" style="gap:6px"><svg width="16" height="16" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="100" fill="#F2B443"/><path d="M68 98 Q 76 68 100 68 Q 124 68 132 98 Z" fill="#1F2B45"/><rect x="48" y="94" width="104" height="40" rx="16" fill="#1F2B45"/><circle cx="76" cy="134" r="13" fill="#E0674C"/><circle cx="124" cy="134" r="13" fill="#E0674C"/></svg><b>Poolcito</b></span><span class="wa-ct">Salen al cumple de Tomi</span><span class=wa-cl>15:45 · maneja Pablo (papá de Nico)</span><span class=wa-cl>Recorrido: Nico → Emilia → Sofi</span><span class=wa-cl>Cualquier cosa, escribile a Pablo</span><span class="wa-cf">Seguir el viaje · poolcito.app</span></span></button><span class="wa-time">15:41</span><span class="wa-r">👍 3</span></div><div class="wa-m out"><div>¡Gracias! Emilia ya está en la puerta</div><span class="wa-time">15:43</span></div><div class="wa-m"><div class="wa-n" style="color:#6B4FBB">Laura · mamá de Sofi</div><div>Mil gracias 🙏</div><span class="wa-time">15:44</span></div><div class="wa-m"><div class="wa-n" style="color:#B5651D">Inés · mamá de Nico</div><div>Llegaron los tres 🙌</div><span class="wa-time">16:12</span><span class="wa-r">❤️ 4</span></div><div class="via">El aviso «llegaron» a cada familia lo manda Poolcito por mensaje individual desde su número de empresa, no al grupo.</div></div>
   <div class="wa-bar"><div class="wa-in">Mensaje</div><span class="wa-mic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span></div>
 </section>
 
@@ -1400,7 +1413,7 @@ const NOTES = {
   h7: { k: H, t: "Pedir a la red", lead: "El pedido llega a la red, no a una persona. Primero a quienes pasan cerca.",
     res: "Pedir cuesta: a quién, si le queda de paso, si ya se debe un favor.", ev: ["P05: «muchas veces nos da cosa pedir»; «no le queda de paso a nadie»", "P04 pediría solo «al que le queda a una cuadra»", "9 de 18 sienten que tienen que justificarse"],
     ch: "Arranca en «Mi Red» (antes, «Mi grado»). Se quitó «Mi Comunidad» del primer paso.",
-    tech: ["Pedido con alcance (Mi Red / Mi grado) y vencimiento", "Orden por proximidad: geocodificar puntos frecuentes, sin seguir a nadie", "Difusión: push a la red + mensaje al grupo de WhatsApp con link"], hyp: ["H1"] },
+    tech: ["Pedido con alcance (Mi Red / Mi grado) y vencimiento", "Orden por proximidad: geocodificar puntos frecuentes, sin seguir a nadie", "Difusión: notificación a la red; al grupo de WhatsApp solo si la persona lo comparte (Poolcito no puede publicar en grupos)"], hyp: ["H1"] },
   h8: { k: H, t: "Pedido enviado a la red", lead: "Se ve a cuántas familias les llegó, pero no quién dijo que no.",
     res: "Decir que no tiene que ser gratis.", ev: ["Principio de diseño: «ofrecer es puntual y opcional; decir que no, o no responder, no tiene costo»"],
     ch: "Reemplaza la lista de «coincidencias» con calificación y «Mejor opción».",
@@ -1416,11 +1429,11 @@ const NOTES = {
   h9b: { k: H, t: "Banner de actividad en vivo", lead: "Mientras dura el viaje, un banner muestra en qué paso está y cuánto falta, como el seguimiento de un pedido de delivery.",
     res: "Dar tranquilidad a quien gestiona sin tener que preguntar «¿ya salieron?».", ev: ["9 de 19: «que avise cuando llegan»", "P05 sigue la ubicación de su hijo con Google Maps «en todo momento»", "Contraevidencia: P02 rechaza el hipercontrol; la seguridad que piden es de conducta (patrón 2)"],
     ch: "Nuevo (D-010). Patrón de PedidosYa: banner con pasos (acordado, salieron, en camino, llegó) y hora estimada.",
-    tech: ["Live Activities en iOS y notificación en curso en Android; en la web, banner en la app", "Estados del viaje emitidos por quien lleva", "El banner desaparece al confirmar la entrega"], hyp: ["H4"] },
+    tech: ["Live Activities (iOS) y notificación en curso (Android) solo con app nativa; en la web, banner dentro de la página", "Estados del viaje emitidos por quien lleva", "El banner desaparece al confirmar la entrega"], hyp: ["H4"] },
   h9c: { k: H, t: "Seguimiento del viaje", lead: "Mapa con el auto en camino, paradas cumplidas y hora estimada de llegada.",
     res: "Saber dónde está el chico durante el viaje, sin llamar a nadie.", ev: ["P05: «sé dónde está en todo momento»", "Contraevidencia: P02 no quiere «ver por dónde andan»; el principio del equipo prioriza el traspaso sobre el mapa"],
     ch: "Se recupera el seguimiento en vivo del diseño original (D-010), acotado: solo durante el viaje, solo para las familias del viaje, y se apaga al llegar.",
-    tech: ["Ubicación de quien lleva compartida solo con el viaje activo (permiso en primer plano)", "SDK de mapas (Google Maps) y cálculo de la hora estimada", "Retención mínima: no guardar el recorrido después del viaje"], hyp: ["H4"] },
+    tech: ["Ubicación de quien lleva compartida solo con el viaje activo. En la web solo funciona con la página abierta; en segundo plano hace falta app nativa", "SDK de mapas (Google Maps) y cálculo de la hora estimada", "Retención mínima: no guardar el recorrido después del viaje"], hyp: ["H4"] },
   h10: { k: H, t: "Traspaso: estoy llegando", lead: "Quien recibe, aunque no tenga la app, recibe un aviso con un botón: «Ya bajo».",
     res: "El momento crítico es el traspaso, no el viaje.", ev: ["P04: «estoy saliendo… llego a la puerta y no hay nadie… ni doble tilde»", "P02 quiere que «cada una sepa cuándo tiene que ir bajando», no por seguridad", "9 de 19: «que avise cuando llegan»"],
     ch: "Cierra el seguimiento: quien recibe confirma la entrega con «Ya bajo», aunque no tenga la app.",
@@ -1441,18 +1454,21 @@ const NOTES = {
   k5: { k: H, t: "Invitación enviada", lead: "Confirma qué se mandó, muestra el mensaje tal como llega y deja a la persona como «pendiente» en el núcleo familiar.",
     res: "Quien invita sabe que el mensaje salió y en qué estado está, sin preguntar por WhatsApp si le llegó.", ev: ["13 de 19 dicen que les cuesta seguir los chats"],
     ch: "Nuevo. Antes se pasaba directo a la pantalla de quien recibe.", tech: ["Invitación con link firmado y vencimiento", "Estados: pendiente, aceptada, vencida"], hyp: ["H6"] },
+  w0: { k: H, t: "Tu WhatsApp, mensaje listo", lead: "Poolcito abre el WhatsApp de quien invita con el chat de Rosa y el texto escrito. Lo envía la persona.",
+    res: "Que invitar no cueste escribir, sin que Poolcito escriba en nombre de nadie.", ev: ["Pedido del equipo 11/11: respetar lo que se puede hacer tecnológicamente"],
+    ch: "Nuevo. Antes la app «mandaba» la invitación sola, y eso no es posible.", tech: ["Link wa.me/<número>?text=<mensaje> o hoja de compartir del sistema", "La app no sabe si el mensaje se envió: lo sabe cuando Rosa abre el link"], hyp: ["H6"] },
   w1: { k: H, t: "La invitación en WhatsApp", lead: "A Rosa le llega un mensaje de Valentina con la vista previa del link de Poolcito. La toca y entra, sin descargar nada.",
     res: "Que sumarse no dependa de instalar una app: la invitación llega por el canal que ya usan.", ev: ["Encuesta: 9 de 19 tienen abuelos que buscan a los chicos", "Reunión de equipo 10/11: la app acompaña la charla de WhatsApp, no la reemplaza"],
     ch: "Nuevo. Muestra el canal real de la invitación.", tech: ["WhatsApp no permite botones en mensajes entre personas: la «tarjeta» es la vista previa del link (Open Graph: título, descripción, imagen)", "Link firmado, de un solo uso y con vencimiento", "A costear: WhatsApp Business API para mensajes con botones"], hyp: ["H6"] },
   w2: { k: H, t: "Ofrecer lugares en el grupo", lead: "En el grupo del grado alguien pregunta quién lleva al cumple. Otra mamá comparte una tarjeta de Poolcito con los lugares que tiene.",
     res: "Hoy la lista de quién va se arma a mano en el chat y se pierde entre mensajes.", ev: ["Capturas de WhatsApp 09–10/11: se ofrecen lugares para un cumple, se aclara cuántos entran y la lista se arma a mano preguntando quién más"],
-    ch: "Nuevo. Eventos puntuales (cumpleaños) dentro del grupo de WhatsApp.", tech: ["Tarjeta = link con vista previa; los lugares se ven actualizados al abrirla", "Se comparte desde Poolcito con la hoja de compartir del celular"], hyp: ["H2"] },
+    ch: "Nuevo. Eventos puntuales (cumpleaños) dentro del grupo de WhatsApp.", tech: ["Tarjeta = vista previa del link (Open Graph). Es una foto del momento en que se comparte: no se actualiza; los lugares actuales se ven al abrir el link", "Se comparte desde Poolcito con la hoja de compartir del celular"], hyp: ["H2"] },
   w3: { k: H, t: "Sumarse desde el link", lead: "Desde la tarjeta se abre una página liviana: a quién sumás, dónde lo buscan y quién lo trae de vuelta.",
     res: "Sumarse sin escribir en el chat ni negociar los detalles uno por uno.", ev: ["Capturas de WhatsApp: confirmaciones sueltas para armar la lista", "Última entrevista con un padre: punto de encuentro cuando la casa queda lejos"],
     ch: "Nuevo. Incluye punto de encuentro.", tech: ["Página web sin login para quien ya está en Poolcito; verificación por WhatsApp para quien no"], hyp: ["H1", "H2"] },
-  w4: { k: H, t: "El grupo se entera solo", lead: "La tarjeta muestra quién se sumó y, cuando se completa, se publica la lista final en el grupo.",
+  w4: { k: H, t: "Compartir en el grupo", lead: "Quien se suma lo comparte en el grupo con un toque; su link trae una vista previa nueva con los lugares de ese momento.",
     res: "Nadie tiene que contar ni reescribir la lista en el chat.", ev: ["Capturas de WhatsApp: la lista se reescribe a mano varias veces"],
-    ch: "Nuevo.", tech: ["Publicar en el grupo: o la persona lo comparte con un toque, o WhatsApp Business API (a evaluar costo)"], hyp: ["H3"] },
+    ch: "Nuevo.", tech: ["Compartir con el link de WhatsApp (wa.me) o la hoja de compartir: la persona elige el chat y envía", "Cada link lleva un parámetro distinto para que la vista previa muestre los lugares del momento"], hyp: ["H3"] },
   w5: { k: H, t: "Aviso de salida en el grupo", lead: "El día del evento llega el aviso: a qué hora salen, quién maneja, el recorrido y a quién escribirle. Después, que llegaron.",
     res: "Quien maneja no siempre es quien organizó; hoy eso se aclara con un mensaje suelto.", ev: ["Capturas de WhatsApp: aviso de salida con el recorrido y a quién escribirle porque quien organizó no va"],
     ch: "Nuevo. Une el seguimiento del viaje con el chat.", tech: ["Link «Seguir el viaje» con vencimiento", "Aviso de llegada al confirmar la entrega"], hyp: ["H4"] },
@@ -1540,7 +1556,7 @@ const NOTES = {
 };
 const FLOWS = [
   { id: "F1", t: "Armar el núcleo familiar", who: "Quien organiza, la primera vez", goal: "Cargar una sola vez a los adultos de las dos casas y a los chicos, e invitar al resto por WhatsApp.",
-    steps: [["h1"],["h2"],["h4","Quién ya está, quién falta"],["k2","Datos, qué hace y con qué chicos"],["k5"],["w1","Lo ve Rosa en su WhatsApp"],["k3","Lo ve Rosa al abrir el link"]] },
+    steps: [["h1"],["h2"],["h4","Quién ya está, quién falta"],["k2","Datos, qué hace y con qué chicos"],["w0","Se abre tu WhatsApp; enviás vos"],["k5"],["w1","Lo ve Rosa en su WhatsApp"],["k3","Lo ve Rosa al abrir el link"]] },
   { id: "F9", t: "Armar la agenda de cada chico", who: "Quien organiza, la primera vez", goal: "Cargar la semana de cada chico y quién se ocupa normalmente, sin repetir datos entre hermanos.",
     steps: [["a1","Chico 1 de 2"],["a2","Atajos por tipo de actividad"],["a3","Chico 2 de 2: copia lo compartido"],["a4","Lo habitual; «Nadie» = hueco"]] },
   { id: "F2", t: "Ver la agenda de todos", who: "Cualquier adulto del núcleo familiar", goal: "Una sola agenda con los dos chicos; abrir la de cada uno cuando hace falta.",
