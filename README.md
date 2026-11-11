@@ -17,14 +17,23 @@ https://uffdg.github.io/poolcito-prototipo/
 ## Cómo ver el prototipo
 Abrí `/prototipo/` en el navegador. No necesita instalar nada.
 
-- **Columna izquierda:** las pantallas, en dos grupos: *Camino feliz* (16) y *Casos borde* (5).
+- **Columna izquierda:** las pantallas agrupadas por flujo del usuario (7 flujos) y los *Casos borde* (5). Arriba, «Ver todos los flujos» abre el mapa completo.
 - **Centro:** el teléfono. Se navega tocando los botones de la app o con ← → del teclado.
-- **Columna derecha:** las notas de cada pantalla: qué feature es, qué resuelve, de qué evidencia sale, qué cambia respecto del diseño original, notas para tecnología y qué hipótesis testea.
+- **Columna derecha:** arriba, el **flujo del usuario** de la pantalla actual (quién, para qué, pasos y ramas de casos borde; cada paso es clicable). Abajo, las notas de cada pantalla: qué feature es, qué resuelve, de qué evidencia sale, qué cambia respecto del diseño original, notas para tecnología y qué hipótesis testea.
 - Los recuadros punteados **«Simular»** y **«Caso borde»** no son parte de la app: sirven para abrir las ramas del prototipo.
 - Para ver solo el teléfono (por ejemplo, para capturas), agregá `&phone` al final del enlace: `prototipo/#h5&phone`.
 
 ## Recorrido
-**Camino feliz:** bienvenida → crear la cuenta → armar la red de los chicos e invitar (otra casa, abuela, niñera) → invitación recibida → inicio → mis chicos → ficha del chico (su red, su agenda y cómo se reparte) → grupo de la actividad → crear grupo → personas → mi perfil → actividad → semana repartida → pedir a la red → pedido enviado → acuerdo → armar el recorrido → banner en vivo → seguimiento → traspaso → entregado → puedo llevar. Navegación inspirada en Splitwise (D-013, D-014): la unidad es el chico y su red; sin saldos entre familias.
+**Flujos del usuario:**
+1. Armar el núcleo familiar: bienvenida → crear la cuenta → mi núcleo familiar (uno solo para los dos chicos) → invitar → invitación recibida.
+2. Ver la agenda de todos: inicio (agenda única, filtrable por chico) → semana repartida → mis chicos → agenda de Joaquín → agenda de Emilia.
+3. Repartir las tareas en casa: el reparto en casa (traslados y organización) → pasar una tarea → tarea pasada.
+4. Pedir a la red: pedir → pedido enviado → acuerdo → recorrido → banner en vivo → seguimiento → traspaso → entregado.
+5. Ofrecer un lugar: puedo llevar.
+6. Grupos de actividades: crear grupo → grupo → personas.
+7. Mi perfil y lo que pasó: mi perfil → actividad.
+
+Navegación inspirada en Splitwise (D-013, D-014, D-015): núcleo familiar único, organización por chico y sin saldos entre familias.
 
 **Casos borde:** nadie responde · cancelación de último momento · nadie confirma la llegada · hueco entre los dos hogares · cambio de horario.
 
